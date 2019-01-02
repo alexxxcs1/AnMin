@@ -1,0 +1,208 @@
+.ContentBox {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(139deg, rgba(251, 233, 212, 1) 0%, rgba(252, 223, 191, 1) 2%, rgba(253, 202, 148, 1) 7%, rgba(253, 185, 112, 1) 13%, rgba(254, 171, 82, 1) 19%, rgba(254, 160, 59, 1) 25%, rgba(255, 152, 43, 1) 31%, rgba(255, 147, 33, 1) 38%, rgba(255, 146, 30, 1) 47%, rgba(251, 135, 24, 1) 63%, rgba(239, 107, 7, 1) 90%, rgba(234, 94, 0, 1) 100%);
+    overflow: auto;
+    background-size: 300% 300%;
+    animation: wave 10s infinite;
+    position: relative;
+    .FixLayer{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 9;
+
+        .AlertInfoBox{
+            width: 100%;
+            height: 100%;
+        }
+        .Status{
+            width: 125px;
+        }
+        .TextLayer{
+            margin-top: 22px;
+            span{
+                display: block;
+                color: #fff;
+            }
+            & span:nth-child(1){
+                font-size: 26px;
+                margin-bottom: 18px;
+            }
+            & span:nth-child(2){
+                font-size: 21px;
+            }
+        }
+    }
+    .RegisterBox {
+        margin: 46px auto 120px auto;
+        width: 660px;
+        min-height: 1041px;
+        height: calc(100% - 46px - 120px);
+        background: #fff;
+        border-radius: 14px;
+
+        & .textbox:nth-child(1) {
+            margin-bottom: 18px;
+        }
+
+        & .textbox:nth-child(2) {
+            margin-bottom: 28px;
+        }
+
+        .ActTitle {
+            width: 100%;
+            font-size: 23px;
+            font-weight: bold;
+            color: #F67935;
+
+            .logo {
+                width: 60px;
+                margin-right: 21px;
+            }
+        }
+
+        .MainTitle {
+            width: 100%;
+            font-size: 32px;
+            font-weight: bold;
+            color: #F67935
+        }
+
+        .Welcome {
+            width: 100%;
+            font-size: 26px;
+            color: #FF5A00
+        }
+
+        .InputGroup {
+            width: 555px;
+            margin: calc(34px - 27px / 2) 0px;
+
+            .InputBox {
+                width: 100%;
+                height: 86px;
+                background: #FCF9F4;
+                border-radius: 8px;
+                margin: calc(27px / 2) 0px;
+
+                .InputTitle {
+                    width: 172px;
+                    height: 100%;
+                    font-size: 28px;
+                    font-weight: 300;
+                    color: rgba($color: #000000, $alpha: 0.6);
+                    text-indent: 30px;
+                }
+
+                .Inputs {
+                    display: block;
+                    outline: none;
+                    background: transparent;
+                    font-size: 26px;
+                    width: calc(100% - 172px);
+                    height: 100%;
+                }
+            }
+        }
+
+        .InformedConsent {
+            // width: 100%;
+            font-size: 24px;
+            font-weight: 300;
+            color: #707070;
+            margin-bottom: 38px;
+
+            .CheckBox {
+                width: 30px;
+                height: 30px;
+                box-shadow: #C4C4C4 0 0 0 1px inset;
+                margin-right: 13px;
+            }
+
+            .ActCheckBox {
+                position: relative;
+
+                &::after {
+                    position: absolute;
+                    content: '';
+                    width: 8px;
+                    height: 15px;
+                    transform-origin: 50% 100%;
+                    left: 55%;
+                    top: 70%;
+                    transform: translateX(-50%) translateY(-100%) rotate(-45deg);
+                    background: #34B93D;
+                    // animation: rotate 2s infinite linear;
+                    border-radius: 5px;
+                }
+
+                &::before {
+                    position: absolute;
+                    content: '';
+                    width: 8px;
+                    height: 30px;
+                    transform-origin: 50% 100%;
+                    left: 45%;
+                    top: 70%;
+                    transform: translateX(-50%) translateY(-100%) rotate(45deg);
+                    background: #34B93D;
+                    // animation: rotate 2s infinite linear;
+                    border-radius: 5px;
+                }
+            }
+
+            .text {
+                display: block;
+            }
+        }
+
+        .RegButton {
+            width: 275px;
+            height: 62px;
+            background: rgba(246, 121, 53, 1);
+            box-shadow: 0px 0px 20px rgba(246, 121, 53, 0.24);
+            opacity: 1;
+            border-radius: 6px;
+            font-size: 28px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+        }
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: translateX(-50%) translateY(-100%) rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-100%) rotate(360deg);
+    }
+}
+@keyframes wave {
+    0% {
+      background-position-x: 0%;
+      background-position-y: 0%;
+    }
+  
+    25% {
+      background-position-x: 100%;
+      background-position-y: 0%;
+    }
+  
+    50% {
+      background-position-x: 100%;
+      background-position-y: 100%;
+    }
+  
+    75% {
+      background-position-x: 0%;
+      background-position-y: 100%;
+    }
+  
+    100% {
+      background-position-x: 0%;
+      background-position-y: 0%;
+    }
+  }

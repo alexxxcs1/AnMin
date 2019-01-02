@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import style from './AllCase.scss'
+import style from './Featured.scss'
   
-export class AllCase extends Component {
+export class Featured extends Component {
 constructor(props) {
   super(props);
   this.state = {};
@@ -48,9 +48,10 @@ createTableRow(){
 }
 render() {
   return (
-    <div className={[style.AllCaseBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
+    <div className={[style.FeaturedBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
         <div className={[style.ListBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
-            <div className={style.ListTitle}>所有案例总览表</div>
+        
+            <div className={style.ListTitle}>精选案例总览表</div>
             <div className={[style.TableBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
 
                 <div className={[style.TableHead,'childcenter'].join(' ')}>
@@ -80,4 +81,4 @@ render() {
    )
    }
 }
-export default AllCase
+export default Featured

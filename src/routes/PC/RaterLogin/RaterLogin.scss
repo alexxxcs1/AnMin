@@ -31,6 +31,10 @@
                 .TextRow {
                     font-size: 18px;
                     color: #F67935;
+                    .logo{
+                        width: 45px;
+                        margin-right: 25px;
+                    }
                 }
 
                 & .TextRow:nth-child(1) {

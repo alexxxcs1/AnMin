@@ -4,7 +4,7 @@ import style from './RaterIndex.scss'
 
 import AllCase from './components/AllCase'
 import ChosenCase from './components/ChosenCase'
-import Rule from './components/Rule'
+import Featured from './components/Featured'
   
 import topbg from 'assets/topbg.png'
 
@@ -24,22 +24,12 @@ componentDidMount() {
   this.refreshProps(this.props);
 }
 refreshProps(props) {
-  
+    let hash = window.location.hash.split('/');
+    this.state.navStatus = hash[hash.length-1];
+    this.setState(this.state);
 }
 HandleNavStatus(status){
-    switch (status) {
-        case 0:
-            this.props.history.push('/rateruser/all');
-            break;
-        case 1:
-            this.props.history.push('/rateruser/chosen');
-            break;
-        case 2:
-            this.props.history.push('/rateruser/rule');
-            break;
-    }
-    this.state.navStatus = status;
-    this.setState(this.state);
+    this.props.history.push('/pc/rateruser/'+status);
 }
 render() {
   return (
@@ -48,9 +38,9 @@ render() {
             <div className={[style.BannerDetial,'childcenter'].join(' ')}>
                 <div className={[style.GroupBox,'childcenter','childcontentstart'].join(' ')}>
                     <div className={[style.NavGroup,'childcenter'].join(' ')}>
-                        <div onClick={this.HandleNavStatus.bind(this,0)} className={[style.NavButton,this.state.navStatus == 0?style.ActNavButton:'','childcenter'].join(' ')}>所有案例</div>
-                        <div onClick={this.HandleNavStatus.bind(this,1)} className={[style.NavButton,this.state.navStatus == 1?style.ActNavButton:'','childcenter'].join(' ')}>通过案例</div>
-                        <div onClick={this.HandleNavStatus.bind(this,2)} className={[style.NavButton,this.state.navStatus == 2?style.ActNavButton:'','childcenter'].join(' ')}>精选案例</div>
+                        <div onClick={this.HandleNavStatus.bind(this,'all')} className={[style.NavButton,this.state.navStatus == 'all'?style.ActNavButton:'','childcenter'].join(' ')}>所有案例</div>
+                        <div onClick={this.HandleNavStatus.bind(this,'chosen')} className={[style.NavButton,this.state.navStatus == 'chosen'?style.ActNavButton:'','childcenter'].join(' ')}>通过案例</div>
+                        <div onClick={this.HandleNavStatus.bind(this,'featured')} className={[style.NavButton,this.state.navStatus == 'featured'?style.ActNavButton:'','childcenter'].join(' ')}>精选案例</div>
                     </div>
                 </div>
                 <div className={[style.GroupBox,'childcenter','childcontentend'].join(' ')}>
@@ -68,9 +58,10 @@ render() {
             <img src={topbg} className={style.Topbkg} alt=""/>
             {/* <AllCase /> */}
             <Switch>
-                <Route path='/rateruser/all' component={AllCase} />
-                <Route path='/rateruser/chosen' component={ChosenCase} />
-                <Route path='/rateruser/rule' component={Rule} />
+                <Route path='/pc/rateruser/all' component={AllCase} />
+                <Route path='/pc/rateruser/chosen' component={ChosenCase} />
+                <Route path='/pc/rateruser/featured' component={Featured} />
+                <Redirect from="/pc/rateruser" to="/rateruser/all" />
             </Switch>
         </div>
 

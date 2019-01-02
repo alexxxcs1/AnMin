@@ -24,22 +24,12 @@ componentDidMount() {
   this.refreshProps(this.props);
 }
 refreshProps(props) {
-  
+    let hash = window.location.hash.split('/');
+    this.state.navStatus = hash[hash.length-1];
+    this.setState(this.state);
 }
 HandleNavStatus(status){
-    switch (status) {
-        case 0:
-            this.props.history.push('/user/all');
-            break;
-        case 1:
-            this.props.history.push('/user/chosen');
-            break;
-        case 2:
-            this.props.history.push('/user/rule');
-            break;
-    }
-    this.state.navStatus = status;
-    this.setState(this.state);
+    this.props.history.push('/pc/user/'+status);
 }
 render() {
   return (
@@ -48,9 +38,9 @@ render() {
             <div className={[style.BannerDetial,'childcenter'].join(' ')}>
                 <div className={[style.GroupBox,'childcenter','childcontentstart'].join(' ')}>
                     <div className={[style.NavGroup,'childcenter'].join(' ')}>
-                        <div onClick={this.HandleNavStatus.bind(this,0)} className={[style.NavButton,this.state.navStatus == 0?style.ActNavButton:'','childcenter'].join(' ')}>所有案例</div>
-                        <div onClick={this.HandleNavStatus.bind(this,1)} className={[style.NavButton,this.state.navStatus == 1?style.ActNavButton:'','childcenter'].join(' ')}>入选案例</div>
-                        <div onClick={this.HandleNavStatus.bind(this,2)} className={[style.NavButton,this.state.navStatus == 2?style.ActNavButton:'','childcenter'].join(' ')}>活动规则</div>
+                        <div onClick={this.HandleNavStatus.bind(this,'all')} className={[style.NavButton,this.state.navStatus == 'all'?style.ActNavButton:'','childcenter'].join(' ')}>所有案例</div>
+                        <div onClick={this.HandleNavStatus.bind(this,'chosen')} className={[style.NavButton,this.state.navStatus == 'chosen'?style.ActNavButton:'','childcenter'].join(' ')}>入选案例</div>
+                        <div onClick={this.HandleNavStatus.bind(this,'rule')} className={[style.NavButton,this.state.navStatus == 'rule'?style.ActNavButton:'','childcenter'].join(' ')}>活动规则</div>
                     </div>
                 </div>
                 <div className={[style.GroupBox,'childcenter','childcontentend'].join(' ')}>
@@ -68,9 +58,10 @@ render() {
             <img src={topbg} className={style.Topbkg} alt=""/>
             {/* <AllCase /> */}
             <Switch>
-                <Route path='/user/all' component={AllCase} />
-                <Route path='/user/chosen' component={ChosenCase} />
-                <Route path='/user/rule' component={Rule} />
+                <Route path='/pc/user/all' component={AllCase} />
+                <Route path='/pc/user/chosen' component={ChosenCase} />
+                <Route path='/pc/user/rule' component={Rule} />
+                <Redirect from="/pc/user" to="/user/rule" />
             </Switch>
         </div>
 

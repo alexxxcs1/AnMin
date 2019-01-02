@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import style from "./RaterLogin.scss";
 
 import topbg from "assets/topbg.png";
+import logo from "assets/logo.png";
 
 export class RaterLogin extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ export class RaterLogin extends Component {
             )}>
             <div className={style.TitleBox}>
               <div className={[style.TextRow, "childcenter"].join(" ")}>
-                全国婴幼儿牛奶蛋白过敏膳食管理规范化培训项目
+                <img src={logo} className={style.logo}/> 全国婴幼儿牛奶蛋白过敏膳食管理规范化培训项目
               </div>
               <div className={[style.TextRow, "childcenter"].join(" ")}>
                 2019青年讲者优秀病例征文平台

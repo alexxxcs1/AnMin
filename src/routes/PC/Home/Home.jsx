@@ -23,8 +23,8 @@ export class Home extends Component {
           <TopBanner />
           {/* <UserIndex /> */}
           <Switch>
-            <Route path='/user' component={UserIndex} />
-            <Route path='/rateruser' component={RaterIndex} />
+            <Route path='/pc/user' component={UserIndex} />
+            <Route path='/pc/rateruser' component={RaterIndex} />
           </Switch>
       </div>
     )

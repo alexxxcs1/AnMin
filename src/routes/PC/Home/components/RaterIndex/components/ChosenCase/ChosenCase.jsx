@@ -44,7 +44,7 @@ render() {
   return (
     <div className={[style.AllCaseBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
         <div className={[style.ListBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
-        
+            <div className={style.ListTitle}>通过案例总览表</div>
             <div className={[style.TableBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
 
                 <div className={[style.TableHead,'childcenter'].join(' ')}>
