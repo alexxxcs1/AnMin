@@ -200,7 +200,7 @@ module.exports = {
                         ident: 'postcss',
                         plugins: () => [
                           require('postcss-flexbugs-fixes'),
-                          // pxtorem({ rootValue: 75, propWhiteList: [], selectorBlackList: [/^html$/], minPixelValue: 2 }),
+                          pxtorem({ rootValue: 75, propWhiteList: [], selectorBlackList: [/^html$/], minPixelValue: 2 }),
                           autoprefixer({
                             browsers: [
                               '>1%',

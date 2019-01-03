@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import style from './MobileHome.scss'
 import { HashRouter,Route,Switch,Redirect} from 'react-router-dom';
 import Register from './components/Register'
+import UserIndex from './components/UserIndex'
   
 export class MobileHome extends Component {
 constructor(props) {
@@ -23,6 +24,7 @@ render() {
     <div className={style.MobileHomeBox}>
         <Switch>
             <Route path='/mobile/register' component={Register} />
+            <Route path='/mobile/user' component={UserIndex} />
         </Switch>
     </div>
    )
