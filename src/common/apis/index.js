@@ -2,12 +2,12 @@ import axios from 'axios'
 
 import AskPost from './AskPost'
 
-const host = 'http://client.rup-china.com/CT_20180630/index.php/index/index/'
+const host = 'http://meadjohnson-gz.rup-china.com/index.php/api/'
 
 // 实例化 ajax请求对象
 const ajaxinstance = axios.create({
   baseURL: host,
-  timeout: 5000,
+  timeout: 0,
   // withCredentials: true,
   headers: {
     // responseType: 'JSON',

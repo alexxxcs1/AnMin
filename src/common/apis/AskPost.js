@@ -1,12 +1,11 @@
 import qs from 'qs';
 const AskPost = (ajaxinstance) => {
     const customer = {}
-    customer.askQuestions = (hospital,department,content) => {
-        return ajaxinstance.post('askQuestions',qs.stringify({
-            hospital:hospital,
-            department:department,
-            content:content
-        }));
+    customer.uploadCase = (formdata) => {
+        return ajaxinstance.post('upload/Upload',formdata);
+      }
+    customer.uploadVideo = (formdata) => {
+        return ajaxinstance.post('upload/UploadVedio',formdata);
       }
     return customer
   }
