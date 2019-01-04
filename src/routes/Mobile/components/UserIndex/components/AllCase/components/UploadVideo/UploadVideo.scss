@@ -21,6 +21,8 @@
         bottom: 0px;
         left: 0px;
         z-index: -1;
+        border-radius: 100%;
+        transition: height 0.2s;
     }
     &::after{
         content: '';
