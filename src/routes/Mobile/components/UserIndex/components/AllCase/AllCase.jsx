@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import style from './AllCase.scss'
-
+import UploadVideo from './components/UploadVideo'
+import UploadCase from './components/UploadCase'
 
 
 let scrollbuttontimers;
@@ -139,14 +140,8 @@ render() {
         
         <div className={[style.HandleGroupBox,'childcenter'].join(' ')}>
             <div className={this.state.HandleButtonShow?style.HandleButtonHide:style.HandleButtonShow} onClick={this.ShowHandleButton}></div>
-            <div className={[style.Button,this.state.HandleButtonShow?'':style.hidden,'childcenter','childcolumn'].join(' ')}>
-                <span>新增</span>
-                <span>案例</span>
-            </div>
-            <div className={[style.Button,this.state.HandleButtonShow?'':style.hidden,'childcenter','childcolumn'].join(' ')}>
-                <span>上传</span>
-                <span>视频</span>
-            </div>
+            {this.state.HandleButtonShow?[<UploadCase />,
+            <UploadVideo />]:''}
             {this.state.scrollButton?<div className={style.ScrollToTop} onClick={this.ScrolltoTop}></div>:''}
         </div>
     </div>
