@@ -8,6 +8,7 @@ import ChosenCase from "./components/ChosenCase";
 import Rule from "./components/Rule";
 import UploadVideo from "./components/UploadVideo";
 import UploadCase from "./components/UploadCase";
+import VideoView from "./components/VideoView";
 
 import topbg from "assets/topbg.png";
 
@@ -50,6 +51,7 @@ export class UserIndex extends Component {
       <div className={style.UserIndexBox}>
         {this.state.fileloadbox == 1 ? <UploadCase /> : ""}
         {this.state.fileloadbox == 2 ? <UploadVideo /> : ""}
+        {this.state.fileloadbox == 3 ? <VideoView /> : ""}
         <div className={[style.NavBanner, "childcenter"].join(" ")}>
           <div className={[style.BannerDetial, "childcenter"].join(" ")}>
             <div

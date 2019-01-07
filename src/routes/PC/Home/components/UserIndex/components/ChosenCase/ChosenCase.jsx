@@ -1,40 +1,58 @@
 import React, { Component } from 'react'
 import style from './ChosenCase.scss'
+import {api} from 'common/app'
   
 export class ChosenCase extends Component {
 constructor(props) {
   super(props);
-  this.state = {};
+  this.state = {
+    data:[],
+  };
      this.refreshProps = this.refreshProps.bind(this);
      this.createTableRow = this.createTableRow.bind(this);
+     this.getCaseList = this.getCaseList.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
 }
 componentDidMount() {
   this.refreshProps(this.props);
+  this.getCaseList();
 }
 refreshProps(props) {
   
 }
+getCaseList(){
+    api.getChosenCase().then(res=>{
+        console.log(res);
+        if (res.code == 200) {
+            this.state.data = res.data;
+        }else{
+            alert(res.msg)
+        }
+        this.setState(this.state);
+    },err=>{
+
+    })
+}
 createTableRow(){
     let result = [];
-    for (let z = 0; z < 10; z++) {
+    for (let z = 0; z < this.state.data.length; z++) {
         result.push(<div className={[style.TableRow,'childcenter'].join(' ')}>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'42%'}}>
-            <input value='美赞臣安敏感·健行婴幼儿奶粉分析' className={style.ValueInput} type="text" readOnly/>
+            <input value={this.state.data[z].name} className={style.ValueInput} type="text" readOnly/>
             <div className={[style.HandleButtonGroup,'childcenter','childcontentstart'].join(' ')}>
-                <div >预览</div>
+                <a href={this.state.data[z].filePath} download={this.state.data[z].name} target="_blank" rel="noopener noreferrer"><div >下载</div></a>
             </div>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'24%'}}>
         <span className={style.CheckInfo}>查看详情</span> 
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'18%'}}>
-        <span className={style.Timespan}>2018-10-28 17:04</span> 
+        <span className={style.Timespan}>{new Date(this.state.data[z].created_at*1000).format('yyyy-MM-dd hh:mm')}</span> 
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'15%'}}>
-        <span className={style.Timespan}>2018-10-30 17:04</span>
+        <span className={style.Timespan}>{new Date(this.state.data[z].updated_at*1000).format('yyyy-MM-dd hh:mm')}</span>
         </div>
     </div>);
     }

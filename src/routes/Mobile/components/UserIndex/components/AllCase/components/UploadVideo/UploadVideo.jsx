@@ -40,7 +40,6 @@ export class UploadVideo extends Component {
             alert(res.msg);
             this.state.loaded = 0;
             this.state.loading = false;
-            console.log('------');
             
             this.setState(this.state);
             clearInterval(uploadBarInter);
@@ -61,8 +60,6 @@ export class UploadVideo extends Component {
           } else {
             if (self.state.loaded >= 50) {
               if (self.state.AjaxDone) {
-                  console.log('asdasd');
-                  
                 self.state.loaded += Math.random() * 20;
               }
             } else {

@@ -116,6 +116,7 @@ export class UploadCase extends Component {
         msg: '上传文件必须不超过30M'
       }
       alertInter = setTimeout(() => {
+        window.location.reload(true);
         self.state.AlertTips = {
           show: false,
           status: null,
