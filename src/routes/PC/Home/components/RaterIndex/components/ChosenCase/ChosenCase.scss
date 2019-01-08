@@ -84,7 +84,7 @@
         .TableBox{
             margin: 31px 0;
             width: 1136px;
-
+            height: 640px;
             .TableHead{
                 width: 100%;
                 height: 54px;
@@ -94,10 +94,35 @@
                 font-weight: bold;
                 color: rgba($color: #000000, $alpha: 0.8);
             }
+            .CommentInput{
+                display: block;
+                // width: 253px;
 
+                width: 163px;
+                height: 100%;
+                outline: none;
+                margin-left: 22px;
+                font-size: 18px;
+                color: rgba($color: #000000, $alpha: 0.7);
+                background: transparent;
+                font-weight: 300;
+            }
             .TableBody{
                 width: 100%;
+                height: 100%;
                 text-indent: 22px;
+            }
+            .NoResultBox{
+                width: 100%;
+                height: 100%;
+                img{
+                    width: 256px;
+                    margin-bottom: 25px;
+                }
+                span{
+                    font-size: 26px;
+                    color: #F67935;
+                }
             }
             .TableRow{
                 width: 100%;
@@ -124,7 +149,17 @@
                 font-size:18px;
                 text-decoration:underline !important;
                 font-weight: 300;
-                color: rgba($color: #000000, $alpha: 0.7);
+                color: rgba($color: #000000, $alpha: 0.7); 
+            }
+            .ScoreEditBox{
+                width: 100%;
+                height: 100%;
+            }
+            .EasyEditInput{
+                width: 70%;
+                height: 100%;
+                background: transparent;
+                outline: transparent;
             }
             .Timespan{
                 font-size: 18px;
@@ -145,5 +180,90 @@
                 }
             }
         }
+        .PTBox{
+            width: 1136px;
+            margin: 0 0 0 10px;
+            .PTGroup{
+                .PTButton{
+                    width: 28px;
+                    height: 28px;
+                    box-shadow: rgba(196,196,196,1) 0 0 0 1px inset;
+                    border-radius:6px;
+                    margin: 3.5px;
+                }
+                .left{
+                    position: relative;
+                    &::after{
+                        position: absolute;
+                        content: '';
+                        width: 0px;
+                        height: 0px;
+                        left: 50%;
+                        top: 50%;
+                        transform: translateX(-75%) translateY(-50%);
+                        border-bottom: transparent 6.5px solid;
+                        border-top: transparent 6.5px solid;
+                        border-left: transparent 0px solid;
+                        border-right: rgba($color: #000000, $alpha: 0.3) 9px solid;
+                    }
+                }
+                .right{
+                    position: relative;
+                    &::after{
+                        position: absolute;
+                        content: '';
+                        width: 0px;
+                        height: 0px;
+                        left: 50%;
+                        top: 50%;
+                        transform: translateX(-25%) translateY(-50%);
+                        border-bottom: transparent 6.5px solid;
+                        border-top: transparent 6.5px solid;
+                        border-right: transparent 0px solid;
+                        border-left: rgba($color: #000000, $alpha: 0.3) 9px solid;
+                    }
+                }
+                .act{
+                    background: #000;
+                }
+            }
+        }
     }
+}
+
+$placeholder_focucolor:transparent;
+$placeholder_unfocucolor:#999;
+input::-webkit-input-placeholder {
+    color: $placeholder_unfocucolor;
+    text-decoration: underline;
+}
+input:focus::-webkit-input-placeholder {
+    color: $placeholder_focucolor;
+}
+
+/* Firefox < 19 */
+input:-moz-placeholder {
+    color: $placeholder_unfocucolor;
+    text-decoration: underline;
+}
+input:focus:-moz-placeholder {
+    color: $placeholder_focucolor;
+}
+
+/* Firefox > 19 */
+input::-moz-placeholder {
+    color: $placeholder_unfocucolor;
+    text-decoration: underline;
+}
+input:focus::-moz-placeholder {
+    color: $placeholder_focucolor;
+}
+
+/* Internet Explorer 10 */
+input:-ms-input-placeholder {
+    color: $placeholder_unfocucolor;
+    text-decoration: underline;
+}
+input:focus:-ms-input-placeholder {
+    color: $placeholder_focucolor;
 }

@@ -18,7 +18,7 @@ refreshProps(props) {
 }
 render() {
   return (
-    <div className={[style.DarkBox,'childcenter'].join(' ')}>
+    <div className={[style.DarkBox,'childcenter','childcolumn'].join(' ')}>
         {this.props.children}
     </div>
    )

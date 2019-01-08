@@ -61,7 +61,7 @@ render() {
                 <Route path='/pc/rateruser/all' component={AllCase} />
                 <Route path='/pc/rateruser/chosen' component={ChosenCase} />
                 <Route path='/pc/rateruser/featured' component={Featured} />
-                <Redirect from="/pc/rateruser" to="/rateruser/all" />
+                <Redirect from="/pc/rateruser" to="/pc/rateruser/all" />
             </Switch>
         </div>
 
