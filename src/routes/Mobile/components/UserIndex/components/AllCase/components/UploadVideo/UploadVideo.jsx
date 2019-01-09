@@ -3,6 +3,8 @@ import style from "./UploadVideo.scss";
 import {api} from 'common/app'
 import MobileTipAlert from 'components/MobileTipAlert'
 
+import PropTypes from "prop-types";
+
 let uploadBarInter;
 export class UploadVideo extends Component {
   constructor(props) {
@@ -35,7 +37,7 @@ export class UploadVideo extends Component {
     formdata.append('file',file);
     api.uploadVideo(formdata).then(res=>{
         if (res.code == 200) {
-            
+          this.context.refreshList();
         }else{
             alert(res.msg);
             this.state.loaded = 0;
@@ -86,4 +88,7 @@ export class UploadVideo extends Component {
     );
   }
 }
+UploadVideo.contextTypes = {
+  refreshList: PropTypes.func
+};
 export default UploadVideo;

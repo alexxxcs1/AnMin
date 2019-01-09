@@ -4,6 +4,7 @@ import Select from 'components/Select'
 import Burster from 'components/Burster'
 import CommentBox from './components/CommentBox'
 import {api} from 'common/app'
+import LoadingBox from 'components/LoadingBox'
 
 
 import NoResult from 'assets/NoResult.png'
@@ -121,7 +122,7 @@ createTableRow(){
             </div>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
-        <span className={style.CheckInfo}>查看</span> 
+        <a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.CheckInfo}>查看</span></a>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
             <div className={[style.ScoreEditBox,'childcenter'].join(' ')}>
@@ -134,14 +135,14 @@ createTableRow(){
             show:true,
             id:this.state.data[z].id,
             content:this.state.data[z].content
-        })}>{this.state.data[z].content?'编辑':'我来点评'}</span> 
+        })}>{this.state.data[z].content?'编辑':'点我点评'}</span> 
         </div>
     </div>);
     }
     if (this.state.data.length == 0) {
         result.push( <div className={[style.NoResultBox,'childcenter childcolumn'].join(' ')}>
             <img src={NoResult} alt=""/>
-            <span>没有搜索结果</span>
+            <span>暂无内容</span>
         </div> )
     }
     return result;
@@ -203,7 +204,7 @@ render() {
                     </div>
                 </div>
                 <div className={[style.TableBody,'childcenter childcolumn childcontentstart'].join(' ')}>
-                    {this.createTableRow()}
+                    {this.state.onGetData?<LoadingBox />:this.createTableRow()}
                 </div>
             </div>
             <div className={[style.PTBox,'childcenter childcontentend'].join(' ')}>

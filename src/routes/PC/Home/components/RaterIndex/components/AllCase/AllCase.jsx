@@ -90,7 +90,7 @@ createTableRow(){
             </div>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'17%'}}>
-        <span className={style.Timespan} style={{textDecoration:'underline'}}>查看</span>
+         <a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.Timespan} style={{textDecoration:'underline'}}>查看</span></a>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
             <span className={style.Timespan}>{this.state.data[z].status==1?'待审核':(this.state.data[z].status == 2?'已通过':'未通过')}</span>
@@ -114,7 +114,7 @@ createTableRow(){
     if (this.state.data.length == 0) {
         result.push( <div className={[style.NoResultBox,'childcenter childcolumn'].join(' ')}>
             <img src={NoResult} alt=""/>
-            <span>没有搜索结果</span>
+            <span>暂无内容</span>
         </div> )
     }
     return result;

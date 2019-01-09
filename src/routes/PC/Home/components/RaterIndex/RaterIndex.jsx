@@ -5,6 +5,7 @@ import style from './RaterIndex.scss'
 import AllCase from './components/AllCase'
 import ChosenCase from './components/ChosenCase'
 import Featured from './components/Featured'
+import AuthBox from './components/AuthBox'
   
 import topbg from 'assets/topbg.png'
 
@@ -34,6 +35,7 @@ HandleNavStatus(status){
 render() {
   return (
     <div className={style.UserIndexBox}>
+        <AuthBox />
         <div className={[style.NavBanner,'childcenter'].join(' ')}>
             <div className={[style.BannerDetial,'childcenter'].join(' ')}>
                 <div className={[style.GroupBox,'childcenter','childcontentstart'].join(' ')}>

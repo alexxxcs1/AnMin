@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import style from "./UploadCase.scss";
 import {api} from 'common/app'
 import MobileTipAlert from 'components/MobileTipAlert'
+import PropTypes from "prop-types";
 
 let uploadBarInter;
 export class UploadCase extends Component {
@@ -55,6 +56,7 @@ export class UploadCase extends Component {
         if (self.state.loaded >= 100) {
             self.state.loaded = 100;
             self.state.loading = false;
+            this.context.refreshList();
             clearInterval(uploadBarInter);
           } else {
             if (self.state.loaded >= 50) {
@@ -85,4 +87,7 @@ export class UploadCase extends Component {
     );
   }
 }
+UploadCase.contextTypes = {
+  refreshList: PropTypes.func
+};
 export default UploadCase;

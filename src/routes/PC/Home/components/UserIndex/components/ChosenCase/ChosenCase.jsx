@@ -1,16 +1,23 @@
 import React, { Component } from 'react'
 import style from './ChosenCase.scss'
 import {api} from 'common/app'
+import CommentBox from './components/CommentBox'
   
 export class ChosenCase extends Component {
 constructor(props) {
   super(props);
   this.state = {
     data:[],
+    CommentOption:{
+        show:false,
+        id:null,
+        content:null,
+    }
   };
      this.refreshProps = this.refreshProps.bind(this);
      this.createTableRow = this.createTableRow.bind(this);
      this.getCaseList = this.getCaseList.bind(this);
+     this.HandleCommentBox = this.HandleCommentBox.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -22,11 +29,15 @@ componentDidMount() {
 refreshProps(props) {
   
 }
+HandleCommentBox(option){
+    this.state.CommentOption = option;
+    this.setState(this.state);
+}
 getCaseList(){
     api.getChosenCase().then(res=>{
         console.log(res);
         if (res.code == 200) {
-            this.state.data = res.data;
+            this.state.data = res.data?res.data:[];
         }else{
             alert(res.msg)
         }
@@ -46,7 +57,11 @@ createTableRow(){
             </div>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'24%'}}>
-        <span className={style.CheckInfo}>查看详情</span> 
+        <span className={style.CheckInfo} onClick={this.HandleCommentBox.bind(this,{
+            show:true,
+            id:this.state.data[z].id,
+            content:this.state.data[z].content
+        })}>查看详情</span> 
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'18%'}}>
         <span className={style.Timespan}>{new Date(this.state.data[z].created_at*1000).format('yyyy-MM-dd hh:mm')}</span> 
@@ -61,6 +76,7 @@ createTableRow(){
 render() {
   return (
     <div className={[style.AllCaseBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
+        {this.state.CommentOption.show?<CommentBox id={this.state.CommentOption.id} content={this.state.CommentOption.content} handle={this.HandleCommentBox}/>:''}
         <div className={[style.ListBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
         
             <div className={[style.TableBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>

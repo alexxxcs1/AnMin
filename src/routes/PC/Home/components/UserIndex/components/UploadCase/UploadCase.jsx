@@ -55,7 +55,7 @@ export class UploadCase extends Component {
         self.state.AlertTips.show = true;
         
         alertInter = setTimeout(() => {
-          self.context.HandleFileLoad(self, null);
+          self.context.HandleFileLoad( null);
         }, 2000);
         clearInterval(uploadBarInter);
       } else {

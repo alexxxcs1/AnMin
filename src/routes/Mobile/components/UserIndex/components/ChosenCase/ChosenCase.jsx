@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import style from "./ChosenCase.scss";
+import Comment from './components/Comment'
+
+import {api} from 'common/app'
+import PropTypes from "prop-types";
 
 let scrollbuttontimers;
 let timers;
@@ -11,7 +15,11 @@ export class ChosenCase extends Component {
         scrollButton:false,
       scrollTopInterval: null,
       HandleButtonShow: true,
-      data: []
+      data: [],
+      contentBoxOption:{
+        show:false,
+        content:null,
+      }
     };
     this.refreshProps = this.refreshProps.bind(this);
     this.getData = this.getData.bind(this);
@@ -19,19 +27,39 @@ export class ChosenCase extends Component {
     this.createList = this.createList.bind(this);
     this.setScrollListener = this.setScrollListener.bind(this);
     this.ScrolltoTop = this.ScrolltoTop.bind(this);
+    this.HandleCommentBox = this.HandleCommentBox.bind(this);
+  }
+  getChildContext() {
+    return {
+        refreshList: this.getCaseList,
+        handleComment: this.HandleCommentBox
+    };
   }
   componentWillReceiveProps(nextprops) {
     this.refreshProps(nextprops);
   }
   componentDidMount() {
     this.refreshProps(this.props);
-    this.getData();
-    this.refs.scrollbody.addEventListener("scroll", this.setScrollListener);
-    this.refs.scrollbody.addEventListener("touchmove", this.onTouchmove, {
-      passive: false //  禁止 passive 效果
-    });
+    this.getCaseList();
+    // this.refs.scrollbody.addEventListener("scroll", this.setScrollListener);
+    // this.refs.scrollbody.addEventListener("touchmove", this.onTouchmove, {
+    //   passive: false //  禁止 passive 效果
+    // });
   }
   refreshProps(props) {}
+  getCaseList(){
+    api.getChosenCase().then(res=>{
+        console.log(res);
+        if (res.code == 200) {
+            this.state.data = res.data?res.data:[];
+        }else{
+            alert(res.msg)
+        }
+        this.setState(this.state);
+    },err=>{
+
+    })
+}
   setScrollListener(e) {
     if (
       e.currentTarget.clientHeight + e.currentTarget.scrollTop + 50 >
@@ -61,6 +89,7 @@ export class ChosenCase extends Component {
         }, 100);
     }
   }
+  //mock data
   getData() {
     for (let z = 0; z < 10; z++) {
       this.state.data.push({
@@ -71,6 +100,7 @@ export class ChosenCase extends Component {
     }
     this.setState(this.state);
   }
+  //mock data
   pushData() {
     let result = [];
     for (let z = 0; z < 10; z++) {
@@ -96,9 +126,9 @@ export class ChosenCase extends Component {
           ].join(" ")}>
           <div className={style.CaseTitle}>
             {" "}
-            {z} 美赞臣安敏感·健行婴幼儿奶粉分析美赞臣安敏感·健行婴幼儿奶粉分析
+            {this.state.data[z].name}
           </div>
-          <div className={style.CaseUpdateTime}>更新时间：2018-10-31 21:04</div>
+          <div className={style.CaseUpdateTime}>更新时间：{new Date(this.state.data[z].updated_at * 1000).format('yyyy-MM-dd hh:mm')}</div>
           <div className={"flexbox"} />
           <div
             className={[
@@ -112,14 +142,18 @@ export class ChosenCase extends Component {
                 style.Colorful,
                 "childcenter"
               ].join(" ")}>
-              查看案例
+              <a href={this.state.data[z].filePath}>查看案例</a>
             </div>
             <div
               className={[
                 style.HandleButton,
                 style.Colorful,
                 "childcenter"
-              ].join(" ")}>
+              ].join(" ")}
+              onClick={this.HandleCommentBox.bind(this,{
+                show:true,
+                content:this.state.data[z].content
+              })}>
               查看专家评语
             </div>
           </div>
@@ -127,6 +161,10 @@ export class ChosenCase extends Component {
       );
     }
     return result;
+  }
+  HandleCommentBox(option){
+    this.state.contentBoxOption = option;
+    this.setState(this.state);
   }
   ScrolltoTop() {
     clearInterval(this.scrollTopInterval);
@@ -155,6 +193,7 @@ export class ChosenCase extends Component {
   render() {
     return (
       <div className={style.ListBox} ref={"scrollbody"}>
+        {this.state.contentBoxOption.show?<Comment content={this.state.contentBoxOption.content}/>:''}
         <div
           className={[style.ListBody, "childcenter", "childcolumn"].join(" ")}>
           {this.state.data.length == 0
@@ -177,4 +216,8 @@ export class ChosenCase extends Component {
     );
   }
 }
+ChosenCase.childContextTypes = {
+  refreshList: PropTypes.func,
+  handleComment: PropTypes.func,
+};
 export default ChosenCase;

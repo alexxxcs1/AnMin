@@ -4,6 +4,20 @@
     box-shadow: rgba(217,146,70,1) 0 0 0 1px inset;
     border-radius:20px;
     position: relative;
+    .CommentTopImg{
+        width: 219px;
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%)
+    }
+    .CommentBotImg{
+        width: 105%;
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+        transform: translateX(-50%) translateY(50%)
+    }
     .CloseButton{
         width: 47px;
         height: 47px;

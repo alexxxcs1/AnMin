@@ -1,6 +1,10 @@
 import qs from 'qs';
 const AskPost = (ajaxinstance) => {
     const customer = {}
+    //获取用户信息 
+    customer.getUserInfo = () => {
+      return ajaxinstance.post('users/getUsersInfo');
+    }  
     //上传案例
     customer.uploadCase = (formdata) => {
         return ajaxinstance.post('upload/Upload',formdata);
@@ -19,6 +23,15 @@ const AskPost = (ajaxinstance) => {
     customer.uploadVideo = (formdata) => {
         return ajaxinstance.post('upload/UploadVedio',formdata);
       }
+    // 用户端重新上传视频
+    customer.reUploadVideo = (formdata) => {
+      return ajaxinstance.post('upload/ReUploadVedio',formdata);
+    }
+    //删除视频
+    customer.deleteVideo = () => {
+      return ajaxinstance.post('upload/DelVedioResource');
+    } 
+    
     //获取所有案例 选手
     customer.getAllCase = () => {
       return ajaxinstance.post('users/getUsresResour');
@@ -47,6 +60,24 @@ const AskPost = (ajaxinstance) => {
         id,score,info
       }));
     }
+
+    //专家端登录
+    customer.raterLogin = (username,password) => {
+      return ajaxinstance.post('index/TeacherIndex',qs.stringify({
+        username,password
+      }));
+    }
+    // 专家端判断是否登录
+    customer.raterIsLogin = () => {
+      return ajaxinstance.post('index/TeacherIsCheck');
+    }
+    // 用户端判断是否登录
+    customer.userIsLogin = () => {
+      return ajaxinstance.post('users/UsersIsCheck');
+    }
+
+    
+    
     
     
     return customer

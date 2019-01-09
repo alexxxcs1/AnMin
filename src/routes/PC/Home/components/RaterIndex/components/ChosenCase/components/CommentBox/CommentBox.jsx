@@ -3,6 +3,9 @@ import style from './CommentBox.scss'
 import DarkBox from 'components/DarkBox'
 import close from 'assets/close.png'
 import {api} from 'common/app'
+
+import commentbot from 'assets/commentbot.png'
+import commenttop from 'assets/commenttop.png'
   
 export class CommentBox extends Component {
 constructor(props) {
@@ -63,12 +66,14 @@ render() {
   return (
     <DarkBox>
         <div className={style.CommentBox}>
+            <img src={commenttop} className={style.CommentTopImg} alt=""/>
             <div className={style.CloseButton} onClick={this.handleClose}>
                 <img src={close} alt=""/>
             </div>
             <div className={[style.DetialBox,'childcenter'].join(' ')}>
                 <textarea value={this.state.commentValue} className={style.DetialTextArea} onChange={this.HandleTextArea}></textarea>
             </div>
+            <img src={commentbot} className={style.CommentBotImg} alt=""/>
         </div>
         <div className={[style.SubmitButton,'childcenter'].join(' ')} onClick={this.submitComment}>确认</div>
     </DarkBox>

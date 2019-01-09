@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import style from "./UserIndex.scss";
 import PropTypes from "prop-types";
+import {api} from 'common/app'
 
 import AllCase from "./components/AllCase";
 import ChosenCase from "./components/ChosenCase";
@@ -9,13 +10,16 @@ import Rule from "./components/Rule";
 import UploadVideo from "./components/UploadVideo";
 import UploadCase from "./components/UploadCase";
 import VideoView from "./components/VideoView";
+import AuthBox from "./components/AuthBox";
 
 import topbg from "assets/topbg.png";
+import tmpVideo from "assets/tmp-video.mp4";
 
 export class UserIndex extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userinfo:null,
       fileloadbox: null,
       navStatus: 2
     };
@@ -28,6 +32,7 @@ export class UserIndex extends Component {
   }
   componentDidMount() {
     this.refreshProps(this.props);
+    this.getUserInfo();
   }
   refreshProps(props) {
     let hash = window.location.hash.split("/");
@@ -43,15 +48,33 @@ export class UserIndex extends Component {
     this.props.history.push("/pc/user/" + status);
   }
   HandleFileLoad(type) {
+    if (type == null) {
+      this.getUserInfo();
+    }
     this.state.fileloadbox = type;
     this.setState(this.state);
+  }
+  getUserInfo(){
+    api.getUserInfo().then(res=>{
+      console.log(res);
+      if (res.code == 200) {
+        this.state.userinfo = res.data;
+      }else{
+        console.log(res.msg);
+      }
+      this.setState(this.state);
+    },err=>{
+      console.log(err);
+      
+    })
   }
   render() {
     return (
       <div className={style.UserIndexBox}>
         {this.state.fileloadbox == 1 ? <UploadCase /> : ""}
         {this.state.fileloadbox == 2 ? <UploadVideo /> : ""}
-        {this.state.fileloadbox == 3 ? <VideoView /> : ""}
+        {this.state.fileloadbox == 3 ? <VideoView video={this.state.userinfo?this.state.userinfo.video:''}/> : ""}
+        {/* <AuthBox /> */}
         <div className={[style.NavBanner, "childcenter"].join(" ")}>
           <div className={[style.BannerDetial, "childcenter"].join(" ")}>
             <div
@@ -96,15 +119,17 @@ export class UserIndex extends Component {
                 "childcenter",
                 "childcontentend"
               ].join(" ")}>
-              <div
+              {this.state.userinfo?<div
                 className={[style.HandleButtonGroup, "childcenter"].join(" ")}>
-                <div className={[style.Button, "childcenter"].join(" ")} onClick={this.HandleFileLoad.bind(this,1)}>
+                {this.state.userinfo.fileCount>=10?'':<div className={[style.Button, "childcenter"].join(" ")} onClick={this.HandleFileLoad.bind(this,1)}>
                   上传案例
-                </div>
-                <div className={[style.Button, "childcenter"].join(" ")} onClick={this.HandleFileLoad.bind(this,2)}>
+                </div>}
+                {this.state.userinfo.video?<div className={[style.Button, "childcenter"].join(" ")} onClick={this.HandleFileLoad.bind(this,3)}>
+                  查看视频
+                </div>:<div className={[style.Button, "childcenter"].join(" ")} onClick={this.HandleFileLoad.bind(this,2)}>
                   添加视频
-                </div>
-              </div>
+                </div>}
+              </div>:''}
             </div>
           </div>
         </div>

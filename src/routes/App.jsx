@@ -4,6 +4,7 @@ import { HashRouter,Route,Switch,Redirect} from 'react-router-dom';
 
 import Home from 'routes/PC/Home'
 import UserLogin from 'routes/PC/UserLogin'
+import UserPWLogin from 'routes/PC/UserPWLogin'
 import RaterLogin from 'routes/PC/RaterLogin'
 import MobileHome from 'routes/Mobile'
 
@@ -16,7 +17,7 @@ class App extends Component {
               <Switch>
                   <Route path='/rlogin' component={RaterLogin} />
                   
-                  <Route path='/ulogin' component={UserLogin} />
+                  <Route path='/ulogin' component={UserPWLogin} />
                   {/* 首页 */}
                   <Route path='/pc' component={Home} />
                   <Route path='/mobile' component={MobileHome} />
