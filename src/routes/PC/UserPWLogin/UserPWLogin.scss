@@ -21,8 +21,10 @@
         opacity: 1;
         position: relative;
         overflow: hidden;
+        background: #fff;
         .LoginForm {
-            width: 631px;
+            width: 468px;
+            margin-left: 89px;
             height: 100%;
             background: #fff;
 
@@ -109,12 +111,14 @@
         }
 
         .BackgroundBox {
-            width: calc(100% - 631px);
+            width: calc(100% - 468px - 89px);
             height: 100%;
             overflow: hidden;
             position: relative;
-
-
+            margin-right: 8px;
+            .Earth{
+                width: 100%;
+            }
             // background: #000;
         }
         .boxbg {

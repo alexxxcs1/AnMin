@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import style from "./RaterLogin.scss";
 import {api} from 'common/app'
 
-import topbg from "assets/topbg.png";
+import topbg from "assets/topbg.jpg";
 import logo from "assets/logo.png";
+import earth from "assets/earth.png";
 
 export class RaterLogin extends Component {
   constructor(props) {
@@ -30,9 +31,9 @@ export class RaterLogin extends Component {
   }
   refreshProps(props) {}
   setbgBoxOffset(){
-      console.log(this.refs.boxbg.offsetTop,this.refs.boxbg.offsetLeft);
-      this.state.bgboxoffset.top = -this.refs.boxbg.offsetTop + 'px';
-      this.setState(this.state);
+      // console.log(this.refs.boxbg.offsetTop,this.refs.boxbg.offsetLeft);
+      // this.state.bgboxoffset.top = -this.refs.boxbg.offsetTop + 'px';
+      // this.setState(this.state);
   }
   Login(){
     if (this.state.username&&this.state.userpw) {
@@ -116,9 +117,9 @@ export class RaterLogin extends Component {
           </div>
 
           <div className={style.BackgroundBox}>
-            
+            <img src={earth} className={style.Earth} alt=""/>
           </div>
-          <img className={style.boxbg} src={topbg} ref='boxbg' style={{'--bodywidth':window.document.body.clientWidth + 'px'}} />   
+          {/* <img className={style.boxbg} src={topbg} ref='boxbg' style={{'--bodywidth':window.document.body.clientWidth + 'px'}} />    */}
         </div>
       </div>
     );

@@ -12,8 +12,7 @@ import UploadCase from "./components/UploadCase";
 import VideoView from "./components/VideoView";
 import AuthBox from "./components/AuthBox";
 
-import topbg from "assets/topbg.png";
-import tmpVideo from "assets/tmp-video.mp4";
+import topbg from "assets/topbg.jpg";
 
 export class UserIndex extends Component {
   constructor(props) {

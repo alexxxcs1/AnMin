@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import style from "./UserPWLogin.scss";
 
-import topbg from "assets/topbg.png";
+import topbg from "assets/topbg.jpg";
 import logo from "assets/logo.png";
+import earth from "assets/earth.png";
 
 export class UserPWLogin extends Component {
   constructor(props) {
@@ -25,9 +26,9 @@ export class UserPWLogin extends Component {
     this.setbgBoxOffset();
   }
   setbgBoxOffset(){
-      console.log(this.refs.boxbg.offsetTop,this.refs.boxbg.offsetLeft);
-      this.state.bgboxoffset.top = -this.refs.boxbg.offsetTop + 'px';
-      this.setState(this.state);
+      // console.log(this.refs.boxbg.offsetTop,this.refs.boxbg.offsetLeft);
+      // this.state.bgboxoffset.top = -this.refs.boxbg.offsetTop + 'px';
+      // this.setState(this.state);
   }
   refreshProps(props) {}
   Login(){
@@ -94,10 +95,10 @@ export class UserPWLogin extends Component {
             </div>
           </div>
 
-          <div className={style.BackgroundBox}>
-            
+          <div className={[style.BackgroundBox,'childcenter childcolumn childcontentend'].join(' ')}>
+            <img src={earth} className={style.Earth} alt=""/>
           </div>
-          <img className={style.boxbg} src={topbg} ref='boxbg' style={{'--bodywidth':window.document.body.clientWidth + 'px'}} />   
+          {/* <img className={style.boxbg} src={topbg} ref='boxbg' style={{'--bodywidth':window.document.body.clientWidth + 'px'}} />    */}
         </div>
       </div>
     );

@@ -11,6 +11,7 @@ constructor(props) {
   };
      this.refreshProps = this.refreshProps.bind(this);
      this.getUserInfo = this.getUserInfo.bind(this);
+     this.jumpUrl = this.jumpUrl.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -36,6 +37,19 @@ getUserInfo(){
       
     })
   }
+  jumpUrl(){
+    console.log(window.location.hash.split('/')[2]);
+    switch (window.location.hash.split('/')[2]) {
+      case 'user':
+        window.location.hash = '#/ulogin';
+        break;
+      case 'rateruser':
+        window.location.hash = '#/rlogin';
+        break;
+      default:
+        break;
+    }
+  }
 render() {
   return (
     <div className={[style.TopBannerBox,'childcenter'].join(' ')}>
@@ -51,7 +65,7 @@ render() {
                     <div className={style.UserName}>
                         {this.state.userinfo.name}
                     </div>
-                    <div className={style.ExitButton}>退出</div>
+                    <div className={style.ExitButton} onClick={this.jumpUrl}>退出</div>
                 </div>:<div className={[style.UserInfo,'childcenter'].join(' ')}>
                     <div className={style.ExitButton}>去登录</div>
                 </div>}

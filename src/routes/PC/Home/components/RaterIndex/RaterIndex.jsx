@@ -7,7 +7,7 @@ import ChosenCase from './components/ChosenCase'
 import Featured from './components/Featured'
 import AuthBox from './components/AuthBox'
   
-import topbg from 'assets/topbg.png'
+import topbg from 'assets/topbg.jpg'
 
 export class RaterIndex extends Component {
 constructor(props) {
