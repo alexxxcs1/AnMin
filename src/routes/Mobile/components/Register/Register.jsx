@@ -21,9 +21,13 @@ export class Register extends Component {
         value: ""
       },
       formdata:{
+        name:'',
         province:'',
         city:'',
-        district:''
+        district:'',
+        tel:'',
+        password:'',
+        code:'',
       }
     };
     this.refreshProps = this.refreshProps.bind(this);
@@ -31,9 +35,9 @@ export class Register extends Component {
     this.HandleSubmit = this.HandleSubmit.bind(this);
     this.onInputFocus = this.onInputFocus.bind(this);
     this.onInputBlur = this.onInputBlur.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
     this.HandleAlertShow = this.HandleAlertShow.bind(this);
     this.onCitySelect = this.onCitySelect.bind(this);
-    this.onCitySelectClose = this.onCitySelectClose.bind(this);
   }
   componentWillReceiveProps(nextprops) {
     this.refreshProps(nextprops);
@@ -56,21 +60,63 @@ export class Register extends Component {
       document.body.scrollTop = 0;
     }, 500);
   }
+  onInputChange(type,e){
+    if (e.target.value.length>11&&type == 'tel') {
+      e.target.value = e.target.value.slice(0,11);
+    }
+    this.state.formdata[type] = e.target.value;
+    this.setState(this.state);
+  }
   HandleSubmit() {
-    //模拟
-    this.state.RegisterResult = {
-      alertshow: true,
-      result: Math.random() > 0.5 ? true : false,
-      value: "服务器错误！"
-    };
-
-    //ajax
-    // api.userRegister(name,province,city,district,tel,password,code).then(res=>{
-
-    // },err=>{
-
-    // });
-
+    if (!this.state.InformedConsentStatus) {
+      this.state.RegisterResult = {
+        alertshow: true,
+        result: false,
+        value: "请阅读《用户知情同意书》"
+      };
+    }else{
+      let values = '';
+      console.log(Boolean(this.state.formdata.name));
+      
+      switch (false) {
+        case Boolean(this.state.formdata.name):
+          values = '姓名';
+          break;
+        case Boolean(this.state.formdata.tel):
+          values = '电话';
+          break;
+        case Boolean(this.state.formdata.province):
+          values = '省市区';
+          break;
+        case Boolean(this.state.formdata.city):
+          values = '省市区';
+          break;
+        case Boolean(this.state.formdata.district):
+          values = '省市区';
+          break;
+        case Boolean(this.state.formdata.password):
+          values = '密码';
+          break;
+        case Boolean(this.state.formdata.code):
+          values = '邀请码';
+          break;
+      }
+      if (values == '') {
+        api.userRegister(...this.state.formdata).then(res=>{
+          console.log(res);
+          
+        },err=>{
+    
+        });
+      }else{
+        this.state.RegisterResult = {
+          alertshow: true,
+          result:false,
+          value: values+"不能为空"
+        };
+      }
+      
+    }
     this.setState(this.state);
   }
   HandleAlertShow(boolean) {
@@ -79,12 +125,11 @@ export class Register extends Component {
   }
   onCitySelect(Province,City,Region){
     console.log(Province,City,Region);
-    
+    this.state.formdata.province = Province;
+    this.state.formdata.city = City;
+    this.state.formdata.district = Region;
+    this.setState(this.state);
   }
-  onCitySelectClose(){
-
-  }
-
   render() {
     return (
       <div className={[style.ContentBox].join(" ")}>
@@ -175,13 +220,12 @@ export class Register extends Component {
                 姓名
               </div>
               <input
+                value={this.state.formdata.name}
                 type="text"
                 className={style.Inputs}
-                name=""
-                id=""
                 onBlur={this.onInputBlur}
                 onFocus={this.onInputFocus}
-                // onChange={this.onInputBlur}
+                onChange={this.onInputChange.bind(this,'name')}
               />
             </div>
             <div className={[style.InputBox, "childcenter"].join(" ")}>
@@ -207,13 +251,13 @@ export class Register extends Component {
                 手机号码
               </div>
               <input
-                type="text"
+                value={this.state.formdata.tel}
+                type="tel"
+                type="number"
                 className={style.Inputs}
-                name=""
-                id=""
                 onBlur={this.onInputBlur}
                 onFocus={this.onInputFocus}
-                // onChange={this.onInputBlur}
+                onChange={this.onInputChange.bind(this,'tel')}
               />
             </div>
             <div className={[style.InputBox, "childcenter"].join(" ")}>
@@ -226,13 +270,12 @@ export class Register extends Component {
                 密码
               </div>
               <input
-                type="text"
+                value={this.state.formdata.password}
+                type="password"
                 className={style.Inputs}
-                name=""
-                id=""
                 onBlur={this.onInputBlur}
                 onFocus={this.onInputFocus}
-                // onChange={this.onInputBlur}
+                onChange={this.onInputChange.bind(this,'password')}
               />
             </div>
             <div className={[style.InputBox, "childcenter"].join(" ")}>
@@ -245,13 +288,12 @@ export class Register extends Component {
                 邀请码
               </div>
               <input
+                value={this.state.formdata.code}
                 type="text"
                 className={style.Inputs}
-                name=""
-                id=""
                 onBlur={this.onInputBlur}
                 onFocus={this.onInputFocus}
-                // onChange={this.onInputBlur}
+                onChange={this.onInputChange.bind(this,'code')}
               />
             </div>
           </div>

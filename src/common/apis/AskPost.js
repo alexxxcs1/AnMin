@@ -82,8 +82,10 @@ const AskPost = (ajaxinstance) => {
     }
     
     // 移动端注册帐号
-    customer.userRegister = () => {
-      return ajaxinstance.post('users/UsersRegister');
+    customer.userRegister = (name,province,city,district,tel,password,code) => {
+      return ajaxinstance.post('users/UsersRegister',qs.stringify({
+        name,province,city,district,tel,password,code
+      }));
     }
     
     return customer
