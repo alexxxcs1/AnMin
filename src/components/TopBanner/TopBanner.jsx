@@ -25,7 +25,6 @@ refreshProps(props) {
 }
 getUserInfo(){
     api.getUserInfo().then(res=>{
-      console.log(res);
       if (res.code == 200) {
         this.state.userinfo = res.data;
       }else{
@@ -38,7 +37,6 @@ getUserInfo(){
     })
   }
   jumpUrl(){
-    console.log(window.location.hash.split('/')[2]);
     switch (window.location.hash.split('/')[2]) {
       case 'user':
         window.location.hash = '#/ulogin';
@@ -66,7 +64,7 @@ render() {
                         {this.state.userinfo.name}
                     </div>
                     <div className={style.ExitButton} onClick={this.jumpUrl}>退出</div>
-                </div>:<div className={[style.UserInfo,'childcenter'].join(' ')}>
+                </div>:<div className={[style.UserInfo,'childcenter'].join(' ')} onClick={this.jumpUrl}>
                     <div className={style.ExitButton}>去登录</div>
                 </div>}
             </div>

@@ -76,9 +76,15 @@ const AskPost = (ajaxinstance) => {
       return ajaxinstance.post('users/UsersIsCheck');
     }
 
+    // 用户端获取微信登录地址
+    customer.getWeixinLoginUrl = () => {
+      return ajaxinstance.post('users/GetCodeUrlByPc');
+    }
     
-    
-    
+    // 移动端注册帐号
+    customer.userRegister = () => {
+      return ajaxinstance.post('users/UsersRegister');
+    }
     
     return customer
   }

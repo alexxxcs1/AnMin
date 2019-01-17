@@ -21,9 +21,10 @@ refreshProps(props) {
 }
 isAuth(){
     api.userIsLogin().then(res=>{
-        console.log(res);
-        if (res.code == 200) {
-            // window.location.hash = '#/ulogin'
+        if (res.code == 201) {
+            window.location.hash = '#/ulogin'
+        }else if (res.code == 202) {
+          window.location.hash = '#/userregister'
         }
     },err=>{
 

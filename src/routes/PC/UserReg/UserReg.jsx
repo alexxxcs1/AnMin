@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import style from "./RaterLogin.scss";
+import style from "./UserReg.scss";
 import {api} from 'common/app'
 
 import topbg from "assets/topbg.jpg";
 import logo from "assets/logo.png";
 import earth from "assets/earth.png";
+import mobileregisterqr from "assets/mobileregisterqr.png";
 
-export class RaterLogin extends Component {
+export class UserReg extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +38,7 @@ export class RaterLogin extends Component {
   }
   Login(){
     if (this.state.username&&this.state.userpw) {
-      api.raterLogin(this.state.username,this.state.userpw).then(res=>{
+      api.UserReg(this.state.username,this.state.userpw).then(res=>{
         if (res.code == 200) {
           this.props.history.push('/pc/rateruser')
         }else{
@@ -57,7 +58,7 @@ export class RaterLogin extends Component {
   }
   render() {
     return (
-      <div className={[style.RaterLoginBox, "childcenter"].join(" ")}>
+      <div className={[style.UserRegBox, "childcenter"].join(" ")}>
         <img src={topbg} className={style.Topbkg} alt="" />
         <div className={[style.LoginBox,'childcenter'].join(' ')} >
         {/* style={{backgroundImage:'url('+topbg+')'}} */}
@@ -72,48 +73,16 @@ export class RaterLogin extends Component {
               <div className={[style.TextRow, "childcenter"].join(" ")}>
                 2019青年讲者优秀病例征文平台
               </div>
-              <div className={[style.TextRow, "childcenter"].join(" ")}>
-                欢迎登录
-              </div>
+              
+            </div>
+            <div className={[style.TipsGroup,'childcenter childcolumn'].join(' ')}>
+              <span>您尚未在平台注册</span>
+              <span>请使用微信扫描二维码进行注册</span>
+            </div>
+            <div className={style.RegQR}>
+              <img src={mobileregisterqr} alt=""/>
             </div>
 
-            <div
-              className={[
-                style.FormInputGroup,
-                "childcenter",
-                "childcolumn"
-              ].join(" ")}>
-              <div className={[style.InputBox, "childcenter"].join(" ")}>
-                <div
-                  className={[
-                    style.InputName,
-                    "childcenter",
-                    "childcontentstart"
-                  ].join(" ")}>
-                  识别码
-                </div>
-                <div className={style.InputValue}>
-                  <input onChange={this.HandleInputChange.bind(this,'username')} type="text" />
-                </div>
-              </div>
-              <div className={[style.InputBox, "childcenter"].join(" ")}>
-                <div
-                  className={[
-                    style.InputName,
-                    "childcenter",
-                    "childcontentstart"
-                  ].join(" ")}>
-                  密码
-                </div>
-                <div className={style.InputValue}>
-                  <input onChange={this.HandleInputChange.bind(this,'userpw')} type="password" />
-                </div>
-              </div>
-            </div>
-
-            <div className={[style.LoginButton, "childcenter"].join(" ")} onClick={this.Login}>
-              确定
-            </div>
           </div>
 
           <div className={[style.BackgroundBox,'childcenter childcolumn childcontentend'].join(' ')}>
@@ -125,4 +94,4 @@ export class RaterLogin extends Component {
     );
   }
 }
-export default RaterLogin;
+export default UserReg;

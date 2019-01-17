@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import style from "./Register.scss";
 import MobileTipAlert from "components/MobileTipAlert";
+import CitySelect from "components/CitySelect";
 
 import logo from "assets/logo.png";
 import Success from "assets/Success.png";
 import Error from "assets/Error.png";
 
+import { api } from "common/app";
+
+let timmer;
 export class Register extends Component {
   constructor(props) {
     super(props);
@@ -15,13 +19,21 @@ export class Register extends Component {
         alertshow: false,
         result: null,
         value: ""
+      },
+      formdata:{
+        province:'',
+        city:'',
+        district:''
       }
     };
     this.refreshProps = this.refreshProps.bind(this);
     this.HandleInformedConsent = this.HandleInformedConsent.bind(this);
     this.HandleSubmit = this.HandleSubmit.bind(this);
+    this.onInputFocus = this.onInputFocus.bind(this);
     this.onInputBlur = this.onInputBlur.bind(this);
     this.HandleAlertShow = this.HandleAlertShow.bind(this);
+    this.onCitySelect = this.onCitySelect.bind(this);
+    this.onCitySelectClose = this.onCitySelectClose.bind(this);
   }
   componentWillReceiveProps(nextprops) {
     this.refreshProps(nextprops);
@@ -34,14 +46,15 @@ export class Register extends Component {
     this.state.InformedConsentStatus = !this.state.InformedConsentStatus;
     this.setState(this.state);
   }
+  onInputFocus(){
+    clearTimeout(timmer);
+  }
   onInputBlur() {
-    var scrollTop =
-      document.documentElement.scrollTop ||
-      window.pageYOffset ||
-      document.body.scrollTop;
-    document.documentElement.scrollTop = 0;
-    window.pageYOffset = 0;
-    document.body.scrollTop = 0;
+    timmer = setTimeout(() => {
+      document.documentElement.scrollTop = 0;
+      window.pageYOffset = 0;
+      document.body.scrollTop = 0;
+    }, 500);
   }
   HandleSubmit() {
     //模拟
@@ -52,63 +65,81 @@ export class Register extends Component {
     };
 
     //ajax
+    // api.userRegister(name,province,city,district,tel,password,code).then(res=>{
+
+    // },err=>{
+
+    // });
+
     this.setState(this.state);
   }
-  HandleAlertShow(boolean){
-      this.state.RegisterResult.alertshow = boolean;
-      this.setState(this.state);
+  HandleAlertShow(boolean) {
+    this.state.RegisterResult.alertshow = boolean;
+    this.setState(this.state);
   }
+  onCitySelect(Province,City,Region){
+    console.log(Province,City,Region);
+    
+  }
+  onCitySelectClose(){
+
+  }
+
   render() {
     return (
       <div className={[style.ContentBox].join(" ")}>
-        {this.state.RegisterResult.alertshow?<div className={[style.FixLayer, "childcenter"].join(" ")}>
-          {this.state.RegisterResult.result == true ? (
-            <MobileTipAlert onClose={this.HandleAlertShow.bind(this,false)}>
-              <div
-                className={[
-                  style.AlertInfoBox,
-                  "childcenter",
-                  "childcolumn"
-                ].join(" ")}>
-                <img src={Success} className={style.Status} alt="" />
+        {this.state.RegisterResult.alertshow ? (
+          <div className={[style.FixLayer, "childcenter"].join(" ")}>
+            {this.state.RegisterResult.result == true ? (
+              <MobileTipAlert onClose={this.HandleAlertShow.bind(this, false)}>
                 <div
                   className={[
-                    style.TextLayer,
+                    style.AlertInfoBox,
                     "childcenter",
                     "childcolumn"
                   ].join(" ")}>
-                  <span>注册成功</span>
-                  <span>正在为您跳转，请稍后</span>
+                  <img src={Success} className={style.Status} alt="" />
+                  <div
+                    className={[
+                      style.TextLayer,
+                      "childcenter",
+                      "childcolumn"
+                    ].join(" ")}>
+                    <span>注册成功</span>
+                    <span>正在为您跳转，请稍后</span>
+                  </div>
                 </div>
-              </div>
-            </MobileTipAlert>
-          ) : (
-            ""
-          )}
-          {this.state.RegisterResult.result == false ? (
-            <MobileTipAlert onClose={this.HandleAlertShow.bind(this,false)}>
-              <div
-                className={[
-                  style.AlertInfoBox,
-                  "childcenter",
-                  "childcolumn"
-                ].join(" ")}>
-                <img src={Error} className={style.Status} alt="" />
+              </MobileTipAlert>
+            ) : (
+              ""
+            )}
+            {this.state.RegisterResult.result == false ? (
+              <MobileTipAlert onClose={this.HandleAlertShow.bind(this, false)}>
                 <div
                   className={[
-                    style.TextLayer,
+                    style.AlertInfoBox,
                     "childcenter",
                     "childcolumn"
                   ].join(" ")}>
-                  <span>注册失败</span>
-                  <span>{this.state.RegisterResult.value}</span>
+                  <img src={Error} className={style.Status} alt="" />
+                  <div
+                    className={[
+                      style.TextLayer,
+                      "childcenter",
+                      "childcolumn"
+                    ].join(" ")}>
+                    <span>注册失败</span>
+                    <span>{this.state.RegisterResult.value}</span>
+                  </div>
                 </div>
-              </div>
-            </MobileTipAlert>
-          ) : (
-            ""
-          )}
-        </div>:''}
+              </MobileTipAlert>
+            ) : (
+              ""
+            )}
+          </div>
+        ) : (
+          ""
+        )}
         <div
           className={[style.RegisterBox, "childcenter", "childcolumn"].join(
             " "
@@ -149,6 +180,8 @@ export class Register extends Component {
                 name=""
                 id=""
                 onBlur={this.onInputBlur}
+                onFocus={this.onInputFocus}
+                // onChange={this.onInputBlur}
               />
             </div>
             <div className={[style.InputBox, "childcenter"].join(" ")}>
@@ -160,13 +193,9 @@ export class Register extends Component {
                 ].join(" ")}>
                 省市区
               </div>
-              <input
-                type="text"
-                className={style.Inputs}
-                name=""
-                id=""
-                onBlur={this.onInputBlur}
-              />
+              <div className={style.Inputs}>
+                <CitySelect onSelect={this.onCitySelect}/>
+              </div>
             </div>
             <div className={[style.InputBox, "childcenter"].join(" ")}>
               <div
@@ -183,6 +212,8 @@ export class Register extends Component {
                 name=""
                 id=""
                 onBlur={this.onInputBlur}
+                onFocus={this.onInputFocus}
+                // onChange={this.onInputBlur}
               />
             </div>
             <div className={[style.InputBox, "childcenter"].join(" ")}>
@@ -200,6 +231,8 @@ export class Register extends Component {
                 name=""
                 id=""
                 onBlur={this.onInputBlur}
+                onFocus={this.onInputFocus}
+                // onChange={this.onInputBlur}
               />
             </div>
             <div className={[style.InputBox, "childcenter"].join(" ")}>
@@ -217,6 +250,8 @@ export class Register extends Component {
                 name=""
                 id=""
                 onBlur={this.onInputBlur}
+                onFocus={this.onInputFocus}
+                // onChange={this.onInputBlur}
               />
             </div>
           </div>

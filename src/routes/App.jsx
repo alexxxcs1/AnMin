@@ -6,6 +6,7 @@ import Home from 'routes/PC/Home'
 import UserLogin from 'routes/PC/UserLogin'
 import UserPWLogin from 'routes/PC/UserPWLogin'
 import RaterLogin from 'routes/PC/RaterLogin'
+import UserReg from 'routes/PC/UserReg'
 import MobileHome from 'routes/Mobile'
 
 class App extends Component {
@@ -17,7 +18,8 @@ class App extends Component {
               <Switch>
                   <Route path='/rlogin' component={RaterLogin} />
                   
-                  <Route path='/ulogin' component={UserPWLogin} />
+                  <Route path='/ulogin' component={UserLogin} />
+                  <Route path='/userregister' component={UserReg} />
                   {/* 首页 */}
                   <Route path='/pc' component={Home} />
                   <Route path='/mobile' component={MobileHome} />
