@@ -24,38 +24,65 @@ refreshProps(props) {
   
 }
 getUserInfo(){
-    api.getUserInfo().then(res=>{
-      if (res.code == 200) {
-        this.state.userinfo = res.data;
-      }else{
-        console.log(res.msg);
-      }
-      this.setState(this.state);
-    },err=>{
-      console.log(err);
-      
-    })
-  }
-  jumpUrl(){
     switch (window.location.hash.split('/')[2]) {
       case 'user':
-        window.location.hash = '#/ulogin';
+        api.getUserInfo().then(res=>{
+          if (res.code == 200) {
+            this.state.userinfo = res.data;
+          }else{
+            console.log(res.msg);
+          }
+          this.setState(this.state);
+        },err=>{
+          console.log(err);
+        });
         break;
       case 'rateruser':
-        window.location.hash = '#/rlogin';
+        api.getRaterInfo().then(res=>{
+          if (res.code == 200) {
+            this.state.userinfo = res.data;
+          }else{
+            console.log(res.msg);
+          }
+          this.setState(this.state);
+        },err=>{
+          console.log(err);
+        });
         break;
       default:
         break;
     }
+    
   }
+jumpUrl(){
+  api.logout().then(res=>{
+    if (res.code == 200) {
+      switch (window.location.hash.split('/')[2]) {
+        case 'user':
+          window.location.hash = '#/ulogin';
+          break;
+        case 'rateruser':
+          window.location.hash = '#/rlogin';
+          break;
+        default:
+          break;
+      }
+    }else{
+      alert(res.msg)
+    }
+  },err=>{
+    console.log(err);
+  })
+  
+}
 render() {
   return (
     <div className={[style.TopBannerBox,'childcenter'].join(' ')}>
         <div className={[style.BannerDetial,'childcenter'].join(' ')}>
             <div className={[style.GroupBox,'childcenter','childcontentstart'].join(' ')}>
-                <div className={style.TextSlogan}>2019青年讲者优秀病例征文平台</div>
+                <div className={style.TextSlogan}> 2019全国婴幼儿牛奶蛋白过敏膳食管理规范化培训项目－真知灼见◆青年讲者优秀临床案例征集比赛</div>
             </div>
-            <div className={[style.GroupBox,'childcenter','childcontentend'].join(' ')}>
+            <div className={[style.HandleBox,'childcenter','childcontentend'].join(' ')}>
                 {this.state.userinfo?<div className={[style.UserInfo,'childcenter'].join(' ')}>
                     <div className={style.UserHeadShot}>
                         <img src={this.state.userinfo.headurlimg} alt=""/>

@@ -53,7 +53,7 @@ createTableRow(){
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'42%'}}>
             <input value={this.state.data[z].name} className={style.ValueInput} type="text" readOnly/>
             <div className={[style.HandleButtonGroup,'childcenter','childcontentstart'].join(' ')}>
-                <a href={this.state.data[z].filePath} download={this.state.data[z].name} target="_blank" rel="noopener noreferrer"><div >下载</div></a>
+                <a href={this.state.data[z].filePath} download={this.state.data[z].name} target="_blank" rel="noopener noreferrer"><div >在线预览</div></a>
             </div>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'24%'}}>

@@ -1,9 +1,17 @@
 import qs from 'qs';
 const AskPost = (ajaxinstance) => {
     const customer = {}
+    //退出当前用户
+    customer.logout = () => {
+      return ajaxinstance.post('users/logOut');
+    }  
+    
     //获取用户信息 
     customer.getUserInfo = () => {
       return ajaxinstance.post('users/getUsersInfo');
+    }  
+    customer.getRaterInfo = () => {
+      return ajaxinstance.post('index/getTeacherInfo');
     }  
     //上传案例
     customer.uploadCase = (formdata) => {
@@ -82,11 +90,26 @@ const AskPost = (ajaxinstance) => {
     }
     
     // 移动端注册帐号
-    customer.userRegister = (name,province,city,district,tel,password,code) => {
+    customer.userRegister = (name,province,city,district,tel,code) => {
       return ajaxinstance.post('users/UsersRegister',qs.stringify({
-        name,province,city,district,tel,password,code
+        name,province,city,district,tel,code
       }));
     }
+    //移动端判断用户是否已授权
+    customer.wxisAuth = (url) => {
+      return ajaxinstance.post('users/GetCodeUrl',qs.stringify({
+        url
+      }));
+    }
+    //获取分享配置信息
+    customer.getShare = (url) => {
+      return ajaxinstance.post('users/GetWeChatShare',qs.stringify({
+        url
+      }));
+    }
+    
+    
+    
     
     return customer
   }

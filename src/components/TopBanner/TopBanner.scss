@@ -7,43 +7,44 @@
         width: 100%;
         max-width: 1366px;
         height: 100%;
-
-        .GroupBox {
-            width: 50%;
+        .HandleBox{
+            width: 20%;
             height: 100%;
+        }
+        .GroupBox {
+            width: 80%;
+            height: 100%;
+        }
+        .TextSlogan {
+            font-size: 24px;
+            color: #fff;
+            margin: 0 83px;
+        }
+        .UserInfo {
 
-            .TextSlogan {
-                font-size: 24px;
-                color: #fff;
-                margin: 0 83px;
+            .UserHeadShot {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                }
+                margin: 0 12px;
             }
 
-            .UserInfo {
+            .UserName {
+                font-size: 20px;
+                color: #fff;
+            }
 
-                .UserHeadShot {
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    overflow: hidden;
-
-                    img {
-                        width: 100%;
-                    }
-                    margin: 0 12px;
-                }
-
-                .UserName {
-                    font-size: 20px;
-                    color: #fff;
-                }
-
-                .ExitButton {
-                    font-size: 16px;
-                    color: #fff;
-                    margin-right: 83px;
-                    margin-left: 30px;
-                    text-decoration: underline !important;
-                }
+            .ExitButton {
+                font-size: 16px;
+                color: #fff;
+                margin-right: 83px;
+                margin-left: 30px;
+                text-decoration: underline !important;
             }
         }
     }

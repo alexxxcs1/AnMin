@@ -47,7 +47,7 @@ export class RaterLogin extends Component {
   
       })
     }else{
-      alert('请输入正确的识别码及密码')
+      alert('请输入正确的账号及密码')
     }
     
   }
@@ -90,7 +90,7 @@ export class RaterLogin extends Component {
                     "childcenter",
                     "childcontentstart"
                   ].join(" ")}>
-                  识别码
+                  账号
                 </div>
                 <div className={style.InputValue}>
                   <input onChange={this.HandleInputChange.bind(this,'username')} type="text" />

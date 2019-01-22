@@ -7,6 +7,7 @@ import logo from "assets/logo.png";
 import earth from "assets/earth.png";
 import mobileregisterqr from "assets/mobileregisterqr.png";
 
+let isRegTimer;
 export class UserReg extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +21,6 @@ export class UserReg extends Component {
     };
     this.refreshProps = this.refreshProps.bind(this);
     this.setbgBoxOffset = this.setbgBoxOffset.bind(this);
-    this.Login = this.Login.bind(this);
     this.HandleInputChange = this.HandleInputChange.bind(this);
   }
   componentWillReceiveProps(nextprops) {
@@ -29,6 +29,9 @@ export class UserReg extends Component {
   componentDidMount() {
     this.refreshProps(this.props);
     this.setbgBoxOffset();
+    isRegTimer = setInterval(() => {
+      this.getUserIsReg();
+    }, 500);
   }
   refreshProps(props) {}
   setbgBoxOffset(){
@@ -36,25 +39,25 @@ export class UserReg extends Component {
       // this.state.bgboxoffset.top = -this.refs.boxbg.offsetTop + 'px';
       // this.setState(this.state);
   }
-  Login(){
-    if (this.state.username&&this.state.userpw) {
-      api.UserReg(this.state.username,this.state.userpw).then(res=>{
-        if (res.code == 200) {
-          this.props.history.push('/pc/rateruser')
-        }else{
-          alert(res.msg)
-        }
-      },err=>{
-  
-      })
-    }else{
-      alert('请输入正确的识别码及密码')
-    }
-    
+  getUserIsReg(){
+    api.userIsLogin().then(res=>{
+      if (res.code == 201) {
+        window.location.hash = '#/ulogin'
+      }else if (res.code == 202) {
+        window.location.hash = '#/userregister'
+      }else if(res.code == 200){
+        window.location.hash = '#/pc/user/rule'
+      }
+    },err=>{
+
+    });
   }
   HandleInputChange(type,e){
     this.state[type] = e.target.value;
     this.setState(this.state);
+  }
+  componentWillUnmount(){
+    clearInterval(isRegTimer);
   }
   render() {
     return (
@@ -68,7 +71,7 @@ export class UserReg extends Component {
             )}>
             <div className={style.TitleBox}>
               <div className={[style.TextRow, "childcenter"].join(" ")}>
-                <img src={logo} className={style.logo}/> 全国婴幼儿牛奶蛋白过敏膳食管理规范化培训项目
+                <img src={logo} className={style.logo}/> 全国婴幼儿牛奶蛋白过敏膳食管理规范化培训项目asdasd
               </div>
               <div className={[style.TextRow, "childcenter"].join(" ")}>
                 2019青年讲者优秀病例征文平台

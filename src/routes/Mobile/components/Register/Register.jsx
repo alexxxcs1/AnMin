@@ -10,6 +10,8 @@ import Error from "assets/Error.png";
 import { api } from "common/app";
 
 let timmer;
+let jumpertimmer;
+
 export class Register extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +28,6 @@ export class Register extends Component {
         city:'',
         district:'',
         tel:'',
-        password:'',
         code:'',
       }
     };
@@ -94,17 +95,38 @@ export class Register extends Component {
         case Boolean(this.state.formdata.district):
           values = '省市区';
           break;
-        case Boolean(this.state.formdata.password):
-          values = '密码';
-          break;
         case Boolean(this.state.formdata.code):
           values = '邀请码';
           break;
       }
       if (values == '') {
-        api.userRegister(...this.state.formdata).then(res=>{
+        api.userRegister(
+          this.state.formdata.name,
+          this.state.formdata.province,
+          this.state.formdata.city,
+          this.state.formdata.district,
+          this.state.formdata.tel,
+          this.state.formdata.code,
+          ).then(res=>{
           console.log(res);
-          
+          if (res.code == 200) {
+            this.state.RegisterResult = {
+              alertshow: true,
+              result: true,
+              value: res.msg
+            };
+            let self = this;
+            jumpertimmer = setTimeout(() => {
+              self.props.history.push('/mobile/user/all')
+            }, 1000);
+          }else{
+            this.state.RegisterResult = {
+              alertshow: true,
+              result: false,
+              value: res.msg
+            };
+          }
+          this.setState(this.state)
         },err=>{
     
         });
@@ -129,6 +151,10 @@ export class Register extends Component {
     this.state.formdata.city = City;
     this.state.formdata.district = Region;
     this.setState(this.state);
+  }
+  componentWillUnmount(){
+    clearTimeout(timmer);
+    clearTimeout(jumpertimmer);
   }
   render() {
     return (
@@ -258,24 +284,6 @@ export class Register extends Component {
                 onBlur={this.onInputBlur}
                 onFocus={this.onInputFocus}
                 onChange={this.onInputChange.bind(this,'tel')}
-              />
-            </div>
-            <div className={[style.InputBox, "childcenter"].join(" ")}>
-              <div
-                className={[
-                  style.InputTitle,
-                  "childcenter",
-                  "childcontentstart"
-                ].join(" ")}>
-                密码
-              </div>
-              <input
-                value={this.state.formdata.password}
-                type="password"
-                className={style.Inputs}
-                onBlur={this.onInputBlur}
-                onFocus={this.onInputFocus}
-                onChange={this.onInputChange.bind(this,'password')}
               />
             </div>
             <div className={[style.InputBox, "childcenter"].join(" ")}>

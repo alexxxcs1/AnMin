@@ -47,7 +47,7 @@ createTableRow(){
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'66%'}}>
             <input title={this.state.data[z].name} value={this.state.data[z].name} className={style.ValueInput} type="text" readOnly/>
             <div className={[style.HandleButtonGroup,'childcenter','childcontentstart'].join(' ')}>
-                <a href={this.state.data[z].filePath} download={this.state.data[z].name} target="_blank" rel="noopener noreferrer"><div >下载</div></a>
+                <a href={this.state.data[z].filePath} download={this.state.data[z].name} target="_blank" rel="noopener noreferrer"><div >在线预览</div></a>
                 <div onClick={this.clickFile.bind(this,this.state.data[z].id,z)}>重新上传</div>
                 <div onClick={this.onDeleteCase.bind(this,this.state.data[z].id,z)}>删除</div>
             </div>

@@ -55,7 +55,6 @@ export class UserIndex extends Component {
   }
   getUserInfo(){
     api.getUserInfo().then(res=>{
-      console.log(res);
       if (res.code == 200) {
         this.state.userinfo = res.data;
       }else{
