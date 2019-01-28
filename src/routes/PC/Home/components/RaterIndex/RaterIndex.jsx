@@ -7,7 +7,7 @@ import ChosenCase from './components/ChosenCase'
 import Featured from './components/Featured'
 import AuthBox from './components/AuthBox'
   
-import topbg from 'assets/topbg.jpg'
+import topbg from 'assets/topbg.png'
 
 export class RaterIndex extends Component {
 constructor(props) {
@@ -35,6 +35,7 @@ HandleNavStatus(status){
 render() {
   return (
     <div className={style.UserIndexBox}>
+        
         <AuthBox />
         <div className={[style.NavBanner,'childcenter'].join(' ')}>
             <div className={[style.BannerDetial,'childcenter'].join(' ')}>
@@ -57,7 +58,6 @@ render() {
         </div>
 
         <div className={[style.DetialBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
-            <img src={topbg} className={style.Topbkg} alt=""/>
             {/* <AllCase /> */}
             <Switch>
                 <Route path='/pc/rateruser/all' component={AllCase} />

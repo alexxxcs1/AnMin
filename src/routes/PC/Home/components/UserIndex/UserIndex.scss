@@ -1,6 +1,6 @@
 .UserIndexBox{
     width: 100%;
-
+    
     .NavBanner{
         width: 100%;
         
@@ -58,14 +58,6 @@
         // overflow-x: hidden;
         position: relative;
         
-        .Topbkg{
-            width: 100%;
-            position: fixed;
-            // top: -200px;
-            right: 0px;
-            top: 0px;
-            z-index: -1;
-            opacity: 1;
-        }
+        
     }
 }

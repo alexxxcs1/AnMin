@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import style from './AllCase.scss'
+import PropTypes from "prop-types";
 import Select from 'components/Select'
 import LoadingBox from 'components/LoadingBox'
 import Burster from 'components/Burster'
@@ -60,17 +61,28 @@ getAllCase(page,type,search){
     })
 }
 HandleCasePass(id,status,index){
-    api.getCasePase(id,status).then(res=>{
-        console.log(res);
-        if (res.code == 200) {
-            this.state.data[index].status = status;
-        }else{
-            alert(res.msg)
+    let text = this.state==2?'确定审核不通过吗？':'确定通过审核吗？';
+    let self = this;
+    this.context.HandleAlertOption(true,{
+        Value:text,
+        Cancle:()=>{
+            this.context.HandleAlertOption(false,null)
+        },
+        Submit:()=>{
+            api.getCasePase(id,status).then(res=>{
+                if (res.code == 200) {
+                    self.state.data[index].status = status;
+                }else{
+                    alert(res.msg)
+                }
+                self.context.HandleAlertOption(false,null)
+                self.setState(self.state)
+            },err=>{
+        
+            })
         }
-        this.setState(this.state)
-    },err=>{
-
     })
+    
 }
 createTableRow(){
     let result = [];
@@ -82,14 +94,14 @@ createTableRow(){
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
         <span className={style.Timespan}>{this.state.data[z].tel}</span> 
         </div>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'33%'}}>
+        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'40%'}}>
         
         <input value={this.state.data[z].name} title={this.state.data[z].name} className={style.ValueInput} type="text" readOnly/>
             <div className={[style.HandleButtonGroup,'childcenter','childcontentstart'].join(' ')}>
                 <a href={this.state.data[z].filePath} download target="_blank"><div>在线预览</div></a>
             </div>
         </div>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'17%'}}>
+        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
          <a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.Timespan} style={{textDecoration:'underline'}}>查看</span></a>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
@@ -170,10 +182,10 @@ render() {
                     <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
                     手机号码
                     </div>
-                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'33%'}}>
+                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'40%'}}>
                     名称
                     </div>
-                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'17%'}}>
+                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
                     视频
                     </div>
                     <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
@@ -205,4 +217,7 @@ render() {
    )
    }
 }
+AllCase.contextTypes = {
+    HandleAlertOption: PropTypes.func
+};
 export default AllCase

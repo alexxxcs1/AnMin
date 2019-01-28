@@ -12,7 +12,7 @@ import UploadCase from "./components/UploadCase";
 import VideoView from "./components/VideoView";
 import AuthBox from "./components/AuthBox";
 
-import topbg from "assets/topbg.jpg";
+
 
 export class UserIndex extends Component {
   constructor(props) {
@@ -72,7 +72,7 @@ export class UserIndex extends Component {
         {this.state.fileloadbox == 1 ? <UploadCase /> : ""}
         {this.state.fileloadbox == 2 ? <UploadVideo /> : ""}
         {this.state.fileloadbox == 3 ? <VideoView video={this.state.userinfo?this.state.userinfo.video:''}/> : ""}
-        <AuthBox />
+        {/* <AuthBox /> */}
         <div className={[style.NavBanner, "childcenter"].join(" ")}>
           <div className={[style.BannerDetial, "childcenter"].join(" ")}>
             <div
@@ -139,7 +139,7 @@ export class UserIndex extends Component {
             "childcolumn",
             "childcontentstart"
           ].join(" ")}>
-          <img src={topbg} className={style.Topbkg} alt="" />
+          
           {/* <AllCase /> */}
           <Switch>
             <Route path="/pc/user/all" component={AllCase} />

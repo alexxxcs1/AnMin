@@ -1,6 +1,6 @@
 .TopBannerBox {
     width: 100%;
-    height: 81px;
+    height: 120px;
     background: #F67935;
 
     .BannerDetial {
@@ -8,20 +8,31 @@
         max-width: 1366px;
         height: 100%;
         .HandleBox{
-            width: 20%;
+            width: 30%;
             height: 100%;
         }
         .GroupBox {
-            width: 80%;
+            width: 70%;
             height: 100%;
+        }
+        .Logo{
+            margin-right: 20px;
+            img{
+                width: 80px;
+            }
         }
         .TextSlogan {
             font-size: 24px;
             color: #fff;
             margin: 0 83px;
+            width: calc(100% - 100px);
+            .TextGroup{
+                
+                width: 100%;
+            }
         }
         .UserInfo {
-
+            // width: 100%;
             .UserHeadShot {
                 width: 40px;
                 height: 40px;
@@ -44,6 +55,7 @@
                 color: #fff;
                 margin-right: 83px;
                 margin-left: 30px;
+                cursor: pointer;
                 text-decoration: underline !important;
             }
         }

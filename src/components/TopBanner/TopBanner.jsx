@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import style from './TopBanner.scss'
 import headshot from './imgs/headshot.jpg'
+import logo from './imgs/logo.png'
 import {api} from 'common/app'
   
 export class TopBanner extends Component {
@@ -80,7 +81,16 @@ render() {
     <div className={[style.TopBannerBox,'childcenter'].join(' ')}>
         <div className={[style.BannerDetial,'childcenter'].join(' ')}>
             <div className={[style.GroupBox,'childcenter','childcontentstart'].join(' ')}>
-                <div className={style.TextSlogan}> 2019全国婴幼儿牛奶蛋白过敏膳食管理规范化培训项目－真知灼见◆青年讲者优秀临床案例征集比赛</div>
+                
+                <div className={[style.TextSlogan,'childcenter'].join(' ')}>
+                  <div className={style.Logo}>
+                    <img src={logo} alt=""/>
+                  </div>
+                  <div className={[style.TextGroup,'childcenter childcolumn childalignstart'].join(' ')}>
+                    <span>2019全国婴幼儿牛奶蛋白过敏膳食管理规范化培训项目</span>
+                    <span>真知灼见·青年讲者优秀临床案例征集比赛</span>
+                  </div>
+                </div>
             </div>
             <div className={[style.HandleBox,'childcenter','childcontentend'].join(' ')}>
                 {this.state.userinfo?<div className={[style.UserInfo,'childcenter'].join(' ')}>

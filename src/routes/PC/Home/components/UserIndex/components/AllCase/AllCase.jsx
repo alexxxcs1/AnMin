@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import style from './AllCase.scss'
-import {api} from 'common/app'
+import React, { Component } from 'react';
+import style from './AllCase.scss';
+import {api} from 'common/app';
+import PropTypes from "prop-types";
   
 let reuploadid = null;
 let reuploadindex = null;
@@ -63,17 +64,27 @@ createTableRow(){
     return result;
 }
 onDeleteCase(id,index){
-    api.deleteCase(id).then(res=>{
-        console.log(res);
-        if (res.code == 200) {
-            this.state.data.splice(index,1);
-        }else{
-            alert(res.msg)
+    let self = this;
+    this.context.HandleAlertOption(true,{
+        Value:'确认删除该案例吗？',
+        Cancle:()=>{
+            this.context.HandleAlertOption(false,null)
+        },
+        Submit:()=>{
+            api.deleteCase(id).then(res=>{
+                console.log(res);
+                if (res.code == 200) {
+                    self.state.data.splice(index,1);
+                }else{
+                    alert(res.msg)
+                }
+                self.setState(self.state);
+            },err=>{
+        
+            })
         }
-        this.setState(this.state);
-    },err=>{
-
     })
+    
 }
 clickFile(id,index){
     reuploadid = id;
@@ -129,4 +140,7 @@ render() {
    )
    }
 }
+AllCase.contextTypes = {
+    HandleAlertOption: PropTypes.func
+};
 export default AllCase

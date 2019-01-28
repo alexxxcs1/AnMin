@@ -144,7 +144,7 @@ export class ChosenCase extends Component {
               ].join(" ")}>
               <a href={this.state.data[z].filePath}>查看案例</a>
             </div>
-            <div
+            {this.state.data[z].content?<div
               className={[
                 style.HandleButton,
                 style.Colorful,
@@ -155,7 +155,7 @@ export class ChosenCase extends Component {
                 content:this.state.data[z].content
               })}>
               查看专家评语
-            </div>
+            </div>:''}
           </div>
         </div>
       );

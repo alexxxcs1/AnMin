@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import style from "./UserPWLogin.scss";
 
-import topbg from "assets/topbg.jpg";
+import topbg from "assets/topbg.png";
 import logo from "assets/logo.png";
 import earth from "assets/earth.png";
 

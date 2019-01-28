@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import style from "./RaterLogin.scss";
 import {api} from 'common/app'
 
-import topbg from "assets/topbg.jpg";
+import topbg from "assets/topbg.png";
 import logo from "assets/logo.png";
 import earth from "assets/earth.png";
 

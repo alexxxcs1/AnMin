@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { HashRouter,Route,Switch,Redirect} from 'react-router-dom';
 import style from './UserLogin.scss'
 import {api} from 'common/app'
+
+import wxloginbot from 'assets/wxloginbot.png'
   
 export class UserLogin extends Component {
 constructor(props) {
@@ -33,8 +35,12 @@ GotoScanQR(){
 render() {
   return (
     <div className={[style.LoginBox,'childcenter'].join(' ')}>
-          <div className={[style.LoginButton,'childcenter'].join(' ')} onClick={this.GotoScanQR}>
-            使用微信登录
+          
+          <div className={[style.bkgbox,'childcenter'].join(' ')}>
+            <div className={[style.LoginButton,'childcenter'].join(' ')} onClick={this.GotoScanQR}>
+              使用微信登录
+            </div>
+            <img src={wxloginbot} alt=""/>
           </div>
     </div>
    )

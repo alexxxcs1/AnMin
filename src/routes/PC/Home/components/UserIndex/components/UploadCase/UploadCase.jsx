@@ -106,25 +106,8 @@ export class UploadCase extends Component {
   }
   onFileChange(e) {
     let self = this;
-    if(e.target.files[0].size/(1024*1024)<30){
-      this.state.file.value = e.target.files[0]?e.target.files[0]:this.state.file.value;
-      this.state.file.name = e.target.files[0]?e.target.files[0].name:this.state.file.name;
-    }else{
-      this.state.AlertTips = {
-        show: true,
-        status: 'err',
-        msg: '上传文件必须不超过30M'
-      }
-      alertInter = setTimeout(() => {
-        window.location.reload(true);
-        self.state.AlertTips = {
-          show: false,
-          status: null,
-          msg: null
-        }
-        self.setState(self.state);
-      }, 2000);
-    }
+    this.state.file.value = e.target.files[0]?e.target.files[0]:this.state.file.value;
+    this.state.file.name = e.target.files[0]?e.target.files[0].name:this.state.file.name;
     e.target.value = '';
     
     this.setState(this.state);
@@ -168,7 +151,7 @@ export class UploadCase extends Component {
             onClick={this.context.HandleFileLoad.bind(this, null)}
           />
           <div className={style.UploadTitle}>上传案例</div>
-          <div className={style.UploadTips}>点击下框空白处上传您的案例</div>
+          <div className={style.UploadTips}>点击下框空白处上传您的案例，只支持pdf文件</div>
           <div
             className={[style.UploadButton, "childcenter", "childcolumn"].join(
               " "
@@ -185,7 +168,7 @@ export class UploadCase extends Component {
                   " "
                 )}>
                 <img src={assetsicon} alt="" />
-                <span>
+                <span className={[style.FileName,'childcenter'].join(' ')}>
                   {this.state.loading
                     ? "上传中"
                     : this.state.loaded == 100

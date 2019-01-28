@@ -22,6 +22,7 @@ componentWillReceiveProps(nextprops) {
 componentDidMount() {
   this.refreshProps(this.props);
   this.setShare();
+  window.document.title = '真知灼见';
 }
 refreshProps(props) {
   
@@ -31,7 +32,7 @@ setShare() {
   var share_img =
     "http://meadjohnson-gz.rup-china.com/public/html/" +
     shareicon.split("/")[3];
-  var share_title = "安敏·践行“真知灼见”2019青年讲者优秀案例征文平台";
+  var share_title = "安敏·健行“真知灼见”2019青年讲者优秀案例征文平台";
   var share_content = "青年讲者优秀案例征文比赛";
   api.getShare(share_url).then(
     response => {
@@ -100,7 +101,7 @@ setShare() {
 render() {
   return (
     <div className={style.MobileHomeBox}>
-        <AuthBox />
+        {/* <AuthBox /> */}
         <Switch>
             <Route path='/mobile/register' component={Register} />
             <Route path='/mobile/user' component={UserIndex} />

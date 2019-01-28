@@ -10,6 +10,7 @@ export class UploadVideo extends Component {
   constructor(props) {
     super(props);
     this.state = {
+        VideoCount:0,
         Uploading:false,
         loaded:0,
         loading:false,
