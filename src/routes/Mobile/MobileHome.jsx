@@ -101,7 +101,7 @@ setShare() {
 render() {
   return (
     <div className={style.MobileHomeBox}>
-        {/* <AuthBox /> */}
+        <AuthBox />
         <Switch>
             <Route path='/mobile/register' component={Register} />
             <Route path='/mobile/user' component={UserIndex} />

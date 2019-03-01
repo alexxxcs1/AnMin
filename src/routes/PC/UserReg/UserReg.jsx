@@ -29,9 +29,9 @@ export class UserReg extends Component {
   componentDidMount() {
     this.refreshProps(this.props);
     this.setbgBoxOffset();
-    isRegTimer = setInterval(() => {
-      this.getUserIsReg();
-    }, 500);
+    // isRegTimer = setInterval(() => {
+    //   this.getUserIsReg();
+    // }, 500);
   }
   refreshProps(props) {}
   setbgBoxOffset(){
@@ -71,7 +71,11 @@ export class UserReg extends Component {
             )}>
             <div className={style.TitleBox}>
               <div className={[style.TextRow, "childcenter"].join(" ")}>
-                <img src={logo} className={style.logo}/> 全国婴幼儿牛奶蛋白过敏膳食管理规范化培训项目asdasd
+                <img src={logo} className={style.logo}/>  
+                <div className={'childcenter childcolumn'}>
+                  <span>2019全国婴幼儿牛奶蛋白过敏膳食管理规范化培训项目</span>
+                  <span>真知灼见·青年讲者优秀临床案例征集比赛</span>
+                </div>
               </div>
               <div className={[style.TextRow, "childcenter"].join(" ")}>
                 2019青年讲者优秀病例征文平台

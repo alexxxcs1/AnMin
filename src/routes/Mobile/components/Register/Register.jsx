@@ -69,13 +69,6 @@ export class Register extends Component {
     this.setState(this.state);
   }
   HandleSubmit() {
-    if (!this.state.InformedConsentStatus) {
-      this.state.RegisterResult = {
-        alertshow: true,
-        result: false,
-        value: "请阅读《用户知情同意书》"
-      };
-    }else{
       let values = '';
       console.log(Boolean(this.state.formdata.name));
       
@@ -137,8 +130,6 @@ export class Register extends Component {
           value: values+"不能为空"
         };
       }
-      
-    }
     this.setState(this.state);
   }
   HandleAlertShow(boolean) {
@@ -248,6 +239,7 @@ export class Register extends Component {
               <input
                 value={this.state.formdata.name}
                 type="text"
+                placeholder='请输入您的姓名'
                 className={style.Inputs}
                 onBlur={this.onInputBlur}
                 onFocus={this.onInputFocus}
@@ -278,6 +270,7 @@ export class Register extends Component {
               </div>
               <input
                 value={this.state.formdata.tel}
+                placeholder='请填写您的手机号码'
                 type="tel"
                 type="number"
                 className={style.Inputs}
@@ -297,6 +290,7 @@ export class Register extends Component {
               </div>
               <input
                 value={this.state.formdata.code}
+                placeholder='请输入6位邀请码'
                 type="text"
                 className={style.Inputs}
                 onBlur={this.onInputBlur}
@@ -305,7 +299,7 @@ export class Register extends Component {
               />
             </div>
           </div>
-          <div
+          {/* <div
             className={[style.InformedConsent, "childcenter"].join(" ")}
             onClick={this.HandleInformedConsent}>
             <div
@@ -317,7 +311,7 @@ export class Register extends Component {
             <span className={style.text}>
               我已经阅读并同意《用户知情同意书》
             </span>
-          </div>
+          </div> */}
           <div
             className={[style.RegButton, "childcenter"].join(" ")}
             onClick={this.HandleSubmit}>

@@ -102,20 +102,20 @@ render() {
   return (
     <DarkBox>
         <div className={style.VideoViewBox}>
-          <div className={[style.VideoHandleBox,'childcenter childcontentend'].join(' ')}>
-            <div className={[style.HandleButton,'childcenter'].join(' ')} onClick={this.deleteVideo}>删除</div>
-            {this.state.uploading?
-            <div style={{background:'#333',overflow:'hidden'}} className={[style.HandleButton,'childcenter'].join(' ')} >
-              <div className={style.LoadBar} style={{width:this.state.loaded + '%'}}></div>
-              <div className={[style.ButtonValue,'childcenter'].join(' ')}>上传中</div> 
-            </div>:<div className={[style.HandleButton,'childcenter'].join(' ')} onClick={this.onReloader}>重新上传</div>}
-            <div className={[style.HandleButton,'childcenter'].join(' ')} onClick={this.onReturn}>返回</div>
-          </div>
+          
           <div className={[style.VideoBox,'childcenter'].join(' ')}>
             <div className={[style.VideoBarBox,'childcenter'].join(' ')}>
               <video src={this.state.video} autoPlay controls ref='video'></video>
+              <div className={[style.VideoHandleBox,'childcenter childcolumn'].join(' ')}>
+                <div className={[style.HandleButton,'childcenter'].join(' ')} onClick={this.deleteVideo}>删除</div>
+                {this.state.uploading?
+                <div style={{background:'#333',overflow:'hidden'}} className={[style.HandleButton,'childcenter'].join(' ')} >
+                  <div className={style.LoadBar} style={{width:this.state.loaded + '%'}}></div>
+                  <div className={[style.ButtonValue,'childcenter'].join(' ')}>上传中</div> 
+                </div>:<div className={[style.HandleButton,'childcenter'].join(' ')} onClick={this.onReloader}>重新上传</div>}
+                <div className={[style.HandleButton,'childcenter'].join(' ')} onClick={this.onReturn}>返回</div>
+              </div>
             </div>
-            
           </div>
         </div>
         <input type="file" ref='file' accept='video/*' style={{display:'none'}} onChange={this.onFileChange}/>

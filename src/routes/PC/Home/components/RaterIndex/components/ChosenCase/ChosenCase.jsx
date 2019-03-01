@@ -53,7 +53,7 @@ refreshProps(props) {
 getAllCase(page,type,search){
     this.state.onGetData = true;
     this.setState(this.state);
-    api.getAllCaseByRater(page,type,search,'choice').then(res=>{
+    api.getAllCaseByRater(page,type,search,'pass').then(res=>{
         console.log(res);
         if (res.code == 200) {
             this.state.data = res.data.list;
