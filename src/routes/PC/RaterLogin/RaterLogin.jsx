@@ -5,6 +5,7 @@ import {api} from 'common/app'
 import topbg from "assets/topbg.png";
 import logo from "assets/logo.png";
 import earth from "assets/earth.png";
+import logintitle from 'assets/logintitle.png'
 
 export class RaterLogin extends Component {
   constructor(props) {
@@ -57,8 +58,6 @@ export class RaterLogin extends Component {
   }
   render() {
     return (
-      <div className={[style.RaterLoginBox, "childcenter"].join(" ")}>
-        <img src={topbg} className={style.Topbkg} alt="" />
         <div className={[style.LoginBox,'childcenter'].join(' ')} >
         {/* style={{backgroundImage:'url('+topbg+')'}} */}
           <div
@@ -66,15 +65,16 @@ export class RaterLogin extends Component {
               " "
             )}>
             <div className={style.TitleBox}>
+              <div className={style.TitleImage}><img src={logintitle} className={style.logo}/> </div>
               <div className={[style.TextRow, "childcenter"].join(" ")}>
-                <img src={logo} className={style.logo}/> 全国婴幼儿牛奶蛋白过敏膳食管理规范化培训项目
+              欢迎专家登录
               </div>
-              <div className={[style.TextRow, "childcenter"].join(" ")}>
+              {/* <div className={[style.TextRow, "childcenter"].join(" ")}>
                 2019青年讲者优秀病例征文平台
               </div>
               <div className={[style.TextRow, "childcenter"].join(" ")}>
                 欢迎登录
-              </div>
+              </div> */}
             </div>
 
             <div
@@ -115,13 +115,8 @@ export class RaterLogin extends Component {
               确定
             </div>
           </div>
-
-          <div className={[style.BackgroundBox,'childcenter childcolumn childcontentend'].join(' ')}>
-            <img src={earth} className={style.Earth} alt=""/>
-          </div>
           {/* <img className={style.boxbg} src={topbg} ref='boxbg' style={{'--bodywidth':window.document.body.clientWidth + 'px'}} />    */}
         </div>
-      </div>
     );
   }
 }

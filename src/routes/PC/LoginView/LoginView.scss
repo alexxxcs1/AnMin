@@ -1,0 +1,98 @@
+.LoginBox {
+    width: 100%;
+    height: 100%;
+    // background: #f1f1f1;
+    background: linear-gradient(118.6deg ,rgba(255,128,0,0.2) 0%,rgba(255,146,30,1) 54.63%,rgba(234,94,0,1) 100%);
+    .Content{
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        .LogoBox{
+            position: absolute;
+            top: 43px;
+            left: 43px;
+            width: 522px;
+            img{
+                width: 100%;
+            }
+        }
+        .RaterLoginBox{
+            height: 100%;
+            margin-left: 82px;
+        }
+        .ButtonBox{
+            width: 50%;
+            height: 80%;
+            .TitleBox{
+                width: 486px;
+                position: relative;
+                z-index: 1;
+                img{
+                    width: 100%;
+                }
+            }
+            .ButtonGroup{
+                position: relative;
+                z-index: 3;
+                margin-top: -90px;
+                .Button{
+                    cursor: pointer;
+                    color: #fff;
+                    font-weight: bold;
+                    font-size: 23px;
+                    margin: 0 15px;
+                    width: 184px;
+                    height: 58px;
+                    border-radius: calc(58px / 2);
+                    box-shadow: rgba($color: #fff, $alpha: 0.6) 0 0 20px; 
+                    background: linear-gradient(rgba(250,175,59,1) 0%,rgba(255,146,30,1) 54.63%,rgba(234,94,0,1) 100%);
+                }
+            }
+        }
+        
+    }
+    .BotBackground{
+        width: 68%;
+        max-width: 946px;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        z-index: 0;
+        img{
+            width: 100%;
+            display: block;
+        }
+    }
+
+    // .bkgbox{
+    //     width: 100%;
+    //     height: 100%;
+    //     position: absolute;
+    //     bottom: 0px;
+    //     overflow: hidden;
+    //     background: linear-gradient(135deg,#FBE9D4 40px,#FF921E, #ea5e00 60%);
+    //     .LoginButton {
+    //         position: relative;
+    //         width: 353px;
+    //         height: 69px;
+    //         background: rgba(0, 198, 74, 1);
+    //         box-shadow: 0px 0px 20px rgba($color: #000000, $alpha: 0.2);
+    //         opacity: 1;
+    //         border-radius: 6px;
+    //         color: #fff;
+    //         font-size:22px;
+    //         font-weight: bold;
+    //         position: absolute;
+    //         top: 60%;
+    //         left: 28%;
+    //         transform: translateX(-50%) translateY(-50%);
+    //         cursor: pointer;
+    //     }
+    //     img{
+    //         width: 80%;
+    //         max-width: 80%;
+    //         pointer-events: none;
+    //     }
+    // }
+}
