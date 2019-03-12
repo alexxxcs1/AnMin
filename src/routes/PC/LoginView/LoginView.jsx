@@ -7,7 +7,7 @@ import loginbot from 'assets/loginbot.png'
 import logintitle from 'assets/logintitle.png'
 import loginlogo from 'assets/loginlogo.png'
 
-import RaterLogin from 'routes/PC/RaterLogin'
+import RaterLogin from './Components/RaterLogin'
   
 export class LoginView extends Component {
 constructor(props) {

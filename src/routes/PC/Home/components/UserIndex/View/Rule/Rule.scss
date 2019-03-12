@@ -1,0 +1,44 @@
+.RuleBox {
+    width: 100%;
+    max-width: 1366px;
+
+    .DetialBox {
+        margin-top: 52px;
+        width: 1200px;
+        height: 511px;
+        background: rgba($color: #fff, $alpha: 0.4);
+        box-shadow: #D9B474 0 0 0px 1px;
+        .HandleGroup{
+            width: 46px;
+            height: 100%;
+
+            .ButtonBox{
+                width: 46px;
+                min-height: 140px;
+                padding: 5px 0;
+                background: #F67935;
+                border-radius: 8px;
+                // writing-mode: vertical-rl;
+                font-size: 18px;
+                color: #fff;
+                margin: 5px;
+                cursor: pointer;
+                span{
+                    display: block;
+                    flex-grow: 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+            .Unact{
+                opacity: 0.6;
+            }
+        }
+
+        .ContentBox{
+            width: calc(100% - 46px);
+            height: 100%;
+        }
+    }
+}

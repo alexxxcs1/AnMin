@@ -3,8 +3,6 @@ import { HashRouter,Route,Switch,Redirect} from 'react-router-dom';
 // import style from  './App.scss';
 
 import Home from 'routes/PC/Home'
-import UserLogin from 'routes/PC/UserLogin'
-import RaterLogin from 'routes/PC/RaterLogin'
 import UserReg from 'routes/PC/UserReg'
 import LoginView from 'routes/PC/LoginView'
 
@@ -15,13 +13,11 @@ class App extends Component {
         <HashRouter >
           <div style={{height: '100%'}}>
               <Switch>
-                  {/* <Route path='/rlogin' component={RaterLogin} /> */}
-                  {/* <Route path='/ulogin' component={UserLogin} /> */}
                   <Route path='/login' component={LoginView} />
                   <Route path='/userregister' component={UserReg} />
                   {/* 首页 */}
                   <Route path='/pc' component={Home} />
-                  <Redirect from="/" to="/ulogin" />
+                  <Redirect from="/" to="/login" />
               </Switch>
           </div>
         </HashRouter>

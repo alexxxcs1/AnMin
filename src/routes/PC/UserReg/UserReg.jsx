@@ -29,9 +29,9 @@ export class UserReg extends Component {
   componentDidMount() {
     this.refreshProps(this.props);
     this.setbgBoxOffset();
-    // isRegTimer = setInterval(() => {
-    //   this.getUserIsReg();
-    // }, 500);
+    isRegTimer = setInterval(() => {
+      this.getUserIsReg();
+    }, 500);
   }
   refreshProps(props) {}
   setbgBoxOffset(){

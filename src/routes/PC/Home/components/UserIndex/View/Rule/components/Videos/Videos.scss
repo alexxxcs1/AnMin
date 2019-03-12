@@ -1,0 +1,14 @@
+.Videos{
+    width: 100%;
+    height: 100%;
+
+    .VideoBox{
+        width: 738px;
+        background: #333;
+
+        .videos{
+            width: 100%;
+            display: block;
+        }
+    }
+}

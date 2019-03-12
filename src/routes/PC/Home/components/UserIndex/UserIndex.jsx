@@ -4,9 +4,10 @@ import style from "./UserIndex.scss";
 import PropTypes from "prop-types";
 import {api} from 'common/app'
 
-import AllCase from "./components/AllCase";
-import ChosenCase from "./components/ChosenCase";
-import Rule from "./components/Rule";
+import AllCase from "./View/AllCase";
+import ChosenCase from "./View/ChosenCase";
+import Rule from "./View/Rule";
+
 import UploadVideo from "./components/UploadVideo";
 import UploadCase from "./components/UploadCase";
 import VideoView from "./components/VideoView";
@@ -72,7 +73,7 @@ export class UserIndex extends Component {
         {this.state.fileloadbox == 1 ? <UploadCase /> : ""}
         {this.state.fileloadbox == 2 ? <UploadVideo /> : ""}
         {this.state.fileloadbox == 3 ? <VideoView video={this.state.userinfo?this.state.userinfo.video:''}/> : ""}
-        <AuthBox />
+        {/* <AuthBox /> */}
         <div className={[style.NavBanner, "childcenter"].join(" ")}>
           <div className={[style.BannerDetial, "childcenter"].join(" ")}>
             <div
@@ -107,7 +108,7 @@ export class UserIndex extends Component {
                     this.state.navStatus == "rule" ? style.ActNavButton : "",
                     "childcenter"
                   ].join(" ")}>
-                  活动规则
+                  项目介绍及规则
                 </div>
               </div>
             </div>

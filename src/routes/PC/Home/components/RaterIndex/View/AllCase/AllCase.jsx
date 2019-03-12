@@ -9,8 +9,9 @@ import {api} from 'common/app'
 import selecticon from 'assets/selecticon.png'
 import NoResult from 'assets/NoResult.png'
 const optionname = {
-    uname:'姓名',
-    cname:'名称'
+    name:'姓名',
+    hospital:'医院',
+    office:'科室'
 };
 export class AllCase extends Component {
 constructor(props) {
@@ -61,7 +62,7 @@ getAllCase(page,type,search){
     })
 }
 HandleCasePass(id,status,index){
-    let text = this.state==2?'确定审核不通过吗？':'确定通过审核吗？';
+    let text = status==2?'确定审核通过吗？':'确定审核不通过吗？';
     let self = this;
     this.context.HandleAlertOption(true,{
         Value:text,
@@ -105,7 +106,7 @@ createTableRow(){
          <a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.Timespan} style={{textDecoration:'underline'}}>查看</span></a>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
-            <span className={style.Timespan}>{this.state.data[z].status==1?'待审核':(this.state.data[z].status == 2?'已通过':'未通过')}</span>
+            <span className={style.Timespan}>{this.state.data[z].status==1?'待审核':(this.state.data[z].status == 2?'已审核':'审核未通过')}</span>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'13%'}}>
             <p className={style.HandlePassButton}>
@@ -155,7 +156,6 @@ render() {
     <div className={[style.AllCaseBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
         <div className={[style.ListBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
             <div className={[style.ListTitle,'childcenter','childcontentstart'].join(' ')}>
-                <div className={style.TitleValue}>所有案例总览表</div>
                 <div className={[style.TitleRight,'childcenter','childcontentend'].join(' ')}>
                     <Select Selected={ <div className={[style.SelectedValue,'childcenter'].join(' ')}>
                         <span>{this.state.filterOption?optionname[this.state.filterOption]:'全部'}</span>
@@ -163,8 +163,9 @@ render() {
                     </div> }>
                         <div className={style.OptionBox}>
                             <div onClick={this.HandleFilterOption.bind(this,null)} className={[style.Option,this.state.filterOption == null?style.ActOption:'','childcenter'].join(' ')}>全部</div>
-                            <div onClick={this.HandleFilterOption.bind(this,'uname')} className={[style.Option,this.state.filterOption == 'uname'?style.ActOption:'','childcenter'].join(' ')}>姓名</div>
-                            <div onClick={this.HandleFilterOption.bind(this,'cname')} className={[style.Option,this.state.filterOption == 'cname'?style.ActOption:'','childcenter'].join(' ')}>名称</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'name')} className={[style.Option,this.state.filterOption == 'name'?style.ActOption:'','childcenter'].join(' ')}>姓名</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'hospital')} className={[style.Option,this.state.filterOption == 'hospital'?style.ActOption:'','childcenter'].join(' ')}>医院</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'office')} className={[style.Option,this.state.filterOption == 'office'?style.ActOption:'','childcenter'].join(' ')}>科室</div>
                         </div>
                     </Select>
                     <div className={[style.SelectInputBox,'childcenter','childcontentend'].join(' ')}>

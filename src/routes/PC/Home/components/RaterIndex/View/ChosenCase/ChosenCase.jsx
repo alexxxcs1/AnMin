@@ -11,8 +11,9 @@ import NoResult from 'assets/NoResult.png'
 import selecticon from 'assets/selecticon.png'
   
 const optionname = {
-    uname:'姓名',
-    cname:'名称'
+    name:'姓名',
+    hospital:'医院',
+    office:'科室'
 };
 export class ChosenCase extends Component {
 constructor(props) {
@@ -97,9 +98,7 @@ submitScore(index,e){
         }else{
             self.state.data[_index].sum = res.data
             self.setState(self.state);
-            if (res.code!=0) {
                 alert(res.msg)
-            }
         }
     },err=>{
 
@@ -163,7 +162,6 @@ render() {
         {this.state.CommentOption.show?<CommentBox id={this.state.CommentOption.id} content={this.state.CommentOption.content} handle={this.HandleCommentBox}/>:''}
         <div className={[style.ListBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
             <div className={[style.ListTitle,'childcenter','childcontentstart'].join(' ')}>
-                <div className={style.TitleValue}>通过案例总览表</div>
                 <div className={[style.TitleRight,'childcenter','childcontentend'].join(' ')}>
                     <Select Selected={ <div className={[style.SelectedValue,'childcenter'].join(' ')}>
                         <span>{this.state.filterOption?optionname[this.state.filterOption]:'全部'}</span>
@@ -171,8 +169,9 @@ render() {
                     </div> }>
                         <div className={style.OptionBox}>
                             <div onClick={this.HandleFilterOption.bind(this,null)} className={[style.Option,this.state.filterOption == null?style.ActOption:'','childcenter'].join(' ')}>全部</div>
-                            <div onClick={this.HandleFilterOption.bind(this,'uname')} className={[style.Option,this.state.filterOption == 'uname'?style.ActOption:'','childcenter'].join(' ')}>姓名</div>
-                            <div onClick={this.HandleFilterOption.bind(this,'cname')} className={[style.Option,this.state.filterOption == 'cname'?style.ActOption:'','childcenter'].join(' ')}>名称</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'name')} className={[style.Option,this.state.filterOption == 'name'?style.ActOption:'','childcenter'].join(' ')}>姓名</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'hospital')} className={[style.Option,this.state.filterOption == 'hospital'?style.ActOption:'','childcenter'].join(' ')}>医院</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'office')} className={[style.Option,this.state.filterOption == 'office'?style.ActOption:'','childcenter'].join(' ')}>科室</div>
                         </div>
                     </Select>
                     <div className={[style.SelectInputBox,'childcenter','childcontentend'].join(' ')}>

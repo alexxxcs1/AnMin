@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { HashRouter,Route,Switch,Redirect} from 'react-router-dom';
 import style from './RaterIndex.scss'
 
-import AllCase from './components/AllCase'
-import ChosenCase from './components/ChosenCase'
-import Featured from './components/Featured'
+import AllCase from './View/AllCase'
+import ChosenCase from './View/ChosenCase'
+import Featured from './View/Featured'
 import AuthBox from './components/AuthBox'
   
 import topbg from 'assets/topbg.png'
@@ -35,7 +35,6 @@ HandleNavStatus(status){
 render() {
   return (
     <div className={style.UserIndexBox}>
-        
         <AuthBox />
         <div className={[style.NavBanner,'childcenter'].join(' ')}>
             <div className={[style.BannerDetial,'childcenter'].join(' ')}>
@@ -43,7 +42,7 @@ render() {
                     <div className={[style.NavGroup,'childcenter'].join(' ')}>
                         <div onClick={this.HandleNavStatus.bind(this,'all')} className={[style.NavButton,this.state.navStatus == 'all'?style.ActNavButton:'','childcenter'].join(' ')}>所有案例</div>
                         <div onClick={this.HandleNavStatus.bind(this,'chosen')} className={[style.NavButton,this.state.navStatus == 'chosen'?style.ActNavButton:'','childcenter'].join(' ')}>通过案例</div>
-                        <div onClick={this.HandleNavStatus.bind(this,'featured')} className={[style.NavButton,this.state.navStatus == 'featured'?style.ActNavButton:'','childcenter'].join(' ')}>精选案例</div>
+                        {/* <div onClick={this.HandleNavStatus.bind(this,'featured')} className={[style.NavButton,this.state.navStatus == 'featured'?style.ActNavButton:'','childcenter'].join(' ')}>精选案例</div> */}
                     </div>
                 </div>
                 <div className={[style.GroupBox,'childcenter','childcontentend'].join(' ')}>
@@ -62,7 +61,7 @@ render() {
             <Switch>
                 <Route path='/pc/rateruser/all' component={AllCase} />
                 <Route path='/pc/rateruser/chosen' component={ChosenCase} />
-                <Route path='/pc/rateruser/featured' component={Featured} />
+                {/* <Route path='/pc/rateruser/featured' component={Featured} /> */}
                 <Redirect from="/pc/rateruser" to="/pc/rateruser/all" />
             </Switch>
         </div>

@@ -40,15 +40,13 @@ export class Home extends Component {
       <div className={style.HomeBox}>
           {this.state.AlertShow?<AlertBox Option={this.state.AlertOption}/>:''}
           <TopBanner />
-          {/* <UserIndex /> */}
           <Switch>
             <Route path='/pc/user' component={UserIndex} />
             <Route path='/pc/rateruser' component={RaterIndex} />
           </Switch>
-          <div className={style.BkgBox}>
+          {/* <div className={style.BkgBox}>
             <img src={topbg} className={style.Topbkg} alt="" />
-          </div>
-          
+          </div> */}
       </div>
     )
   }

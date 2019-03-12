@@ -67,7 +67,7 @@ export class RaterLogin extends Component {
             <div className={style.TitleBox}>
               <div className={style.TitleImage}><img src={logintitle} className={style.logo}/> </div>
               <div className={[style.TextRow, "childcenter"].join(" ")}>
-              欢迎专家登录
+                欢迎专家登录
               </div>
               {/* <div className={[style.TextRow, "childcenter"].join(" ")}>
                 2019青年讲者优秀病例征文平台
