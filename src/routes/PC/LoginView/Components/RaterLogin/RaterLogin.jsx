@@ -40,7 +40,8 @@ export class RaterLogin extends Component {
     if (this.state.username&&this.state.userpw) {
       api.raterLogin(this.state.username,this.state.userpw).then(res=>{
         if (res.code === 200) {
-          this.props.history.push('/pc/rateruser')
+          // this.props.history.push('/pc/rateruser')
+          window.location.hash = '#/pc/rateruser';
         }else{
           alert(res.msg)
         }
