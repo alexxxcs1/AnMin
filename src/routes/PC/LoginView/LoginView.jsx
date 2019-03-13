@@ -29,7 +29,7 @@ refreshProps(props) {
 }
 GotoScanQR(){
   api.getWeixinLoginUrl().then(res=>{
-    if (res.code == 200) {
+    if (res.code === 200) {
       window.location.href = res.data;
     }else{
       console.log(res.msg);
@@ -52,7 +52,7 @@ render() {
             <div className={style.LogoBox}>
               <img src={loginlogo} alt=""/>
             </div>
-            {this.state.SelectLoginType==null?<div className={[style.ButtonBox,'childcenter childcolumn'].join(' ')}>
+            {this.state.SelectLoginType===null?<div className={[style.ButtonBox,'childcenter childcolumn'].join(' ')}>
               <div className={style.TitleBox}>
                 <img src={logintitle} alt=""/>
               </div>

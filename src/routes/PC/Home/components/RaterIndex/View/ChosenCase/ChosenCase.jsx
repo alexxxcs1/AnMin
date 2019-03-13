@@ -56,7 +56,7 @@ getAllCase(page,type,search){
     this.setState(this.state);
     api.getAllCaseByRater(page,type,search,'pass').then(res=>{
         console.log(res);
-        if (res.code == 200) {
+        if (res.code === 200) {
             this.state.data = res.data.list;
             this.state.PTOption.nowpage = res.data.page;
             this.state.PTOption.totalpage = res.data.num;
@@ -93,7 +93,7 @@ submitScore(index,e){
     let _index = index;
     let self = this;
     api.setCaseScoreContent(this.state.data[index].id,1,this.state.data[index].sum).then(res=>{
-        if (res.code == 200) {
+        if (res.code === 200) {
             alert(res.msg)
         }else{
             self.state.data[_index].sum = res.data
@@ -138,7 +138,7 @@ createTableRow(){
         </div>
     </div>);
     }
-    if (this.state.data.length == 0) {
+    if (this.state.data.length === 0) {
         result.push( <div className={[style.NoResultBox,'childcenter childcolumn'].join(' ')}>
             <img src={NoResult} alt=""/>
             <span>暂无内容</span>
@@ -168,10 +168,10 @@ render() {
                         <span className={style.dropTips}></span>
                     </div> }>
                         <div className={style.OptionBox}>
-                            <div onClick={this.HandleFilterOption.bind(this,null)} className={[style.Option,this.state.filterOption == null?style.ActOption:'','childcenter'].join(' ')}>全部</div>
-                            <div onClick={this.HandleFilterOption.bind(this,'name')} className={[style.Option,this.state.filterOption == 'name'?style.ActOption:'','childcenter'].join(' ')}>姓名</div>
-                            <div onClick={this.HandleFilterOption.bind(this,'hospital')} className={[style.Option,this.state.filterOption == 'hospital'?style.ActOption:'','childcenter'].join(' ')}>医院</div>
-                            <div onClick={this.HandleFilterOption.bind(this,'office')} className={[style.Option,this.state.filterOption == 'office'?style.ActOption:'','childcenter'].join(' ')}>科室</div>
+                            <div onClick={this.HandleFilterOption.bind(this,null)} className={[style.Option,this.state.filterOption === null?style.ActOption:'','childcenter'].join(' ')}>全部</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'name')} className={[style.Option,this.state.filterOption === 'name'?style.ActOption:'','childcenter'].join(' ')}>姓名</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'hospital')} className={[style.Option,this.state.filterOption === 'hospital'?style.ActOption:'','childcenter'].join(' ')}>医院</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'office')} className={[style.Option,this.state.filterOption === 'office'?style.ActOption:'','childcenter'].join(' ')}>科室</div>
                         </div>
                     </Select>
                     <div className={[style.SelectInputBox,'childcenter','childcontentend'].join(' ')}>

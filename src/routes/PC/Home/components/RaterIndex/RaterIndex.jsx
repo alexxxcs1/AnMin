@@ -40,9 +40,9 @@ render() {
             <div className={[style.BannerDetial,'childcenter'].join(' ')}>
                 <div className={[style.GroupBox,'childcenter','childcontentstart'].join(' ')}>
                     <div className={[style.NavGroup,'childcenter'].join(' ')}>
-                        <div onClick={this.HandleNavStatus.bind(this,'all')} className={[style.NavButton,this.state.navStatus == 'all'?style.ActNavButton:'','childcenter'].join(' ')}>所有案例</div>
-                        <div onClick={this.HandleNavStatus.bind(this,'chosen')} className={[style.NavButton,this.state.navStatus == 'chosen'?style.ActNavButton:'','childcenter'].join(' ')}>通过案例</div>
-                        {/* <div onClick={this.HandleNavStatus.bind(this,'featured')} className={[style.NavButton,this.state.navStatus == 'featured'?style.ActNavButton:'','childcenter'].join(' ')}>精选案例</div> */}
+                        <div onClick={this.HandleNavStatus.bind(this,'all')} className={[style.NavButton,this.state.navStatus === 'all'?style.ActNavButton:'','childcenter'].join(' ')}>所有案例</div>
+                        <div onClick={this.HandleNavStatus.bind(this,'chosen')} className={[style.NavButton,this.state.navStatus === 'chosen'?style.ActNavButton:'','childcenter'].join(' ')}>通过案例</div>
+                        {/* <div onClick={this.HandleNavStatus.bind(this,'featured')} className={[style.NavButton,this.state.navStatus === 'featured'?style.ActNavButton:'','childcenter'].join(' ')}>精选案例</div> */}
                     </div>
                 </div>
                 <div className={[style.GroupBox,'childcenter','childcontentend'].join(' ')}>

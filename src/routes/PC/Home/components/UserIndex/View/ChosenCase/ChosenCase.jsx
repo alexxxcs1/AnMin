@@ -36,7 +36,7 @@ HandleCommentBox(option){
 getCaseList(){
     api.getChosenCase().then(res=>{
         console.log(res);
-        if (res.code == 200) {
+        if (res.code === 200) {
             this.state.data = res.data?res.data:[];
         }else{
             alert(res.msg)

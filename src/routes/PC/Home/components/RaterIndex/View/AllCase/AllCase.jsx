@@ -50,7 +50,7 @@ getAllCase(page,type,search){
     this.setState(this.state);
     api.getAllCaseByRater(page,type,search,'all').then(res=>{
         console.log(res);
-        if (res.code == 200) {
+        if (res.code === 200) {
             this.state.data = res.data.list;
             this.state.PTOption.nowpage = res.data.page;
             this.state.PTOption.totalpage = res.data.num;
@@ -62,7 +62,7 @@ getAllCase(page,type,search){
     })
 }
 HandleCasePass(id,status,index){
-    let text = status==2?'确定审核通过吗？':'确定审核不通过吗？';
+    let text = status===2?'确定审核通过吗？':'确定审核不通过吗？';
     let self = this;
     this.context.HandleAlertOption(true,{
         Value:text,
@@ -71,7 +71,7 @@ HandleCasePass(id,status,index){
         },
         Submit:()=>{
             api.getCasePase(id,status).then(res=>{
-                if (res.code == 200) {
+                if (res.code === 200) {
                     self.state.data[index].status = status;
                 }else{
                     alert(res.msg)
@@ -106,7 +106,7 @@ createTableRow(){
          <a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.Timespan} style={{textDecoration:'underline'}}>查看</span></a>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
-            <span className={style.Timespan}>{this.state.data[z].status==1?'待审核':(this.state.data[z].status == 2?'已审核':'审核未通过')}</span>
+            <span className={style.Timespan}>{this.state.data[z].status===1?'待审核':(this.state.data[z].status === 2?'已审核':'审核未通过')}</span>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'13%'}}>
             <p className={style.HandlePassButton}>
@@ -124,7 +124,7 @@ createTableRow(){
         </div>
     </div>);
     }
-    if (this.state.data.length == 0) {
+    if (this.state.data.length === 0) {
         result.push( <div className={[style.NoResultBox,'childcenter childcolumn'].join(' ')}>
             <img src={NoResult} alt=""/>
             <span>暂无内容</span>
@@ -162,10 +162,10 @@ render() {
                         <span className={style.dropTips}></span>
                     </div> }>
                         <div className={style.OptionBox}>
-                            <div onClick={this.HandleFilterOption.bind(this,null)} className={[style.Option,this.state.filterOption == null?style.ActOption:'','childcenter'].join(' ')}>全部</div>
-                            <div onClick={this.HandleFilterOption.bind(this,'name')} className={[style.Option,this.state.filterOption == 'name'?style.ActOption:'','childcenter'].join(' ')}>姓名</div>
-                            <div onClick={this.HandleFilterOption.bind(this,'hospital')} className={[style.Option,this.state.filterOption == 'hospital'?style.ActOption:'','childcenter'].join(' ')}>医院</div>
-                            <div onClick={this.HandleFilterOption.bind(this,'office')} className={[style.Option,this.state.filterOption == 'office'?style.ActOption:'','childcenter'].join(' ')}>科室</div>
+                            <div onClick={this.HandleFilterOption.bind(this,null)} className={[style.Option,this.state.filterOption === null?style.ActOption:'','childcenter'].join(' ')}>全部</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'name')} className={[style.Option,this.state.filterOption === 'name'?style.ActOption:'','childcenter'].join(' ')}>姓名</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'hospital')} className={[style.Option,this.state.filterOption === 'hospital'?style.ActOption:'','childcenter'].join(' ')}>医院</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'office')} className={[style.Option,this.state.filterOption === 'office'?style.ActOption:'','childcenter'].join(' ')}>科室</div>
                         </div>
                     </Select>
                     <div className={[style.SelectInputBox,'childcenter','childcontentend'].join(' ')}>

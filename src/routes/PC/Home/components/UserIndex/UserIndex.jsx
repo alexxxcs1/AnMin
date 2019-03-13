@@ -48,7 +48,7 @@ export class UserIndex extends Component {
     this.props.history.push("/pc/user/" + status);
   }
   HandleFileLoad(type) {
-    if (type == null) {
+    if (type === null) {
       this.getUserInfo();
     }
     this.state.fileloadbox = type;
@@ -56,7 +56,7 @@ export class UserIndex extends Component {
   }
   getUserInfo(){
     api.getUserInfo().then(res=>{
-      if (res.code == 200) {
+      if (res.code === 200) {
         this.state.userinfo = res.data;
       }else{
         console.log(res.msg);
@@ -70,9 +70,9 @@ export class UserIndex extends Component {
   render() {
     return (
       <div className={style.UserIndexBox}>
-        {this.state.fileloadbox == 1 ? <UploadCase /> : ""}
-        {this.state.fileloadbox == 2 ? <UploadVideo /> : ""}
-        {this.state.fileloadbox == 3 ? <VideoView video={this.state.userinfo?this.state.userinfo.video:''}/> : ""}
+        {this.state.fileloadbox === 1 ? <UploadCase /> : ""}
+        {this.state.fileloadbox === 2 ? <UploadVideo /> : ""}
+        {this.state.fileloadbox === 3 ? <VideoView video={this.state.userinfo?this.state.userinfo.video:''}/> : ""}
         {/* <AuthBox /> */}
         <div className={[style.NavBanner, "childcenter"].join(" ")}>
           <div className={[style.BannerDetial, "childcenter"].join(" ")}>
@@ -87,7 +87,7 @@ export class UserIndex extends Component {
                   onClick={this.HandleNavStatus.bind(this, "all")}
                   className={[
                     style.NavButton,
-                    this.state.navStatus == "all" ? style.ActNavButton : "",
+                    this.state.navStatus === "all" ? style.ActNavButton : "",
                     "childcenter"
                   ].join(" ")}>
                   所有案例
@@ -96,7 +96,7 @@ export class UserIndex extends Component {
                   onClick={this.HandleNavStatus.bind(this, "chosen")}
                   className={[
                     style.NavButton,
-                    this.state.navStatus == "chosen" ? style.ActNavButton : "",
+                    this.state.navStatus === "chosen" ? style.ActNavButton : "",
                     "childcenter"
                   ].join(" ")}>
                   入选案例
@@ -105,7 +105,7 @@ export class UserIndex extends Component {
                   onClick={this.HandleNavStatus.bind(this, "rule")}
                   className={[
                     style.NavButton,
-                    this.state.navStatus == "rule" ? style.ActNavButton : "",
+                    this.state.navStatus === "rule" ? style.ActNavButton : "",
                     "childcenter"
                   ].join(" ")}>
                   项目介绍及规则

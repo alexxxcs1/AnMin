@@ -58,7 +58,7 @@ refreshProps(props) {
 }
 getCaseList(){
     api.getAllCaseByRater(this.state.nowpage,null,null,'all').then(res=>{
-        if (res.code == 200) {
+        if (res.code === 200) {
             this.state.data = res.data.list;
             this.state.nowpage = res.data.page;
             this.state.totalpage = res.data.num;
@@ -103,7 +103,7 @@ pushData(){
     this.state.nowpage+=1;
     api.getAllCaseByRater(this.state.nowpage,null,null,'all').then(res=>{
         let result = [];
-        if (res.code == 200) {
+        if (res.code === 200) {
             
             result = res.data.list;
             this.state.nowpage = res.data.page;
@@ -122,7 +122,7 @@ acceptCase(id,index){
     // reuploadindex = index;
     // this.refs.reuploadfile.click();
     api.getCasePase(id,2).then(res=>{
-        if (res.code == 200) {
+        if (res.code === 200) {
             this.state.data[index].status = 2;
             this.setState(this.state);
         }else{
@@ -135,7 +135,7 @@ acceptCase(id,index){
 }
 unacceptCase(id,index){
     api.getCasePase(id,3).then(res=>{
-        if (res.code == 200) {
+        if (res.code === 200) {
             this.state.data[index].status = 3;
             this.setState(this.state);
         }else{
@@ -154,7 +154,7 @@ onReupload(e){
         formdata.append('file',file);
         formdata.append('id',reuploadid);   
         api.reuploadCase(formdata).then(res=>{
-            if (res.code == 200) {
+            if (res.code === 200) {
                 this.state.data[reuploadindex].filePath = res.data;
             }
             this.setState(this.state);
@@ -171,7 +171,7 @@ createList(){
     for (let z = 0; z < this.state.data.length; z++) {
         result.push(<div className={[style.CaseCard,'childcenter','childcolumn','childalignstart'].join(' ')}>
         <div className={style.CaseTitle}> {this.state.data[z].name} </div>
-        <div className={style.CaseUpdateTime}>审核状态：{this.state.data[z].status==2? <span >已通过</span>:this.state.data[z].status==1?<span>待审核</span>:<span>不通过</span> }</div>
+        <div className={style.CaseUpdateTime}>审核状态：{this.state.data[z].status===2? <span >已通过</span>:this.state.data[z].status===1?<span>待审核</span>:<span>不通过</span> }</div>
         <div className={'flexbox'}></div>
         <div className={[style.ButtonGroup,'childcenter','childcontentstart'].join(' ')}>
             <div className={[style.HandleButton,style.Colorful,'childcenter'].join(' ')}> <a href={this.state.data[z].filePath}>查看案例</a></div>
@@ -211,7 +211,7 @@ render() {
   return (
     <div className={style.ListBox} ref={'scrollbody'}>
         <div className={[style.ListBody,'childcenter','childcolumn'].join(' ')}>
-            {this.state.data.length == 0?'这里什么都没有':this.createList()}
+            {this.state.data.length === 0?'这里什么都没有':this.createList()}
         </div>
     </div>
    )

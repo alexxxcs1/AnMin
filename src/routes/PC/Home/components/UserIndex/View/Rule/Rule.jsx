@@ -44,8 +44,8 @@ render() {
         <div className={[style.DetialBox,'childcenter childcontentstart'].join(' ')}>
             <div className={[style.HandleGroup,'childcenter childcolumn'].join(' ')}>
               <div onClick={this.HandleStatus.bind(this,'info')} className={[style.ButtonBox,this.state.status!='rule'&&this.state.status!='video'?'':style.Unact,'childcenter childcolumn'].join(' ')}> <span>项</span><span>目</span><span>介</span><span>绍</span></div>
-              <div onClick={this.HandleStatus.bind(this,'rule')} className={[style.ButtonBox,this.state.status=='rule'?'':style.Unact,'childcenter childcolumn'].join(' ')}><span>规</span><span>则</span></div>
-              <div onClick={this.HandleStatus.bind(this,'video')} className={[style.ButtonBox,this.state.status=='video'?'':style.Unact,'childcenter childcolumn'].join(' ')}><span>项</span><span>目</span><span>介</span><span>绍</span><span>视</span><span>频</span></div>
+              <div onClick={this.HandleStatus.bind(this,'rule')} className={[style.ButtonBox,this.state.status==='rule'?'':style.Unact,'childcenter childcolumn'].join(' ')}><span>规</span><span>则</span></div>
+              <div onClick={this.HandleStatus.bind(this,'video')} className={[style.ButtonBox,this.state.status==='video'?'':style.Unact,'childcenter childcolumn'].join(' ')}><span>项</span><span>目</span><span>介</span><span>绍</span><span>视</span><span>频</span></div>
             </div>
             <div className={style.ContentBox}>
               {this.createRouteComponents()}

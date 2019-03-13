@@ -41,11 +41,11 @@ export class UserReg extends Component {
   }
   getUserIsReg(){
     api.userIsLogin().then(res=>{
-      if (res.code == 201) {
+      if (res.code === 201) {
         window.location.hash = '#/ulogin'
-      }else if (res.code == 202) {
+      }else if (res.code === 202) {
         window.location.hash = '#/userregister'
-      }else if(res.code == 200){
+      }else if(res.code === 200){
         window.location.hash = '#/pc/user/rule'
       }
     },err=>{

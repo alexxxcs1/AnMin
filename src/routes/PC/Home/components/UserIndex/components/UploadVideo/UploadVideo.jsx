@@ -75,7 +75,7 @@ export class UploadVideo extends Component {
     let formdata = new FormData();
     formdata.append('file',this.state.file.value)
     api.uploadVideo(formdata).then(res=>{
-      if (res.code==200) {
+      if (res.code===200) {
         self.state.AjaxDone = true;
         self.state.AlertTips.status = "success";
         self.state.AlertTips.msg = "正在您跳转-请稍后";
@@ -156,16 +156,16 @@ export class UploadVideo extends Component {
               " "
             )}>
             <img
-              src={this.state.AlertTips.status == "success" ? Success : Error}
+              src={this.state.AlertTips.status === "success" ? Success : Error}
               alt=""
             />
             <span>
-              {this.state.AlertTips.status == "success"
+              {this.state.AlertTips.status === "success"
                 ? "上传成功"
                 : "上传失败"}
             </span>
             <span>
-              {this.state.AlertTips.status == "success"
+              {this.state.AlertTips.status === "success"
                 ? "正在您跳转-请稍后"
                 : this.state.AlertTips.msg}
             </span>
@@ -202,7 +202,7 @@ export class UploadVideo extends Component {
                 <span>
                   {this.state.loading
                     ? "上传中"
-                    : this.state.loaded == 100
+                    : this.state.loaded === 100
                     ? "上传完成"
                     : this.state.file.name}
                 </span>

@@ -36,7 +36,7 @@ export class UploadVideo extends Component {
     e.target.value = '';
     formdata.append('file',file);
     api.uploadVideo(formdata).then(res=>{
-        if (res.code == 200) {
+        if (res.code === 200) {
           this.context.refreshList();
         }else{
             alert(res.msg);
@@ -82,7 +82,7 @@ export class UploadVideo extends Component {
         ].join(" ")}>
         <span>上传</span>
         <span>视频</span>
-        <div className={style.loadbar} style={{height:(this.state.loaded==0?100:this.state.loaded)+'%'}}></div>
+        <div className={style.loadbar} style={{height:(this.state.loaded===0?100:this.state.loaded)+'%'}}></div>
         <input type="file" onChange={this.fileChange} accept='video/*' ref='file' className={style.hidden}/>
       </div>
     );

@@ -35,7 +35,7 @@ export class UploadCase extends Component {
     e.target.value = '';
     formdata.append('file',file);
     api.uploadCase(formdata).then(res=>{
-        if (res.code == 200) {
+        if (res.code === 200) {
             
         }else{
             alert(res.msg);
@@ -81,7 +81,7 @@ export class UploadCase extends Component {
         ].join(" ")}>
         <span>新增</span>
         <span>案例</span>
-        <div className={style.loadbar} style={{height:(this.state.loaded==0?100:this.state.loaded)+'%'}}></div>
+        <div className={style.loadbar} style={{height:(this.state.loaded===0?100:this.state.loaded)+'%'}}></div>
         <input type="file" onChange={this.fileChange} accept='*' ref='file' className={style.hidden}/>
       </div>
     );

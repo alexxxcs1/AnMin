@@ -67,7 +67,7 @@ onFileChange(e){
   }, 50);
   
   api.reUploadVideo(formdata).then(res=>{
-    if (res.code==200) {
+    if (res.code===200) {
       this.state.video = res.data;
       this.state.ajaxdone = true;
       // this.state.uploading = false;
@@ -86,7 +86,7 @@ onFileChange(e){
 deleteVideo(){
   api.deleteVideo().then(res=>{
     console.log(res);
-    if (res.code == 200) {
+    if (res.code === 200) {
       this.context.HandleFileLoad(null);
     }else{
       alert(res.msg)

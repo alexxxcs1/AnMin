@@ -34,7 +34,7 @@ refreshProps(props) {
 }
 submitComment(){
     api.setCaseScoreContent(this.state.id,2,this.state.commentValue).then(res=>{
-        if (res.code == 200) {
+        if (res.code === 200) {
             alert(res.msg)
             this.props.handle({
                 show:false,

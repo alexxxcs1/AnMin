@@ -31,7 +31,7 @@ refreshProps(props) {
 getCaseList(){
     api.getAllCase().then(res=>{
         console.log(res);
-        if (res.code == 200) {
+        if (res.code === 200) {
             this.state.data = res.data;
         }else{
             alert(res.msg)
@@ -73,7 +73,7 @@ onDeleteCase(id,index){
         Submit:()=>{
             api.deleteCase(id).then(res=>{
                 console.log(res);
-                if (res.code == 200) {
+                if (res.code === 200) {
                     self.state.data.splice(index,1);
                 }else{
                     alert(res.msg)
@@ -100,7 +100,7 @@ onFileChange(e){
         formdata.append('id',reuploadid);   
         api.reuploadCase(formdata).then(res=>{
             // console.log(res);
-            if (res.code == 200) {
+            if (res.code === 200) {
                 this.state.data[reuploadindex].filePath = res.data;
             }
             this.setState(this.state);

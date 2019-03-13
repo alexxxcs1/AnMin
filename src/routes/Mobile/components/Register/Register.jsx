@@ -62,7 +62,7 @@ export class Register extends Component {
     }, 500);
   }
   onInputChange(type,e){
-    if (e.target.value.length>11&&type == 'tel') {
+    if (e.target.value.length>11&&type === 'tel') {
       e.target.value = e.target.value.slice(0,11);
     }
     this.state.formdata[type] = e.target.value;
@@ -92,7 +92,7 @@ export class Register extends Component {
           values = '邀请码';
           break;
       }
-      if (values == '') {
+      if (values === '') {
         api.userRegister(
           this.state.formdata.name,
           this.state.formdata.province,
@@ -102,7 +102,7 @@ export class Register extends Component {
           this.state.formdata.code,
           ).then(res=>{
           console.log(res);
-          if (res.code == 200) {
+          if (res.code === 200) {
             this.state.RegisterResult = {
               alertshow: true,
               result: true,
@@ -152,7 +152,7 @@ export class Register extends Component {
       <div className={[style.ContentBox].join(" ")}>
         {this.state.RegisterResult.alertshow ? (
           <div className={[style.FixLayer, "childcenter"].join(" ")}>
-            {this.state.RegisterResult.result == true ? (
+            {this.state.RegisterResult.result === true ? (
               <MobileTipAlert onClose={this.HandleAlertShow.bind(this, false)}>
                 <div
                   className={[
@@ -175,7 +175,7 @@ export class Register extends Component {
             ) : (
               ""
             )}
-            {this.state.RegisterResult.result == false ? (
+            {this.state.RegisterResult.result === false ? (
               <MobileTipAlert onClose={this.HandleAlertShow.bind(this, false)}>
                 <div
                   className={[

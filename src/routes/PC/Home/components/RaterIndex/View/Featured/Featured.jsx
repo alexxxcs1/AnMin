@@ -71,9 +71,9 @@ render() {
                         <span className={style.dropTips}></span>
                     </div> }>
                         <div className={style.OptionBox}>
-                            <div onClick={this.HandleFilterOption.bind(this,null)} className={[style.Option,this.state.filterOption == null?style.ActOption:'','childcenter'].join(' ')}>全部</div>
-                            <div onClick={this.HandleFilterOption.bind(this,'uname')} className={[style.Option,this.state.filterOption == 'uname'?style.ActOption:'','childcenter'].join(' ')}>姓名</div>
-                            <div onClick={this.HandleFilterOption.bind(this,'cname')} className={[style.Option,this.state.filterOption == 'cname'?style.ActOption:'','childcenter'].join(' ')}>名称</div>
+                            <div onClick={this.HandleFilterOption.bind(this,null)} className={[style.Option,this.state.filterOption === null?style.ActOption:'','childcenter'].join(' ')}>全部</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'uname')} className={[style.Option,this.state.filterOption === 'uname'?style.ActOption:'','childcenter'].join(' ')}>姓名</div>
+                            <div onClick={this.HandleFilterOption.bind(this,'cname')} className={[style.Option,this.state.filterOption === 'cname'?style.ActOption:'','childcenter'].join(' ')}>名称</div>
                         </div>
                     </Select>
                     <div className={[style.SelectInputBox,'childcenter','childcontentend'].join(' ')}>
