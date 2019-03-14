@@ -26,11 +26,9 @@ componentDidMount() {
   this.getCaseList();
 }
 refreshProps(props) {
-    this.getCaseList();
 }
 getCaseList(){
     api.getAllCase().then(res=>{
-        console.log(res);
         if (res.code === 200) {
             this.state.data = res.data;
         }else{

@@ -15,9 +15,10 @@ componentWillReceiveProps(nextprops) {
 }
 componentDidMount() {
   this.refreshProps(this.props);
+  this.isAuth();
 }
 refreshProps(props) {
-  this.isAuth();
+  
 }
 isAuth(){
     api.userIsLogin().then(res=>{

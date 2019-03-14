@@ -13,7 +13,10 @@ import UploadCase from "./components/UploadCase";
 import VideoView from "./components/VideoView";
 import AuthBox from "./components/AuthBox";
 
+import logintitle from 'assets/logintitle.png'
+import downloadbox from 'assets/downloadbox.png'
 
+let ADmoveInterval;
 
 export class UserIndex extends Component {
   constructor(props) {
@@ -21,11 +24,17 @@ export class UserIndex extends Component {
     this.state = {
       userinfo:null,
       fileloadbox: null,
-      navStatus: 2
+      navStatus: 2,
+      ADisshow:true,
+      ADposX:10,
+      turn:false,
+      mouseEnter:false,
     };
     this.refreshProps = this.refreshProps.bind(this);
     this.HandleNavStatus = this.HandleNavStatus.bind(this);
     this.HandleFileLoad = this.HandleFileLoad.bind(this);
+    this.HandleADshow = this.HandleADshow.bind(this);
+    this.ADMoveStart = this.ADMoveStart.bind(this);
   }
   componentWillReceiveProps(nextprops) {
     this.refreshProps(nextprops);
@@ -33,6 +42,10 @@ export class UserIndex extends Component {
   componentDidMount() {
     this.refreshProps(this.props);
     this.getUserInfo();
+    this.ADMoveStart();
+  }
+  componentWillUnmount(){
+    clearInterval(ADmoveInterval);
   }
   refreshProps(props) {
     let hash = window.location.hash.split("/");
@@ -67,13 +80,42 @@ export class UserIndex extends Component {
       
     })
   }
+  HandleADshow(boolean){
+    this.state.ADisshow = boolean;
+    if (!boolean) {
+      clearInterval(ADmoveInterval);
+    }
+    this.setState(this.state);
+  }
+  ADMoveStart(){
+    ADmoveInterval = setInterval(() => {
+      let speed = 0.05;
+      if (this.state.mouseEnter) return;
+      if (this.state.turn) {
+        this.state.ADposX += speed;
+        if (this.state.ADposX>=90) {
+          this.state.turn = !this.state.turn;
+        }
+      }else{
+        if (this.state.ADposX<=10) {
+          this.state.turn = !this.state.turn;
+        }
+        this.state.ADposX -= speed;
+      }
+      this.setState(this.state);
+    }, 10);
+  }
+  isADMouseEnter(boolean){
+    this.state.mouseEnter = boolean;
+    this.setState(this.state);
+  }
   render() {
     return (
       <div className={style.UserIndexBox}>
         {this.state.fileloadbox === 1 ? <UploadCase /> : ""}
         {this.state.fileloadbox === 2 ? <UploadVideo /> : ""}
         {this.state.fileloadbox === 3 ? <VideoView video={this.state.userinfo?this.state.userinfo.video:''}/> : ""}
-        {/* <AuthBox /> */}
+        <AuthBox />
         <div className={[style.NavBanner, "childcenter"].join(" ")}>
           <div className={[style.BannerDetial, "childcenter"].join(" ")}>
             <div
@@ -140,8 +182,13 @@ export class UserIndex extends Component {
             "childcolumn",
             "childcontentstart"
           ].join(" ")}>
-          
-          {/* <AllCase /> */}
+          {this.state.ADisshow?<div onMouseLeave={this.isADMouseEnter.bind(this,false)} onMouseEnter={this.isADMouseEnter.bind(this,true)} style={{left:this.state.ADposX + '%'}} className={[style.ADBox,'childcenter'].join(' ')}>
+            <div className={style.CloseButton} onClick={this.HandleADshow.bind(this,false)}></div>
+            <div className={[style.ContentBox,'childcenter'].join(' ')}>
+              <img className={style.ADimage} src={logintitle} alt=""/>
+              <img className={style.DownloadBox} src={downloadbox}></img>
+            </div>
+          </div>:''}
           <Switch>
             <Route path="/pc/user/all" component={AllCase} />
             <Route path="/pc/user/chosen" component={ChosenCase} />
