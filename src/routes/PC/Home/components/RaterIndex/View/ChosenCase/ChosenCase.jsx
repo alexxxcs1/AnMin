@@ -5,6 +5,7 @@ import Burster from 'components/Burster'
 import CommentBox from './components/CommentBox'
 import {api} from 'common/app'
 import LoadingBox from 'components/LoadingBox'
+import ScoreBox from './components/ScoreBox'
 
 
 import NoResult from 'assets/NoResult.png'
@@ -32,6 +33,11 @@ constructor(props) {
           show:false,
           id:null,
           content:null,
+      },
+      ScoreOption:{
+        show:false,
+        id:null,
+        scorearray:null,
       }
   };
      this.refreshProps = this.refreshProps.bind(this);
@@ -40,6 +46,7 @@ constructor(props) {
      this.HandleSearch = this.HandleSearch.bind(this);
      this.HandleSearvhValueChange = this.HandleSearvhValueChange.bind(this);
      this.HandleCommentBox = this.HandleCommentBox.bind(this);
+     this.HandleScoreBox = this.HandleScoreBox.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -80,14 +87,6 @@ HandleFilterOption(filterOption){
     this.state.filterOption = filterOption;
     this.setState(this.state);
 }
-HandleScore(index,e){
-    e.target.value = e.target.value.replace(/[^0-9]+/, "");
-    if (e.target.value.length > 3) {
-        e.target.value = e.target.value.slice(0,3);
-    }
-    this.state.data[index].sum = e.target.value;
-    this.setState(this.state);
-}
 submitScore(index,e){
     // if (!this.state.data[index].sum) return;
     let _index = index;
@@ -96,7 +95,7 @@ submitScore(index,e){
         if (res.code === 200) {
             alert(res.msg)
         }else{
-            self.state.data[_index].sum = res.data
+            self.state.data[_index].sum = res.data;
             self.setState(self.state);
                 alert(res.msg)
         }
@@ -108,33 +107,38 @@ createTableRow(){
     let result = [];
     for (let z = 0; z < this.state.data.length; z++) {
         result.push(<div className={[style.TableRow,'childcenter'].join(' ')}>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
+        {/* <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
         <span className={style.Timespan}>{this.state.data[z].userName}</span>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
         <span className={style.Timespan}>{this.state.data[z].tel}</span> 
-        </div>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'32%'}}>
+        </div> */}
+        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
+            <span className={style.Timespan}>{z+1}</span> 
+        </div> 
+        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'40%'}}>
             <input value={this.state.data[z].name} title={this.state.data[z].name} className={style.ValueInput} type="text" readOnly/>
             <div className={[style.HandleButtonGroup,'childcenter','childcontentstart'].join(' ')}>
                 <a href={this.state.data[z].filePath} download target="_blank"><div >在线预览</div></a>
             </div>
         </div>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
+        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
         <a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.CheckInfo}>查看</span></a>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
-            <div className={[style.ScoreEditBox,'childcenter'].join(' ')}>
-                <input title={this.state.data[z].sum} value={this.state.data[z].sum?this.state.data[z].sum:''} type="text" className={style.EasyEditInput} placeholder='点我打分' onChange={this.HandleScore.bind(this,z)} onBlur={this.submitScore.bind(this,z)}/>
-            </div>
+            <span className={style.CheckInfo} onClick={this.HandleScoreBox.bind(this,{
+                    show:true,
+                    id:this.state.data[z].id,
+                    content:this.state.data[z].may_score
+                })}>点我打分</span> 
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'22%'}}>
-        {this.state.data[z].content?<input value={this.state.data[z].content} title={this.state.data[z].content} className={style.CommentInput} type="text" readOnly/>:''}
+        {/* {this.state.data[z].content?<input value={this.state.data[z].content} title={this.state.data[z].content} className={style.CommentInput} type="text" readOnly/>:''} */}
         <span className={style.CheckInfo} onClick={this.HandleCommentBox.bind(this,{
             show:true,
             id:this.state.data[z].id,
             content:this.state.data[z].content
-        })}>{this.state.data[z].content?'编辑':'点我点评'}</span> 
+        })}>点我点评</span> 
         </div>
     </div>);
     }
@@ -156,10 +160,15 @@ HandleCommentBox(option){
     this.state.CommentOption = option;
     this.setState(this.state);
 }
+HandleScoreBox(option){
+    this.state.ScoreOption = option;
+    this.setState(this.state);
+}
 render() {
   return (
     <div className={[style.AllCaseBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
         {this.state.CommentOption.show?<CommentBox id={this.state.CommentOption.id} content={this.state.CommentOption.content} handle={this.HandleCommentBox}/>:''}
+        {this.state.ScoreOption.show?<ScoreBox id={this.state.ScoreOption.id} content={this.state.ScoreOption.content} handle={this.HandleScoreBox} />:''}
         <div className={[style.ListBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
             <div className={[style.ListTitle,'childcenter','childcontentstart'].join(' ')}>
                 <div className={[style.TitleRight,'childcenter','childcontentend'].join(' ')}>
@@ -183,16 +192,19 @@ render() {
             <div className={[style.TableBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
 
                 <div className={[style.TableHead,'childcenter'].join(' ')}>
-                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
+                    {/* <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
                     姓名
                     </div>
                     <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
                     手机号码
+                    </div> */}
+                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
+                    序号
                     </div>
-                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'32%'}}>
+                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'40%'}}>
                     名称
                     </div>
-                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
+                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
                     视频
                     </div>
                     <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
