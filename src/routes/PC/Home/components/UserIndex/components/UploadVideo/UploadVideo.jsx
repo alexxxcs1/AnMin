@@ -182,7 +182,7 @@ export class UploadVideo extends Component {
             onClick={this.context.HandleFileLoad.bind(this, null)}
           />
           <div className={style.UploadTitle}>自我介绍短片上传</div>
-          <div className={style.UploadTips}>点击下框空白处上传视频，时间请控制在30秒内</div>
+          <div className={style.UploadTips}>支持拓展名: .MP4/.WMA/.MOV均可,限时30秒</div>
           <div
             className={[style.UploadButton, "childcenter", "childcolumn"].join(
               " "

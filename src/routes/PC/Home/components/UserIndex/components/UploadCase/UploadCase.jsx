@@ -151,7 +151,7 @@ export class UploadCase extends Component {
             onClick={this.context.HandleFileLoad.bind(this, null)}
           />
           <div className={style.UploadTitle}>上传案例</div>
-          <div className={style.UploadTips}>点击下框空白处上传您的案例，只支持pdf文件</div>
+          <div className={style.UploadTips}>支持扩展名.PDF文件,文件大小不超过30M</div>
           <div
             className={[style.UploadButton, "childcenter", "childcolumn"].join(
               " "

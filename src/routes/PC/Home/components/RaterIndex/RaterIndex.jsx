@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { HashRouter,Route,Switch,Redirect} from 'react-router-dom';
+import {api} from 'common/app'
 import style from './RaterIndex.scss'
 
 import AllCase from './View/AllCase'
@@ -14,15 +15,18 @@ constructor(props) {
   super(props);
   this.state = {
       navStatus:0,
+      userinfo:null,
   };
      this.refreshProps = this.refreshProps.bind(this);
      this.HandleNavStatus = this.HandleNavStatus.bind(this);
+     this.getRaterInfo = this.getRaterInfo.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
 }
 componentDidMount() {
   this.refreshProps(this.props);
+  this.getRaterInfo();
 }
 refreshProps(props) {
     let hash = window.location.hash.split('/');
@@ -32,6 +36,26 @@ refreshProps(props) {
 HandleNavStatus(status){
     this.props.history.push('/pc/rateruser/'+status);
 }
+getRaterInfo(){
+    api.getRaterInfo().then(res=>{
+        if (res.code === 200) {
+          this.state.userinfo = res.data;
+          switch (this.state.userinfo.status) {
+            case 1:
+              window.location.hash = '#/pc/rateruser/chosen';
+              break;
+            case 2:
+              window.location.hash = '#/pc/rateruser/all';
+              break;
+          }
+        }else{
+          console.log(res.msg);
+        }
+        this.setState(this.state);
+      },err=>{
+        console.log(err);
+      });
+}
 render() {
   return (
     <div className={style.UserIndexBox}>
@@ -39,11 +63,11 @@ render() {
         <div className={[style.NavBanner,'childcenter'].join(' ')}>
             <div className={[style.BannerDetial,'childcenter'].join(' ')}>
                 <div className={[style.GroupBox,'childcenter','childcontentstart'].join(' ')}>
-                    <div className={[style.NavGroup,'childcenter'].join(' ')}>
-                        <div onClick={this.HandleNavStatus.bind(this,'all')} className={[style.NavButton,this.state.navStatus === 'all'?style.ActNavButton:'','childcenter'].join(' ')}>所有案例</div>
-                        <div onClick={this.HandleNavStatus.bind(this,'chosen')} className={[style.NavButton,this.state.navStatus === 'chosen'?style.ActNavButton:'','childcenter'].join(' ')}>通过案例</div>
+                    {this.state.userinfo?<div className={[style.NavGroup,'childcenter'].join(' ')}>
+                        {this.state.userinfo.status == 2 ?<div onClick={this.HandleNavStatus.bind(this,'all')} className={[style.NavButton,this.state.navStatus === 'all'?style.ActNavButton:'','childcenter'].join(' ')}>所有案例</div>:''}
+                        {this.state.userinfo.status == 1 ?<div onClick={this.HandleNavStatus.bind(this,'chosen')} className={[style.NavButton,this.state.navStatus === 'chosen'?style.ActNavButton:'','childcenter'].join(' ')}>入选案例</div>:''}
                         {/* <div onClick={this.HandleNavStatus.bind(this,'featured')} className={[style.NavButton,this.state.navStatus === 'featured'?style.ActNavButton:'','childcenter'].join(' ')}>精选案例</div> */}
-                    </div>
+                    </div>:""}
                 </div>
                 <div className={[style.GroupBox,'childcenter','childcontentend'].join(' ')}>
 

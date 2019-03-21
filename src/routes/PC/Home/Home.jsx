@@ -42,7 +42,7 @@ export class Home extends Component {
           <TopBanner />
           <Switch>
             <Route path='/pc/user' component={UserIndex} />
-            <Route path='/pc/rateruser' component={RaterIndex} />
+            <Route path='/pc/rateruser' component={RaterIndex}/>
           </Switch>
           {/* <div className={style.BkgBox}>
             <img src={topbg} className={style.Topbkg} alt="" />
