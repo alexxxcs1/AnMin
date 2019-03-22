@@ -59,7 +59,6 @@ render() {
             </div>
         </div>
         <div className={style.RuleColumn}>
-            
             <div className={style.RuleRow}>
             <div className={style.RowTitle}>比赛规则：</div>
                 <div className={style.RowContent}>
@@ -71,7 +70,6 @@ render() {
                 </ul>
                 </div>
             </div>
-            <div className={style.CutRow}></div>
         </div>
     </div>
    )
