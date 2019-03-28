@@ -66,7 +66,6 @@ render() {
               </div>
             </div>:
             <div className={[style.RaterLoginBox,'childcenter childcontentstart'].join(' ')}><RaterLogin /></div>
-            
           }
           </div>
           <div className={style.BotBackground}>

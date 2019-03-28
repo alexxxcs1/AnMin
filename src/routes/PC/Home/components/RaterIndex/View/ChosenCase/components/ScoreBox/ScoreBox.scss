@@ -66,6 +66,9 @@
         position: relative;
         .CountScore{
             font-size: 16px;
+            .ScoreType{
+                margin: 0 30px;
+            }
         }
         .SubmitButton{
             position: absolute;

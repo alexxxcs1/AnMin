@@ -218,7 +218,7 @@ export class UploadVideo extends Component {
               onChange={this.onFileChange}
             />
           </div>
-          <div className={style.UploadTips} style={{margin:'20px 0'}}>点击加号上传视频</div>
+          <div className={style.UploadTips} style={{margin:'20px 0',color:'#333'}}>点击加号上传视频</div>
           <div
             className={[
               style.SubmitButton,

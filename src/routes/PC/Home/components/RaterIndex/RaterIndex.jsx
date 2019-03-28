@@ -7,6 +7,7 @@ import AllCase from './View/AllCase'
 import ChosenCase from './View/ChosenCase'
 import Featured from './View/Featured'
 import AuthBox from './components/AuthBox'
+import ChangePassword from './components/ChangePassword'
   
 import topbg from 'assets/topbg.png'
 
@@ -60,6 +61,7 @@ render() {
   return (
     <div className={style.UserIndexBox}>
         <AuthBox />
+        {this.state.userinfo?(this.state.userinfo.IsNeedChangePassW==0?<ChangePassword />:''):''}
         <div className={[style.NavBanner,'childcenter'].join(' ')}>
             <div className={[style.BannerDetial,'childcenter'].join(' ')}>
                 <div className={[style.GroupBox,'childcenter','childcontentstart'].join(' ')}>

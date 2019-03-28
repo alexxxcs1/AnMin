@@ -15,8 +15,11 @@ import AuthBox from "./components/AuthBox";
 
 import logintitle from 'assets/logintitle.png'
 import downloadbox from 'assets/downloadbox.png'
+import templatedownload from 'assets/templatedownload.png'
+
 
 let ADmoveInterval;
+let TempalatemoveInterval;
 
 export class UserIndex extends Component {
   constructor(props) {
@@ -27,8 +30,11 @@ export class UserIndex extends Component {
       navStatus: 2,
       ADisshow:true,
       ADposX:10,
+      Template_posX:10,
       turn:false,
+      template_turn:false,
       mouseEnter:false,
+      mouseEnter_template:false,
     };
     this.refreshProps = this.refreshProps.bind(this);
     this.HandleNavStatus = this.HandleNavStatus.bind(this);
@@ -43,9 +49,11 @@ export class UserIndex extends Component {
     this.refreshProps(this.props);
     this.getUserInfo();
     this.ADMoveStart();
+    this.TemplateMoveStart();
   }
   componentWillUnmount(){
     clearInterval(ADmoveInterval);
+    clearInterval(TempalatemoveInterval);
   }
   refreshProps(props) {
     let hash = window.location.hash.split("/");
@@ -104,6 +112,28 @@ export class UserIndex extends Component {
       }
       this.setState(this.state);
     }, 10);
+  }
+  TemplateMoveStart(){
+    TempalatemoveInterval = setInterval(() => {
+      let speed = 0.05;
+      if (this.state.mouseEnter_template) return;
+      if (this.state.template_turn) {
+        this.state.Template_posX += speed;
+        if (this.state.Template_posX>=90) {
+          this.state.template_turn = !this.state.template_turn;
+        }
+      }else{
+        if (this.state.Template_posX<=10) {
+          this.state.template_turn = !this.state.template_turn;
+        }
+        this.state.Template_posX -= speed;
+      }
+      this.setState(this.state);
+    }, 10);
+  }
+  isTemplateMouseEnter(boolean){
+    this.state.mouseEnter_template = boolean;
+    this.setState(this.state);
   }
   isADMouseEnter(boolean){
     this.state.mouseEnter = boolean;
@@ -182,13 +212,24 @@ export class UserIndex extends Component {
             "childcolumn",
             "childcontentstart"
           ].join(" ")}>
-          {this.state.ADisshow?<div onMouseLeave={this.isADMouseEnter.bind(this,false)} onMouseEnter={this.isADMouseEnter.bind(this,true)} style={{left:this.state.ADposX + '%'}} className={[style.ADBox,'childcenter'].join(' ')}>
+          {this.state.ADisshow?<div onMouseLeave={this.isADMouseEnter.bind(this,false)} onMouseEnter={this.isADMouseEnter.bind(this,true)} style={{bottom:this.state.ADposX + '%'}} className={[style.ADBox,'childcenter'].join(' ')}>
             <div className={style.CloseButton} onClick={this.HandleADshow.bind(this,false)}></div>
-            <div className={[style.ContentBox,'childcenter'].join(' ')}>
-              <img className={style.ADimage} src={logintitle} alt=""/>
+            <div className={[style.ContentBox,'childcenter'].join(' ')} onClick={()=>{
+              window.open('http://meadjohnson-qiniu.rup-china.com/meadjohnson-gz/%E5%85%A8%E5%9B%BD%E4%B8%93%E5%AE%B6%E8%AF%81%E8%A8%80%E8%A7%86%E9%A2%91final-0327.mp4');
+            }}>
+              {/* <img className={style.ADimage} src={logintitle} alt=""/> */}
               <img className={style.DownloadBox} src={downloadbox}></img>
             </div>
           </div>:''}
+          <div 
+            onClick={()=>{window.location.href = 'http://meadjohnson-qiniu.rup-china.com/meadjohnson-gz/%E7%89%9B%E5%A5%B6%E8%9B%8B%E7%99%BD%E8%BF%87%E6%95%8F%E8%AF%8A%E6%B2%BB%E7%97%85%E4%BE%8B%E5%BE%81%E9%9B%86%28%E6%A8%A1%E6%9D%BF20190322%29.pptx'}}
+            onMouseLeave={this.isTemplateMouseEnter.bind(this,false)} 
+            onMouseEnter={this.isTemplateMouseEnter.bind(this,true)} 
+            style={{left:this.state.Template_posX + '%'}} 
+            className={[style.TemplateBox,'childcenter'].join(' ')}
+          >
+            <img className={style.TemplateDownloadBox} src={templatedownload}></img>
+          </div>
           <Switch>
             <Route path="/pc/user/all" component={AllCase} />
             <Route path="/pc/user/chosen" component={ChosenCase} />

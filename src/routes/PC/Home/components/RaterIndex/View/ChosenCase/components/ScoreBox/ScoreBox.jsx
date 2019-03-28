@@ -40,13 +40,32 @@ HandleScoreInput(index,max,e){
     }
     this.setState(this.state);
 }
-countScore(){
+countScore(type){
     let result = 0;
-    for (let z = 0; z < this.state.scoreArray.length; z++) {
-        let score = this.state.scoreArray[z];
-        if (!isNaN(parseInt(score))) {
-            result = result + parseInt(score);
-        }
+    switch (type) {
+        default:
+        case 'all':
+            
+            for (let z = 0; z < this.state.scoreArray.length; z++) {
+                let score = this.state.scoreArray[z];
+                if (!isNaN(parseInt(score))) {
+                    result = result + parseInt(score);
+                }
+            }
+            break;
+        case 'soap':
+            for (let z = 0; z < 4; z++) {
+                const score = this.state.scoreArray[z];
+                if (score) {
+                    result = result + parseInt(score);
+                }
+            }
+            break;
+        case 'analysis':
+            let _score4 = this.state.scoreArray[4]?this.state.scoreArray[4]:0;
+            let _score5 = this.state.scoreArray[5]?this.state.scoreArray[5]:0;
+            result = parseInt(_score4)+parseInt(_score5);
+            break;
     }
     return result;
 }
@@ -121,7 +140,7 @@ render() {
             <div className={[style.ScoreContent,'childcenter'].join(' ')}>
                 <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
                     <span>客观检查</span>
-                    <span>（5分）</span>
+                    <span>（10分）</span>
                 </div>
                 <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
                     <div className={'childcenter'} style={{width:'743px'}}>
@@ -133,7 +152,7 @@ render() {
                 </div>
                 <div className={[style.Rows,'childcenter'].join(' ')}>
                     <div className={style.ScoreInput}>
-                        <input type="text" value={this.state.scoreArray[1]} placeholder={'1-5'} onChange={this.HandleScoreInput.bind(this,1,5)}/>
+                        <input type="text" value={this.state.scoreArray[1]} placeholder={'1-5'} onChange={this.HandleScoreInput.bind(this,1,10)}/>
                     </div>
                     分
                 </div>
@@ -163,7 +182,7 @@ render() {
             <div className={[style.ScoreContent,'childcenter'].join(' ')}>
                 <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
                     <span>处置计划</span>
-                    <span>（20分）</span>
+                    <span>（15分）</span>
                 </div>
                 <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
                     <div className={'childcenter'} style={{width:'743px'}}>
@@ -179,7 +198,7 @@ render() {
                 </div>
                 <div className={[style.Rows,'childcenter'].join(' ')}>
                     <div className={style.ScoreInput}>
-                        <input type="text" value={this.state.scoreArray[3]} placeholder={'1-20'} onChange={this.HandleScoreInput.bind(this,3,20)}/>
+                        <input type="text" value={this.state.scoreArray[3]} placeholder={'1-20'} onChange={this.HandleScoreInput.bind(this,3,15)}/>
                     </div>
                     分
                 </div>
@@ -228,8 +247,10 @@ render() {
             </div>
 
             <div className={[style.HandleRow,'childcenter'].join(' ')}>
-                <div className={style.CountScore}>
-                    总计 <span style={{fontSize:'24px',color:'#DA4913'}}>{this.countScore()}</span>  分
+                <div className={[style.CountScore,'childcenter'].join(' ')}>
+                    <div className={style.ScoreType} >SOAP病例描述 <span style={{fontSize:'24px',color:'#DA4913'}}>{this.countScore('soap')}</span>  分</div>
+                    <div className={style.ScoreType} >病例分析/归纳/收获/总结 <span style={{fontSize:'24px',color:'#DA4913'}}>{this.countScore('analysis')}</span>  分</div>
+                    <div className={style.ScoreType} >总计 <span style={{fontSize:'24px',color:'#DA4913'}}>{this.countScore()}</span>  分</div>
                 </div>
                 <div className={[style.SubmitButton,'childcenter'].join(' ')} onClick={this.SubmitScore}>确认</div>
                 <div className={[style.CancelButton,'childcenter'].join(' ')} onClick={this.props.handle.bind(this,{
