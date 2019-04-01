@@ -57,11 +57,11 @@ createTableRow(){
             </div>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'24%'}}>
-        <span className={style.CheckInfo} onClick={this.HandleCommentBox.bind(this,{
+        {this.state.data[z].content?<span className={style.CheckInfo} onClick={this.HandleCommentBox.bind(this,{
             show:true,
             id:this.state.data[z].id,
             content:this.state.data[z].content
-        })}>查看详情</span> 
+        })}>查看详情</span>:''}
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'18%'}}>
         <span className={style.Timespan}>{new Date(this.state.data[z].created_at*1000).format('yyyy-MM-dd hh:mm')}</span> 

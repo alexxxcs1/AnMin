@@ -95,12 +95,11 @@ createTableRow(){
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
         <span className={style.Timespan}>{this.state.data[z].tel}</span> 
         </div>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'40%'}}>
-        
-        <input value={this.state.data[z].name} title={this.state.data[z].name} className={style.ValueInput} type="text" readOnly/>
-            <div className={[style.HandleButtonGroup,'childcenter','childcontentstart'].join(' ')}>
-                <a href={this.state.data[z].filePath} download target="_blank"><div>在线预览</div></a>
-            </div>
+        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'25%'}}>
+            <input value={this.state.data[z].name} title={this.state.data[z].name} className={style.ValueInput} readOnly/>
+        </div>
+        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'15%'}}>
+            <a href={this.state.data[z].filePath} download target="_blank"><div>在线预览</div></a>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
          <a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.Timespan} style={{textDecoration:'underline'}}>查看</span></a>
@@ -183,8 +182,11 @@ render() {
                     <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
                     手机号码
                     </div>
-                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'40%'}}>
+                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'25%'}}>
                     名称
+                    </div>
+                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'15%'}}>
+                    案例
                     </div>
                     <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
                     视频

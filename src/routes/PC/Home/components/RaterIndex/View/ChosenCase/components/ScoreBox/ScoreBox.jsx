@@ -24,6 +24,8 @@ componentDidMount() {
 refreshProps(props) {
   this.state.id = props.id?props.id:this.state.id;
   this.state.scoreArray = props.content?props.content:this.state.scoreArray;
+  console.log(this.state.scoreArray);
+  
   this.setState(this.state);
 }
 HandleScoreInput(index,max,e){
@@ -81,7 +83,8 @@ SubmitScore(){
         api.setCaseScoreContent(this.state.id,1,sum,this.state.scoreArray.toString()).then(res=>{
             console.log(res);
             if (res.code == 200) {
-                alert('打分成功')
+                alert('打分成功');
+                this.props.onUpdate(this.state.scoreArray);
             }else{
                 alert(res.msg)
             }
@@ -152,7 +155,7 @@ render() {
                 </div>
                 <div className={[style.Rows,'childcenter'].join(' ')}>
                     <div className={style.ScoreInput}>
-                        <input type="text" value={this.state.scoreArray[1]} placeholder={'1-5'} onChange={this.HandleScoreInput.bind(this,1,10)}/>
+                        <input type="text" value={this.state.scoreArray[1]} placeholder={'1-10'} onChange={this.HandleScoreInput.bind(this,1,10)}/>
                     </div>
                     分
                 </div>
@@ -198,7 +201,7 @@ render() {
                 </div>
                 <div className={[style.Rows,'childcenter'].join(' ')}>
                     <div className={style.ScoreInput}>
-                        <input type="text" value={this.state.scoreArray[3]} placeholder={'1-20'} onChange={this.HandleScoreInput.bind(this,3,15)}/>
+                        <input type="text" value={this.state.scoreArray[3]} placeholder={'1-15'} onChange={this.HandleScoreInput.bind(this,3,15)}/>
                     </div>
                     分
                 </div>

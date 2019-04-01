@@ -47,6 +47,7 @@ constructor(props) {
      this.HandleSearvhValueChange = this.HandleSearvhValueChange.bind(this);
      this.HandleCommentBox = this.HandleCommentBox.bind(this);
      this.HandleScoreBox = this.HandleScoreBox.bind(this);
+     this.HandleScoreUpdate = this.HandleScoreUpdate.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -127,6 +128,7 @@ createTableRow(){
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
             <span className={style.CheckInfo} onClick={this.HandleScoreBox.bind(this,{
+                    index:z,
                     show:true,
                     id:this.state.data[z].id,
                     content:this.state.data[z].may_score
@@ -164,11 +166,15 @@ HandleScoreBox(option){
     this.state.ScoreOption = option;
     this.setState(this.state);
 }
+HandleScoreUpdate(index,scoreArray){
+    this.state.data[index].may_score = scoreArray;
+    this.setState(this.state);
+}
 render() {
   return (
     <div className={[style.AllCaseBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
         {this.state.CommentOption.show?<CommentBox id={this.state.CommentOption.id} content={this.state.CommentOption.content} handle={this.HandleCommentBox}/>:''}
-        {this.state.ScoreOption.show?<ScoreBox id={this.state.ScoreOption.id} content={this.state.ScoreOption.content} handle={this.HandleScoreBox} />:''}
+        {this.state.ScoreOption.show?<ScoreBox id={this.state.ScoreOption.id} onUpdate={this.HandleScoreUpdate.bind(this,this.state.ScoreOption.index)} content={this.state.ScoreOption.content} handle={this.HandleScoreBox} />:''}
         <div className={[style.ListBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
             <div className={[style.ListTitle,'childcenter','childcontentstart'].join(' ')}>
                 <div className={[style.TitleRight,'childcenter','childcontentend'].join(' ')}>
