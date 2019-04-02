@@ -48,7 +48,7 @@ refreshProps(props) {
 getAllCase(page,type,search){   //获取所有数据
     this.state.onGetData = true;
     this.setState(this.state);
-    api.getAllCaseByRater(page,type,search,'all').then(res=>{
+    api.getAllCaseByRater(page,type,search,'all').then(res=>{ //获取所有数据接口
         console.log(res);
         if (res.code === 200) {
             this.state.data = res.data.list;
@@ -64,12 +64,13 @@ getAllCase(page,type,search){   //获取所有数据
 HandleCasePass(id,status,index){
     let text = status===2?'确定审核通过吗？':'确定审核不通过吗？';
     let self = this;
+    //this.context.HandleAlertOption父组件传进来的方法，控制父组件的弹窗组件。
     this.context.HandleAlertOption(true,{
-        Value:text,
-        Cancle:()=>{
+        Value:text, //弹窗显示的值
+        Cancle:()=>{    //配置当弹窗关闭时
             this.context.HandleAlertOption(false,null)
         },
-        Submit:()=>{
+        Submit:()=>{    //配置当弹窗确定时
             api.getCasePase(id,status).then(res=>{
                 if (res.code === 200) {
                     self.state.data[index].status = status;
@@ -88,40 +89,40 @@ HandleCasePass(id,status,index){
 createTableRow(){
     let result = [];
     for (let z = 0; z < this.state.data.length; z++) {
-        result.push(<div className={[style.TableRow,'childcenter'].join(' ')}>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'11%'}}>
-        <span className={style.Timespan}>{this.state.data[z].userName}</span>
-        </div>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
-        <span className={style.Timespan}>{this.state.data[z].tel}</span> 
-        </div>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'25%'}}>
-            <input value={this.state.data[z].name} title={this.state.data[z].name} className={style.ValueInput} readOnly/>
-        </div>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'15%'}}>
-            <a href={this.state.data[z].filePath} download target="_blank"><div>在线预览</div></a>
-        </div>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
-         <a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.Timespan} style={{textDecoration:'underline'}}>查看</span></a>
-        </div>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
-            <span className={style.Timespan}>{this.state.data[z].status===1?'待审核':(this.state.data[z].status === 2?'已审核':'审核未通过')}</span>
-        </div>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'13%'}}>
-            <p className={style.HandlePassButton}>
-                <span onClick={this.HandleCasePass.bind(this,this.state.data[z].id,2,z)}>
-                通过
+        result.push(<div className={[style.TableRow, 'childcenter'].join(' ')}>
+            <div className={[style.TableColumn, 'childcenter', 'childcontentstart'].join(' ')} style={{ width: '11%' }}>
+                <span className={style.Timespan}>{this.state.data[z].userName}</span>
+            </div>
+            <div className={[style.TableColumn, 'childcenter', 'childcontentstart'].join(' ')} style={{ width: '14%' }}>
+                <span className={style.Timespan}>{this.state.data[z].tel}</span>
+            </div>
+            <div className={[style.TableColumn, 'childcenter', 'childcontentstart'].join(' ')} style={{ width: '25%' }}>
+                <input value={this.state.data[z].name} title={this.state.data[z].name} className={style.ValueInput} readOnly />
+            </div>
+            <div className={[style.TableColumn, 'childcenter', 'childcontentstart'].join(' ')} style={{ width: '15%' }}>
+                <a href={this.state.data[z].filePath} download target="_blank"><div>在线预览</div></a>
+            </div>
+            <div className={[style.TableColumn, 'childcenter', 'childcontentstart'].join(' ')} style={{ width: '10%' }}>
+                <a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.Timespan} style={{ textDecoration: 'underline' }}>查看</span></a>
+            </div>
+            <div className={[style.TableColumn, 'childcenter', 'childcontentstart'].join(' ')} style={{ width: '12%' }}>
+                <span className={style.Timespan}>{this.state.data[z].status === 1 ? '待审核' : (this.state.data[z].status === 2 ? '已审核' : '审核未通过')}</span>
+            </div>
+            <div className={[style.TableColumn, 'childcenter', 'childcontentstart'].join(' ')} style={{ width: '13%' }}>
+                <p className={style.HandlePassButton}>
+                    <span onClick={this.HandleCasePass.bind(this, this.state.data[z].id, 2, z)}>
+                        通过
                 </span>
-                |
-                <span onClick={this.HandleCasePass.bind(this,this.state.data[z].id,3,z)}>
-                不通过
+                    |
+                <span onClick={this.HandleCasePass.bind(this, this.state.data[z].id, 3, z)}>
+                        不通过
                 </span>
-            </p>
-            {/* <div onClick={this.HandleCasePass.bind(this,this.state.data[z].id,2,z)} className={[style.HandlePassButton,'childcenter'].join(' ')} style={{textIndent:'0px'}}>通过</div>
+                </p>
+                {/* <div onClick={this.HandleCasePass.bind(this,this.state.data[z].id,2,z)} className={[style.HandlePassButton,'childcenter'].join(' ')} style={{textIndent:'0px'}}>通过</div>
             <div className={style.line}></div>
             <div onClick={this.HandleCasePass.bind(this,this.state.data[z].id,3,z)} className={[style.HandlePassButton,'childcenter'].join(' ')} style={{textIndent:'0px'}}>不通过</div> */}
-        </div>
-    </div>);
+            </div>
+        </div>);
     }
     if (this.state.data.length === 0) {
         result.push( <div className={[style.NoResultBox,'childcenter childcolumn'].join(' ')}>
