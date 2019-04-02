@@ -40,6 +40,7 @@ submitComment(){
                 show:false,
                 id:null,
             })
+            this.props.onUpdata(this.state.commentValue);
         }else{
             alert(res.msg)
             this.state.commentValue = res.data

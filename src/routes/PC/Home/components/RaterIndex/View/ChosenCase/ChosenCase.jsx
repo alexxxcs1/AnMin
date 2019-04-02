@@ -137,6 +137,7 @@ createTableRow(){
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'22%'}}>
         {/* {this.state.data[z].content?<input value={this.state.data[z].content} title={this.state.data[z].content} className={style.CommentInput} type="text" readOnly/>:''} */}
         <span className={style.CheckInfo} onClick={this.HandleCommentBox.bind(this,{
+            index:z,
             show:true,
             id:this.state.data[z].id,
             content:this.state.data[z].content
@@ -170,10 +171,14 @@ HandleScoreUpdate(index,scoreArray){
     this.state.data[index].may_score = scoreArray;
     this.setState(this.state);
 }
+HandleCommentUpdate(index,content){
+    this.state.data[index].content = content;
+    this.setState(this.state);
+}
 render() {
   return (
     <div className={[style.AllCaseBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
-        {this.state.CommentOption.show?<CommentBox id={this.state.CommentOption.id} content={this.state.CommentOption.content} handle={this.HandleCommentBox}/>:''}
+        {this.state.CommentOption.show?<CommentBox id={this.state.CommentOption.id} onUpdata={this.HandleCommentUpdate.bind(this,this.state.CommentOption.index)} content={this.state.CommentOption.content} handle={this.HandleCommentBox}/>:''}
         {this.state.ScoreOption.show?<ScoreBox id={this.state.ScoreOption.id} onUpdate={this.HandleScoreUpdate.bind(this,this.state.ScoreOption.index)} content={this.state.ScoreOption.content} handle={this.HandleScoreBox} />:''}
         <div className={[style.ListBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
             <div className={[style.ListTitle,'childcenter','childcontentstart'].join(' ')}>

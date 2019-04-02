@@ -10,9 +10,9 @@ constructor(props) {
   super(props);
   this.state = {
       formdata:{
-        oldpassword:'',
-        newpassword:'',
-        password:'',
+        oldpassword:'', //旧的密码input框的值的状态变量
+        newpassword:'', //新的密码input框的值的状态变量
+        password:'',    //重复密码input框的值的状态变量
       }
   };
      this.refreshProps = this.refreshProps.bind(this);
@@ -28,17 +28,17 @@ componentDidMount() {
 refreshProps(props) {
   
 }
-onFormInputChange(type,e){
+onFormInputChange(type,e){  //input通用onchange事件，控制input 的value;
     this.state.formdata[type] = e.target.value;
     this.setState(this.state);
 }
-ChangeConfirm(){
+ChangeConfirm(){    //提交更改
     if (this.state.formdata.oldpassword&&this.state.formdata.newpassword&&this.state.formdata.password) {
         if (this.state.formdata.newpassword !== this.state.formdata.password) {
             alert('新密码和确认密码不一致');
             return;
         }
-        api.raterChangePassword(
+        api.raterChangePassword(    //修改密码接口
             this.state.formdata.oldpassword,
             this.state.formdata.newpassword,
             this.state.formdata.password
@@ -59,7 +59,7 @@ ChangeConfirm(){
 }
 render() {
   return (
-    <DarkBox >
+    <DarkBox >  {//DarkBox 通用组件 fixed的黑色透明背景}
         <div className={style.ChangePasswordForm}>
             <div className={[style.TopBox,'childcenter'].join(' ')}>
                 修改密码

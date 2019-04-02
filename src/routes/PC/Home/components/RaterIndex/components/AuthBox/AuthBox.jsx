@@ -19,11 +19,11 @@ componentDidMount() {
 refreshProps(props) {
   this.isAuth();
 }
-isAuth(){
+isAuth(){ //验证专家是否登录
     api.raterIsLogin().then(res=>{
         console.log(res);
         if (res.code != 200) {
-            window.location.hash = '#/rlogin'
+            window.location.hash = '#/login' //跳转到
         }
     },err=>{
 

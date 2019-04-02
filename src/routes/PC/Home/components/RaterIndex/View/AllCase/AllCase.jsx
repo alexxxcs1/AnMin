@@ -17,23 +17,23 @@ export class AllCase extends Component {
 constructor(props) {
   super(props);
   this.state = {
-      filterOption:null,
-      filterValue:null,
-      PTOption:{
-          nowpage:1,
-          totalpage:1,
-          init:false,
+      filterOption:null,    //选中的筛选值 (下拉框)
+      filterValue:null,    //搜索的值
+      PTOption:{    //分页器配置
+          nowpage:1, //当前页
+          totalpage:1,  //总页数
       },
-      onGetData:false,
-      data:[]
+      onGetData:false,  //是否正在通过ajax拉取数据中
+      data:[]   //案例数据数组
   };
   this.refreshProps = this.refreshProps.bind(this);
-  this.createTableRow = this.createTableRow.bind(this);
-  this.HandleFilterOption = this.HandleFilterOption.bind(this);
-  this.HandleSearvhValueChange = this.HandleSearvhValueChange.bind(this);
-  this.HandleSearch = this.HandleSearch.bind(this);
-  this.PageHandle = this.PageHandle.bind(this);
-  this.HandleCasePass = this.HandleCasePass.bind(this);
+  this.getAllCase = this.getAllCase.bind(this);
+  this.createTableRow = this.createTableRow.bind(this); //渲染案例数组方法
+  this.HandleFilterOption = this.HandleFilterOption.bind(this); //控制筛选值
+  this.HandleSearvhValueChange = this.HandleSearvhValueChange.bind(this); //控制搜索值
+  this.HandleSearch = this.HandleSearch.bind(this); //控制开始搜索
+  this.PageHandle = this.PageHandle.bind(this); //控制分页器页数
+  this.HandleCasePass = this.HandleCasePass.bind(this); //控制是否通过案例
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -45,7 +45,7 @@ componentDidMount() {
 refreshProps(props) {
   
 }
-getAllCase(page,type,search){
+getAllCase(page,type,search){   //获取所有数据
     this.state.onGetData = true;
     this.setState(this.state);
     api.getAllCaseByRater(page,type,search,'all').then(res=>{
