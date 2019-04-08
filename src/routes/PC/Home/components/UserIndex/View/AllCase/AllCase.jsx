@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import style from './AllCase.scss';
 import {api} from 'common/app';
 import PropTypes from "prop-types";
-  
+
 let reuploadid = null;
 let reuploadindex = null;
 export class AllCase extends Component {
@@ -43,12 +43,16 @@ createTableRow(){
     let result = [];
     for (let z = 0; z < this.state.data.length; z++) {
         result.push(<div className={[style.TableRow,'childcenter'].join(' ')}>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'66%'}}>
+        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'60%'}}>
             <input title={this.state.data[z].name} value={this.state.data[z].name} className={style.ValueInput} type="text" readOnly/>
             <div className={[style.HandleButtonGroup,'childcenter','childcontentstart'].join(' ')}>
-                <a href={this.state.data[z].filePath} download={this.state.data[z].name} target="_blank" rel="noopener noreferrer"><div >在线预览</div></a>
                 <div onClick={this.clickFile.bind(this,this.state.data[z].id,z)}>重新上传</div>
                 <div onClick={this.onDeleteCase.bind(this,this.state.data[z].id,z)}>删除</div>
+            </div>
+        </div>
+        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'6%'}}>
+            <div className={[style.HandleButtonGroup,'childcenter','childcontentstart'].join(' ')}>
+                <a href={this.state.data[z].filePath} download={this.state.data[z].name} target="_blank" rel="noopener noreferrer"><div >预览</div></a>
             </div>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'17%'}}>
@@ -77,6 +81,7 @@ onDeleteCase(id,index){
                     alert(res.msg)
                 }
                 self.setState(self.state);
+                this.context.HandleAlertOption(false,null)
             },err=>{
         
             })
@@ -110,16 +115,70 @@ onFileChange(e){
     }
     reuploadid = null;
 }
+// createDataColumn(){
+//     let datacolumn = [];
+//     datacolumn.push({
+//         Header: <div className={[style.TableHead,'childcenter childcontentstart'].join(' ')}>名称</div>,
+//         accessor: 'name',
+//         Cell:props=>{
+//             return <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'100%'}}>
+//                 {props.value}
+//             </div>
+//         },
+//         headerStyle:{padding: "0px"},
+//         sortable:false,
+//         resizable:false,
+//     })
+//     datacolumn.push({
+//         Header: <div className={[style.TableHead,'childcenter childcontentstart'].join(' ')}>预览</div>,
+//         accessor: 'filePath',
+//         Cell:props=>{
+//             return <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'100%'}}>
+//                 {props.value}
+//             </div>
+//         },
+//         headerStyle:{padding: "0px"},
+//         sortable:false,
+//         resizable:false,
+//     })
+//     datacolumn.push({
+//         Header: <div className={[style.TableHead,'childcenter childcontentstart'].join(' ')}>上传时间</div>,
+//         accessor: 'created_at',
+//         Cell:props=>{
+//             return <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'100%'}}>
+//                 {props.value}
+//             </div>
+//         },
+//         headerStyle:{padding: "0px"},
+//         sortable:false,
+//         resizable:false,
+//     })
+//     datacolumn.push({
+//         Header: <div className={[style.TableHead,'childcenter childcontentstart'].join(' ')}>更新时间</div>,
+//         accessor: 'updated_at',
+//         Cell:props=>{
+//             return <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'100%'}}>
+//                 {props.value}
+//             </div>
+//         },
+//         headerStyle:{padding: "0px"},
+//         sortable:false,
+//         resizable:false,
+//     })
+//     return datacolumn;
+// }
 render() {
   return (
     <div className={[style.AllCaseBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
         <div className={[style.ListBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
         
-            <div className={[style.TableBox,'childcenter','childcolumn','childcontentstart'].join(' ')}>
-
+            <div className={[style.TableBox].join(' ')}>
                 <div className={[style.TableHead,'childcenter'].join(' ')}>
-                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'66%'}}>
+                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'60%'}}>
                     名称
+                    </div>
+                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'6%'}}>
+                    案例
                     </div>
                     <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'17%'}}>
                     上传时间

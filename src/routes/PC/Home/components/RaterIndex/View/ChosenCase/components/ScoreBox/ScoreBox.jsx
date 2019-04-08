@@ -118,18 +118,18 @@ render() {
                     <span>主观资料</span>
                     <span>（15分）</span>
                 </div>
-                <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
+                <div className={[style.Rows,'childcenter childalignstart childcolumn'].join(' ')}>
                     <div className={'childcenter'} style={{width:'743px'}}>
                         <div style={{flexGrow:'1'}}>1、格式：按主要健康问题，逐一描述</div>
                         <div style={{flexGrow:'1'}}>2、主要书写内容</div>
                     </div>
-                    <div className={'childcenter'} style={{width:'743px',flexWrap:'wrap'}}>
-                        <div style={{width:'33%',flexGrow:'1'}}>（1）主诉</div>
-                        <div style={{width:'33%',flexGrow:'1'}}>（2）主要症状描述、病情演变</div>
-                        <div style={{width:'33%',flexGrow:'1'}}>（3）诊治经过及结果</div>
-                        <div style={{width:'33%',flexGrow:'1'}}>（4）相关病史</div>
-                        <div style={{width:'33%',flexGrow:'1'}}>（5）家族史</div>
-                        <div style={{width:'33%',flexGrow:'1'}}>（6）生活方式、心理及社会因素</div>
+                    <div className={'childcenter childcontentstart'} style={{width:'770px',flexWrap:'wrap'}}>
+                        <div style={{width:'33%',flexGrow:'1',flexShrink:'0'}}>（1）主诉</div>
+                        <div style={{width:'33%',flexGrow:'1',flexShrink:'0'}}>（2）主要症状描述、病情演变</div>
+                        <div style={{width:'33%',flexGrow:'1',flexShrink:'0'}}>（3）诊治经过及结果</div>
+                        <div style={{width:'33%',flexGrow:'1',flexShrink:'0'}}>（4）相关病史</div>
+                        <div style={{width:'33%',flexGrow:'1',flexShrink:'0'}}>（5）家族史</div>
+                        <div style={{width:'33%',flexGrow:'1',flexShrink:'0'}}>（6）生活方式、心理及社会因素</div>
                     </div>
                     
                 </div>
@@ -145,13 +145,12 @@ render() {
                     <span>客观检查</span>
                     <span>（10分）</span>
                 </div>
-                <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
-                    <div className={'childcenter'} style={{width:'743px'}}>
-                        <div style={{flexGrow:'1'}}>1、体检结果</div>
-                        <div style={{flexGrow:'1'}}>2、实验室检查及辅助检查等</div>
-                        <div style={{flexGrow:'1'}}>3、相关心理测验等其他评估</div>
+                <div className={[style.Rows,'childcenter childalignstart childcolumn'].join(' ')}>
+                    <div className={'childcenter childcontentstart'} style={{width:'743px'}}>
+                        <div style={{width:'33%',flexShrink:'0'}}>1、体检结果</div>
+                        <div style={{width:'33%',flexShrink:'0'}}>2、实验室检查及辅助检查等</div>
+                        <div style={{width:'33%',flexShrink:'0'}}>3、相关心理测验等其他评估</div>
                     </div>
-                    
                 </div>
                 <div className={[style.Rows,'childcenter'].join(' ')}>
                     <div className={style.ScoreInput}>
@@ -165,13 +164,13 @@ render() {
                     <span>评价</span>
                     <span>（10分）</span>
                 </div>
-                <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
-                    <div className={'childcenter'} style={{width:'743px',flexWrap:'wrap'}}>
-                        <div style={{width:'33%',flexGrow:'1'}}>1、主要诊断</div>
-                        <div style={{width:'33%',flexGrow:'1'}}>2、存在的危险因素与健康问题</div>
-                        <div style={{width:'33%',flexGrow:'1'}}>3、并发症或其他临床情况</div>
-                        <div style={{width:'33%'}}>4、患者的依从性</div>
-                        <div style={{width:'33%',flexGrow:'1'}}>5、家庭可利用的资源</div>
+                <div className={[style.Rows,'childcenter childalignstart childcolumn'].join(' ')}>
+                    <div className={'childcenter childcontentstart'} style={{width:'743px',flexWrap:'wrap'}}>
+                        <div style={{width:'33%',flexShrink:'0'}}>1、主要诊断</div>
+                        <div style={{width:'33%',flexShrink:'0'}}>2、存在的危险因素与健康问题</div>
+                        <div style={{width:'33%',flexShrink:'0'}}>3、并发症或其他临床情况</div>
+                        <div style={{width:'33%',flexShrink:'0'}}>4、患者的依从性</div>
+                        <div style={{width:'33%',flexGrow:'1',flexShrink:'0'}}>5、家庭可利用的资源</div>
                     </div>
                     
                 </div>
@@ -187,13 +186,13 @@ render() {
                     <span>处置计划</span>
                     <span>（15分）</span>
                 </div>
-                <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
-                    <div className={'childcenter'} style={{width:'743px'}}>
-                        <div style={{flexGrow:'1'}}>1、进一步诊查计划</div>
-                        <div style={{flexGrow:'1'}}>2、治疗计划</div>
-                        <div style={{flexGrow:'1'}}>3、随访要求 </div>
+                <div className={[style.Rows,'childcenter childalignstart childcolumn'].join(' ')}>
+                    <div className={'childcenter childcontentstart'} style={{width:'743px'}}>
+                        <div style={{width:'33%',flexShrink:'0'}}>1、进一步诊查计划</div>
+                        <div style={{width:'33%',flexShrink:'0'}}>2、治疗计划</div>
+                        <div style={{width:'33%',flexShrink:'0'}}>3、随访要求 </div>
                     </div>
-                    <div className={'childcenter'} style={{width:'773px'}}>
+                    <div className={'childcenter childcontentstart'} style={{width:'773px'}}>
                         <div style={{width:'26%',flexGrow:'0'}}>（1）药物治疗及相关问题</div>
                         <div style={{width:'66%',flexGrow:'1',wordBreak:'break-all'}}>（2）非药物治疗——行为干预计划、饮食、运动等健康教育指导、注意事项等。</div>
                     </div>
@@ -211,14 +210,14 @@ render() {
                     <span>分析</span>
                     <span>（25分）</span>
                 </div>
-                <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
-                    <div className={'childcenter'} style={{width:'743px'}}>
-                        <div style={{flexGrow:'1'}}>1、根据病情的分析理论和循证医学依据充分、准确</div>
-                        <div style={{flexGrow:'1'}}>2、论点明确、论据充分、分析准确、论证合理</div>
+                <div className={[style.Rows,'childcenter childalignstart childcolumn'].join(' ')}>
+                    <div className={'childcenter childcontentstart'} style={{width:'100%'}}>
+                        <div style={{width:'50%',flexShrink:'0'}}>1、根据病情的分析理论和循证医学依据充分、准确</div>
+                        <div style={{width:'50%',flexShrink:'0'}}>2、论点明确、论据充分、分析准确、论证合理</div>
                     </div>
-                    <div className={'childcenter'} style={{width:'743px'}}>
-                        <div style={{flexGrow:'1'}}>3、患儿症状体征或检查结果影像资料(照片)</div>
-                        <div style={{flexGrow:'1'}}>4、掌握坚实的基础理论和系统的专业知识</div>
+                    <div className={'childcenter childcontentstart'} style={{width:'100%'}}>
+                        <div style={{width:'50%',flexShrink:'0'}}>3、患儿症状体征或检查结果影像资料(照片)</div>
+                        <div style={{width:'50%',flexShrink:'0'}}>4、掌握坚实的基础理论和系统的专业知识</div>
                     </div>
                     
                 </div>
@@ -234,11 +233,11 @@ render() {
                     <span>总结</span>
                     <span>（25分）</span>
                 </div>
-                <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
-                    <div className={'childcenter'} style={{width:'743px'}}>
-                        <div style={{flexGrow:'1'}}>1、对案例理解是否透彻</div>
-                        <div style={{flexGrow:'1'}}>2、病史陈述是否完整、准确</div>
-                        <div style={{flexGrow:'1'}}>3、病例思考与陈述</div>
+                <div className={[style.Rows,'childcenter childalignstart childcolumn'].join(' ')}>
+                    <div className={'childcenter childcontentstart'} style={{width:'743px'}}>
+                        <div style={{width:'33%',flexShrink:'0'}}>1、对案例理解是否透彻</div>
+                        <div style={{width:'33%',flexShrink:'0'}}>2、病史陈述是否完整、准确</div>
+                        <div style={{width:'33%',flexShrink:'0'}}>3、病例思考与陈述</div>
                     </div>
                 </div>
                 <div className={[style.Rows,'childcenter'].join(' ')}>

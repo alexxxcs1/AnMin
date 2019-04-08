@@ -56,6 +56,7 @@ export class UploadCase extends Component {
         
         alertInter = setTimeout(() => {
           self.context.HandleFileLoad( null);
+          window.location.reload();
         }, 2000);
         clearInterval(uploadBarInter);
       } else {
@@ -151,7 +152,8 @@ export class UploadCase extends Component {
             onClick={this.context.HandleFileLoad.bind(this, null)}
           />
           <div className={style.UploadTitle}>上传案例</div>
-          <div className={style.UploadTips}>支持扩展名.PDF文件,文件大小不超过30M</div>
+          <div className={style.UploadTips}>只支持扩展名.PDF文件,文件大小不超过30M</div>
+          <div className={style.UploadTips}>N例+病例名称.PDF</div>
           <div
             className={[style.UploadButton, "childcenter", "childcolumn"].join(
               " "

@@ -59,7 +59,7 @@ ChangeConfirm(){    //提交更改
 }
 render() {
   return (
-    <DarkBox >  {//DarkBox 通用组件 fixed的黑色透明背景}
+    <DarkBox >  {/*DarkBox 通用组件 fixed的黑色透明背景*/}
         <div className={style.ChangePasswordForm}>
             <div className={[style.TopBox,'childcenter'].join(' ')}>
                 修改密码

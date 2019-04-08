@@ -120,6 +120,8 @@ export class UploadVideo extends Component {
   }
   onFileChange(e) {
     let self = this;
+    console.log(e.target.files[0]);
+    
     if(e.target.files[0].size/(1024*1024)<30){
       this.state.file.value = e.target.files[0]?e.target.files[0]:this.state.file.value;
       this.state.file.path = this.getObjectURL(e.target.files[0]);
@@ -166,7 +168,7 @@ export class UploadVideo extends Component {
             </span>
             <span>
               {this.state.AlertTips.status === "success"
-                ? "正在您跳转-请稍后"
+                ? "正在您跳转-请稍侯"
                 : this.state.AlertTips.msg}
             </span>
           </div>

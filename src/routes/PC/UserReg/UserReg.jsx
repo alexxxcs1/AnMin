@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import style from "./UserReg.scss";
 import {api} from 'common/app'
 
+import loginlogo from 'assets/loginlogo.png'
+
 import topbg from "assets/topbg.png";
 import logo from "assets/logo.png";
 import earth from "assets/earth.png";
@@ -71,14 +73,14 @@ export class UserReg extends Component {
             )}>
             <div className={style.TitleBox}>
               <div className={[style.TextRow, "childcenter"].join(" ")}>
-                <img src={logo} className={style.logo}/>  
-                <div className={'childcenter childcolumn'}>
+                <img src={loginlogo} className={style.logo}/>  
+                {/* <div className={'childcenter childcolumn'}>
                   <span>2019全国婴幼儿牛奶蛋白过敏膳食管理规范化培训项目</span>
                   <span>真知灼见·青年讲者优秀临床案例征集比赛</span>
-                </div>
+                </div> */}
               </div>
               <div className={[style.TextRow, "childcenter"].join(" ")}>
-                2019青年讲者优秀病例征文平台
+                真知灼见·全国CMPA膳食管理案例大赛
               </div>
               
             </div>
