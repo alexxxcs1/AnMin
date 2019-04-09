@@ -100,10 +100,10 @@ createTableRow(){
                 <input value={this.state.data[z].name} title={this.state.data[z].name} className={style.ValueInput} readOnly />
             </div>
             <div className={[style.TableColumn, 'childcenter', 'childcontentstart'].join(' ')} style={{ width: '15%' }}>
-                <a href={this.state.data[z].filePath} download target="_blank"><div>在线预览</div></a>
+                <a href={this.state.data[z].filePath} download target="_blank"><div>预览</div></a>
             </div>
             <div className={[style.TableColumn, 'childcenter', 'childcontentstart'].join(' ')} style={{ width: '10%' }}>
-                <a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.Timespan} style={{ textDecoration: 'underline' }}>查看</span></a>
+                {this.state.data[z].video?<a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.Timespan} style={{ textDecoration: 'underline' }}>查看</span></a>:''}
             </div>
             <div className={[style.TableColumn, 'childcenter', 'childcontentstart'].join(' ')} style={{ width: '12%' }}>
                 <span className={style.Timespan}>{this.state.data[z].status === 1 ? '待审核' : (this.state.data[z].status === 2 ? '已审核' : '审核未通过')}</span>

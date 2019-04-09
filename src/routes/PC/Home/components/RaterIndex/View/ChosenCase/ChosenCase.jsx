@@ -119,12 +119,17 @@ createTableRow(){
         </div> 
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'40%'}}>
             <input value={this.state.data[z].name} title={this.state.data[z].name} className={style.ValueInput} type="text" readOnly/>
-            <div className={[style.HandleButtonGroup,'childcenter','childcontentstart'].join(' ')}>
-                <a href={this.state.data[z].filePath} download target="_blank"><div >在线预览</div></a>
-            </div>
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
-        <a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.CheckInfo}>查看</span></a>
+            <div className={[style.HandleButtonGroup,'childcenter','childcontentstart'].join(' ')}>
+                <a href={this.state.data[z].filePath} download target="_blank"><div >预览</div></a>
+            </div>
+        </div>
+        {/* <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'7%'}}>
+            <a href={this.state.data[z].video} target="_blank" rel="noopener noreferrer"><span className={style.CheckInfo}>查看</span></a>
+        </div> */}
+        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
+            <span className={style.CheckInfo}>{this.state.data[z].sum!=null?this.state.data[z].sum:'暂无评分'}</span> 
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
             <span className={style.CheckInfo} onClick={this.HandleScoreBox.bind(this,{
@@ -134,7 +139,7 @@ createTableRow(){
                     content:this.state.data[z].may_score
                 })}>点我打分</span> 
         </div>
-        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'22%'}}>
+        <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
         {/* {this.state.data[z].content?<input value={this.state.data[z].content} title={this.state.data[z].content} className={style.CommentInput} type="text" readOnly/>:''} */}
         <span className={style.CheckInfo} onClick={this.HandleCommentBox.bind(this,{
             index:z,
@@ -216,12 +221,18 @@ render() {
                     名称
                     </div>
                     <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'14%'}}>
+                    案例
+                    </div>
+                    {/* <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'7%'}}>
                     视频
+                    </div> */}
+                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
+                    评分
                     </div>
                     <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'10%'}}>
                     打分
                     </div>
-                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'22%'}}>
+                    <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
                     点评
                     </div>
                 </div>
