@@ -48,9 +48,10 @@
             }
             .CheckInfo{
                 font-size:18px;
-                text-decoration:underline !important;
-                font-weight: 300;
-                color: rgba($color: #000000, $alpha: 0.7);
+                // text-decoration:underline !important;
+                // font-weight: 300;
+                color: rgba($color: #000000, $alpha: 1);
+                cursor: pointer;
             }
             .Timespan{
                 font-size: 18px;

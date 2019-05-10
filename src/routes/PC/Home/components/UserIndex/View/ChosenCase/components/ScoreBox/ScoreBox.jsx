@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import style from './ScoreBox.scss'
 import DarkBox from 'components/DarkBox'
 import {api} from 'common/app'
+
+import scoreBasis1 from 'assets/scoreBasis1.jpg'
+import scoreBasis2 from 'assets/scoreBasis2.jpg'
+import scoreBasis3 from 'assets/scoreBasis3.jpg'
+import scoreBasis4 from 'assets/scoreBasis4.jpg'
+import scoreBasis5 from 'assets/scoreBasis5.jpg'
+import scoreBasis6 from 'assets/scoreBasis6.jpg'
   
 export class ScoreBox extends Component {
 constructor(props) {
@@ -64,7 +71,7 @@ render() {
                 <div className={[style.Rows,'childcenter'].join(' ')}>得分</div>
             </div>
             <div className={[style.ScoreContent,'childcenter'].join(' ')}>
-                <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
+                {/* <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
                     <span>主观资料</span>
                     <span>（15分）</span>
                 </div>
@@ -82,13 +89,16 @@ render() {
                         <div style={{width:'33%',flexGrow:'1',flexShrink:'0'}}>（6）生活方式、心理及社会因素</div>
                     </div>
                     
+                </div> */}
+                <div className={style.ImageRow}>
+                    <img src={scoreBasis1} className={style.ScoreBasis} alt=""/>
                 </div>
-                <div className={[style.Rows,'childcenter'].join(' ')}>
+                <div className={[style.ScoreRows,'childcenter'].join(' ')}>
                     {this.state.scoreArray[0]}分
                 </div>
             </div>
             <div className={[style.ScoreContent,'childcenter'].join(' ')}>
-                <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
+                {/* <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
                     <span>客观检查</span>
                     <span>（10分）</span>
                 </div>
@@ -101,10 +111,16 @@ render() {
                 </div>
                 <div className={[style.Rows,'childcenter'].join(' ')}>
                     {this.state.scoreArray[1]}分
+                </div> */}
+                <div className={style.ImageRow}>
+                    <img src={scoreBasis2} className={style.ScoreBasis} alt=""/>
+                </div>
+                <div className={[style.ScoreRows,'childcenter'].join(' ')}>
+                    {this.state.scoreArray[1]}分
                 </div>
             </div>
             <div className={[style.ScoreContent,'childcenter'].join(' ')}>
-                <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
+                {/* <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
                     <span>评价</span>
                     <span>（10分）</span>
                 </div>
@@ -120,10 +136,16 @@ render() {
                 </div>
                 <div className={[style.Rows,'childcenter'].join(' ')}>
                     {this.state.scoreArray[2]}分
+                </div> */}
+                <div className={style.ImageRow}>
+                    <img src={scoreBasis3} className={style.ScoreBasis} alt=""/>
+                </div>
+                <div className={[style.ScoreRows,'childcenter'].join(' ')}>
+                    {this.state.scoreArray[2]}分
                 </div>
             </div>
             <div className={[style.ScoreContent,'childcenter'].join(' ')}>
-                <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
+                {/* <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
                     <span>处置计划</span>
                     <span>（15分）</span>
                 </div>
@@ -141,10 +163,16 @@ render() {
                 </div>
                 <div className={[style.Rows,'childcenter'].join(' ')}>
                     {this.state.scoreArray[3]}分
+                </div> */}
+                <div className={style.ImageRow}>
+                    <img src={scoreBasis4} className={style.ScoreBasis} alt=""/>
+                </div>
+                <div className={[style.ScoreRows,'childcenter'].join(' ')}>
+                    {this.state.scoreArray[3]}分
                 </div>
             </div>
             <div className={[style.ScoreContent,'childcenter'].join(' ')}>
-                <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
+                {/* <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
                     <span>分析</span>
                     <span>（25分）</span>
                 </div>
@@ -161,10 +189,16 @@ render() {
                 </div>
                 <div className={[style.Rows,'childcenter'].join(' ')}>
                     {this.state.scoreArray[4]}分
+                </div> */}
+                <div className={style.ImageRow}>
+                    <img src={scoreBasis5} className={style.ScoreBasis} alt=""/>
+                </div>
+                <div className={[style.ScoreRows,'childcenter'].join(' ')}>
+                    {this.state.scoreArray[4]}分
                 </div>
             </div>
             <div className={[style.ScoreContent,'childcenter'].join(' ')}>
-                <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
+                {/* <div className={[style.Rows,'childcenter childcolumn'].join(' ')}>
                     <span>总结</span>
                     <span>（25分）</span>
                 </div>
@@ -177,20 +211,31 @@ render() {
                 </div>
                 <div className={[style.Rows,'childcenter'].join(' ')}>
                     {this.state.scoreArray[5]}分
+                </div> */}
+                <div className={style.ImageRow}>
+                    <img src={scoreBasis6} className={style.ScoreBasis} alt=""/>
+                </div>
+                <div className={[style.ScoreRows,'childcenter'].join(' ')}>
+                    {this.state.scoreArray[5]}分
                 </div>
             </div>
 
             <div className={[style.HandleRow,'childcenter'].join(' ')}>
-                <div className={[style.CountScore,'childcenter'].join(' ')}>
-                    <div className={style.ScoreType} >SOAP病例描述 <span style={{fontSize:'24px',color:'#DA4913'}}>{this.countScore('soap')}</span>  分</div>
-                    <div className={style.ScoreType} >病例分析/归纳/收获/总结 <span style={{fontSize:'24px',color:'#DA4913'}}>{this.countScore('analysis')}</span>  分</div>
-                    <div className={style.ScoreType} >总计 <span style={{fontSize:'24px',color:'#DA4913'}}>{this.countScore()}</span>  分</div>
+                <div className={[style.CountScore,'childcenter childalignend'].join(' ')}>
+                    <div className={[style.ScoreGroup,'childcenter'].join(' ')} style={{width:'60%'}}>
+                        <div className={style.ScoreType} >SOAP病例描述 <span style={{fontSize:'24px',color:'#DA4913'}}>{this.countScore('soap')}</span>  分</div>
+                        <div className={style.ScoreType} >病例分析/归纳/收获/总结 <span style={{fontSize:'24px',color:'#DA4913'}}>{this.countScore('analysis')}</span>  分</div>
+                    </div>
+                    <div className={[style.ScoreGroup,'childcenter'].join(' ')} style={{width:'40%'}}>
+                        <div className={style.ScoreType} >总计 <span style={{fontSize:'36px',fontWeight:'bold',color:'#DA4913'}}>{this.countScore()}</span>  分</div>
+                    </div>
                 </div>
-            </div>
-            <div className={[style.CancelButton,'childcenter'].join(' ')} onClick={this.props.handle.bind(this,{
+                <div className={[style.CancelButton,'childcenter'].join(' ')} onClick={this.props.handle.bind(this,{
                     show:false,
                     content:null,
-            })}>确定</div>
+                })}>确定</div>
+            </div>
+            
         </div>
     </DarkBox>
    )

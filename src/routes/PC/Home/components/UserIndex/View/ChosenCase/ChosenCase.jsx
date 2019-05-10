@@ -61,7 +61,7 @@ createTableRow(){
             
         </div>
         <div className={[style.TableColumn,'childcenter','childcontentstart'].join(' ')} style={{width:'12%'}}>
-            <span onClick={()=>{
+            <span className={style.CheckInfo} onClick={()=>{
                 window.open(this.state.data[z].filePath);
             }}>预览</span>
         </div>
